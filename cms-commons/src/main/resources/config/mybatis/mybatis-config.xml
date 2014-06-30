@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="localCacheScope" value="STATEMENT"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="defaultStatementTimeout" value="25000"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 是否使用插入数据后自增主键的值，需要配合keyProperty使用 -->
+       <!--  <setting name="useGeneratedKeys" value="true"/> -->
+    </settings>
+	
+	<typeAliases> 
+		<typeAlias alias="sysUser" type="com.bsb.cms.model.po.auth.SysUser" />
+		<typeAlias alias="sysModel" type="com.bsb.cms.model.po.auth.SysModel" />
+		<typeAlias alias="sysModelDTO" type="com.bsb.cms.model.dto.auth.SysModelDTO" />
+		<typeAlias alias="sysRole" type="com.bsb.cms.model.po.auth.SysRole" />
+		<typeAlias alias="sysRoleDTO" type="com.bsb.cms.model.dto.auth.SysRoleDTO" />
+		<typeAlias alias="sysRoleModel" type="com.bsb.cms.model.po.auth.SysRoleModel" />
+		
+		<typeAlias alias="contType" type="com.bsb.cms.model.po.content.ContType" />
+		<typeAlias alias="contContent" type="com.bsb.cms.model.po.content.ContContent" />
+		<typeAlias alias="contContentDTO" type="com.bsb.cms.model.dto.content.ContContentDTO" />
+	</typeAliases>
+</configuration>

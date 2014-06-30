@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.content.ContTypeMapper" >
+
+  <resultMap id="BaseResultMap" type="contType" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ABOUT" property="about" jdbcType="VARCHAR" />
+    <result column="TYPE_IMG" property="typeImg" jdbcType="VARCHAR" />
+    <result column="TYPE_NAME" property="typeName" jdbcType="VARCHAR" />
+    <result column="SHOW_NAME" property="showName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="FILE_DIR" property="fileDir" jdbcType="VARCHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="TYPE_SORT" property="typeSort" jdbcType="SMALLINT" />
+    <result column="CONTENT_TEMPLATE" property="contentTemplate" jdbcType="BIGINT" />
+    <result column="TYPE_TEMPLATE" property="typeTemplate" jdbcType="BIGINT" />
+    <result column="DEPTH" property="depth" jdbcType="SMALLINT" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, ABOUT, TYPE_IMG, TYPE_NAME, SHOW_NAME, PARENT_ID, REMARK, FILE_DIR, FILE_NAME, 
+    TYPE_SORT, CONTENT_TEMPLATE, TYPE_TEMPLATE, DEPTH, STATUS, CREATE_DATE, UPDATE_DATE, CREATE_USER, 
+    UPDATE_USER
+  </sql>
+  <select id="findByUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT 
+  	 <include refid="Base_Column_List" />
+  	  FROM CONT_TYPE
+  </select>
+  
+ <!--  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cont_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_type
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cont_type
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContTypeExample" >
+    delete from cont_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContType" >
+    insert into cont_type (ID, ABOUT, TYPE_IMG, 
+      TYPE_NAME, SHOW_NAME, PARENT_ID, 
+      REMARK, FILE_DIR, FILE_NAME, 
+      TYPE_SORT, CONTENT_TEMPLATE, TYPE_TEMPLATE, 
+      DEPTH, CREATE_DATE, UPDATE_DATE, 
+      CREATE_USER, UPDATE_USER)
+    values (#{id,jdbcType=BIGINT}, #{about,jdbcType=VARCHAR}, #{typeImg,jdbcType=VARCHAR}, 
+      #{typeName,jdbcType=VARCHAR}, #{showName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR}, #{fileDir,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{typeSort,jdbcType=SMALLINT}, #{contentTemplate,jdbcType=BIGINT}, #{typeTemplate,jdbcType=BIGINT}, 
+      #{depth,jdbcType=SMALLINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContType" >
+    insert into cont_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="about != null" >
+        ABOUT,
+      </if>
+      <if test="typeImg != null" >
+        TYPE_IMG,
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME,
+      </if>
+      <if test="showName != null" >
+        SHOW_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="fileDir != null" >
+        FILE_DIR,
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="typeSort != null" >
+        TYPE_SORT,
+      </if>
+      <if test="contentTemplate != null" >
+        CONTENT_TEMPLATE,
+      </if>
+      <if test="typeTemplate != null" >
+        TYPE_TEMPLATE,
+      </if>
+      <if test="depth != null" >
+        DEPTH,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="about != null" >
+        #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="typeImg != null" >
+        #{typeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="showName != null" >
+        #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="fileDir != null" >
+        #{fileDir,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeSort != null" >
+        #{typeSort,jdbcType=SMALLINT},
+      </if>
+      <if test="contentTemplate != null" >
+        #{contentTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="typeTemplate != null" >
+        #{typeTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="depth != null" >
+        #{depth,jdbcType=SMALLINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContTypeExample" resultType="java.lang.Integer" >
+    select count(*) from cont_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cont_type
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.about != null" >
+        ABOUT = #{record.about,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeImg != null" >
+        TYPE_IMG = #{record.typeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeName != null" >
+        TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showName != null" >
+        SHOW_NAME = #{record.showName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileDir != null" >
+        FILE_DIR = #{record.fileDir,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null" >
+        FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeSort != null" >
+        TYPE_SORT = #{record.typeSort,jdbcType=SMALLINT},
+      </if>
+      <if test="record.contentTemplate != null" >
+        CONTENT_TEMPLATE = #{record.contentTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="record.typeTemplate != null" >
+        TYPE_TEMPLATE = #{record.typeTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="record.depth != null" >
+        DEPTH = #{record.depth,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cont_type
+    set ID = #{record.id,jdbcType=BIGINT},
+      ABOUT = #{record.about,jdbcType=VARCHAR},
+      TYPE_IMG = #{record.typeImg,jdbcType=VARCHAR},
+      TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      SHOW_NAME = #{record.showName,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      FILE_DIR = #{record.fileDir,jdbcType=VARCHAR},
+      FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      TYPE_SORT = #{record.typeSort,jdbcType=SMALLINT},
+      CONTENT_TEMPLATE = #{record.contentTemplate,jdbcType=BIGINT},
+      TYPE_TEMPLATE = #{record.typeTemplate,jdbcType=BIGINT},
+      DEPTH = #{record.depth,jdbcType=SMALLINT},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bsb.cms.model.po.content.ContType" >
+    update cont_type
+    <set >
+      <if test="about != null" >
+        ABOUT = #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="typeImg != null" >
+        TYPE_IMG = #{typeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="showName != null" >
+        SHOW_NAME = #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="fileDir != null" >
+        FILE_DIR = #{fileDir,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeSort != null" >
+        TYPE_SORT = #{typeSort,jdbcType=SMALLINT},
+      </if>
+      <if test="contentTemplate != null" >
+        CONTENT_TEMPLATE = #{contentTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="typeTemplate != null" >
+        TYPE_TEMPLATE = #{typeTemplate,jdbcType=BIGINT},
+      </if>
+      <if test="depth != null" >
+        DEPTH = #{depth,jdbcType=SMALLINT},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContType" >
+    update cont_type
+    set ABOUT = #{about,jdbcType=VARCHAR},
+      TYPE_IMG = #{typeImg,jdbcType=VARCHAR},
+      TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      SHOW_NAME = #{showName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      FILE_DIR = #{fileDir,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      TYPE_SORT = #{typeSort,jdbcType=SMALLINT},
+      CONTENT_TEMPLATE = #{contentTemplate,jdbcType=BIGINT},
+      TYPE_TEMPLATE = #{typeTemplate,jdbcType=BIGINT},
+      DEPTH = #{depth,jdbcType=SMALLINT},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update> -->
+</mapper>

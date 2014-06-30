@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.SysUserMapper">
+
+	<resultMap id="sysUserResult" type="sysUser">
+		<result column="SYS_USER_ID" property="sysUserId" jdbcType="BIGINT" />
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
+		<result column="ROLE_NAME" property="roleName" />
+	</resultMap>
+
+	<resultMap id="sysUserResult2" type="sysUser">
+		<result column="SYS_USER_ID" property="sysUserId" />
+		<result column="LOGIN_NAME" property="loginName" />
+		<result column="NAME" property="name" />
+		<result column="PASSWORD" property="password" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+		<result column="STATUS" property="status" />
+		<result column="REMARK" property="remark" />
+		<result column="CREATOR" property="creator" />
+		<result column="ROLE_ID" property="roleId" />
+	</resultMap>
+
+	<select id="login" parameterType="com.bsb.cms.model.po.auth.SysUser"
+		resultMap="sysUserResult2">
+		SELECT t.SYS_USER_ID, t.LOGIN_NAME, t.NAME, t.PASSWORD,
+		t.CREATE_DATE,
+		t.UPDATE_DATE, t.STATUS, t.REMARK,
+		t.CREATOR, ROLE_ID
+		FROM SYS_USER t
+		WHERE t.LOGIN_NAME = #{loginName} AND
+		t.STATUS=#{status}
+		AND t.PASSWORD=#{password}
+	</select>
+
+	<sql id="findCondition_sql_fromAndwhere">
+		from SYS_USER t
+		left join SYS_ROLE r
+		on r.SYS_ROLE_ID = t.ROLE_ID
+		<where>
+			<if test="loginName !=null and loginName !=''">
+				t.LOGIN_NAME =	#{loginName}
+			</if>
+			<if test="status != null and status !=''">
+				t.STATUS = #{status}
+			</if>
+		</where>
+
+	</sql>
+
+	<select id="findListPage" resultMap="sysUserResult"
+		parameterType="sysUser">
+		select t.SYS_USER_ID, t.LOGIN_NAME, t.NAME, t.PASSWORD, t.CREATE_DATE,
+		t.UPDATE_DATE, t.STATUS, t.REMARK,
+		t.CREATOR, ROLE_ID, r.ROLE_NAME
+		<include refid="findCondition_sql_fromAndwhere" />
+
+	</select>
+
+
+	<insert id="insert" parameterType="sysUser">
+		INSERT INTO SYS_USER (LOGIN_NAME, NAME, PASSWORD,
+		CREATE_DATE, UPDATE_DATE, STATUS,
+		REMARK, CREATOR, ROLE_ID)
+		VALUES (#{loginName}, #{name}, #{password},
+		NOW(), NOW(), #{status}, #{remark},
+		#{creator}, #{roleId})
+	</insert>
+
+	<update id="deleteById" parameterType="long">
+		UPDATE SYS_USER
+		SET
+		UPDATE_DATE = NOW(),
+		STATUS = 2
+		WHERE SYS_USER_ID = #{sysUserId}
+	</update>
+
+	<update id="updatePwd" parameterType="sysUser">
+		UPDATE SYS_USER
+		SET
+		PASSWORD = #{password},
+		UPDATE_DATE = NOW()
+		WHERE SYS_USER_ID = #{sysUserId}
+	</update>
+	
+	  
+  	<select id="hasRename" parameterType="java.lang.String" resultType="java.lang.Long">
+	   SELECT count(*)
+		 FROM SYS_USER
+		WHERE LOGIN_NAME = #{LOGIN_NAME}<!--  AND STATUS=1 -->
+	</select>
+
+</mapper>

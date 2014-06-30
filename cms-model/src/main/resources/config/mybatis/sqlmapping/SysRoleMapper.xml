@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.SysRoleMapper">
+
+	<resultMap id="sysRoleResult" type="sysRole">
+		<result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="update_date" property="updateDate" jdbcType="DATE" />
+	</resultMap>
+
+	<select id="getRoles" resultType="com.bsb.cms.model.vo.ComboboxJsonVO">
+		SELECT SYS_ROLE_ID as id,
+		ROLE_NAME as text
+		FROM SYS_ROLE
+	</select>
+
+
+<!-- 	<select id="findListPage" resultType="sysRoleDTO"
+		parameterType="sysRoleDTO">
+		SELECT r.SYS_ROLE_ID as sysRoleId, r.ROLE_NAME as roleName, roleUser
+			FROM SYS_ROLE r,
+			(SELECT WM_CONCAT(to_char(t.login_name)) as roleUser,
+			r2.SYS_ROLE_ID
+			FROM SYS_ROLE r2
+			LEFT JOIN SYS_USER t
+			ON r2.SYS_ROLE_ID =
+			t.ROLE_ID
+			GROUP BY r2.SYS_ROLE_ID) tr
+			WHERE r.SYS_ROLE_ID =	tr.SYS_ROLE_ID
+			<if test="roleName != null and roleName != ''">
+				AND r.ROLE_NAME = #{roleName}
+			</if>
+
+	</select> -->
+	<select id="findListPage" resultType="sysRoleDTO"
+		parameterType="sysRoleDTO">
+		SELECT r.SYS_ROLE_ID as sysRoleId, r.ROLE_NAME as roleName, '--error--' as roleUser
+			FROM SYS_ROLE r
+			<where>
+			<if test="roleName != null and roleName != ''">
+				 r.ROLE_NAME = #{roleName}
+			</if>
+			</where>
+	</select>
+
+	<select id="hasRename" parameterType="java.util.Map" resultType="java.lang.Long">
+		SELECT count(*)
+		FROM SYS_ROLE
+		WHERE ROLE_NAME = #{roleName}
+		<if test="sysRoleId != null">
+			<![CDATA[	AND SYS_ROLE_ID <> #{sysRoleId} ]]>
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="sysRole">
+		INSERT INTO SYS_ROLE
+		(SYS_ROLE_ID, CREATE_DATE, CREATOR, ROLE_NAME,
+		UPDATE_DATE)
+		VALUES
+		(#{sysRoleId}, NOW(), #{creator}, #{roleName}, NOW())
+	</insert>
+
+	<select id="getById" resultMap="sysRoleResult" parameterType="java.lang.Long">
+		SELECT SYS_ROLE_ID, CREATE_DATE, CREATOR, ROLE_NAME, UPDATE_DATE
+		FROM SYS_ROLE
+		WHERE SYS_ROLE_ID=#{sysRoleId}
+	</select>
+
+	<update id="update" parameterType="sysRole">
+		UPDATE SYS_ROLE
+		SET
+		ROLE_NAME = #{roleName},
+		UPDATE_DATE = NOW()
+		WHERE SYS_ROLE_ID = #{sysRoleId}
+	</update>
+
+</mapper>

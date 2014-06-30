@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.content.ContExtAttrValueMapper" >
+  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.ContExtAttrValue" >
+    <id column="VALUE_ID" property="valueId" jdbcType="BIGINT" />
+    <result column="ATTR__ID" property="attrId" jdbcType="BIGINT" />
+    <result column="CONTENT_ID" property="contentId" jdbcType="BIGINT" />
+    <result column="EXT_ATTR_ID" property="extAttrId" jdbcType="BIGINT" />
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="BIGINT" />
+  </resultMap>
+  <!-- <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    VALUE_ID, ATTR__ID, CONTENT_ID, EXT_ATTR_ID, ATTR_VALUE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContExtAttrValueExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cont_ext_attr_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_ext_attr_value
+    where VALUE_ID = #{valueId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cont_ext_attr_value
+    where VALUE_ID = #{valueId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContExtAttrValueExample" >
+    delete from cont_ext_attr_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContExtAttrValue" >
+    insert into cont_ext_attr_value (VALUE_ID, ATTR__ID, CONTENT_ID, 
+      EXT_ATTR_ID, ATTR_VALUE)
+    values (#{valueId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{extAttrId,jdbcType=BIGINT}, #{attrValue,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContExtAttrValue" >
+    insert into cont_ext_attr_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="valueId != null" >
+        VALUE_ID,
+      </if>
+      <if test="attrId != null" >
+        ATTR__ID,
+      </if>
+      <if test="contentId != null" >
+        CONTENT_ID,
+      </if>
+      <if test="extAttrId != null" >
+        EXT_ATTR_ID,
+      </if>
+      <if test="attrValue != null" >
+        ATTR_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="valueId != null" >
+        #{valueId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="extAttrId != null" >
+        #{extAttrId,jdbcType=BIGINT},
+      </if>
+      <if test="attrValue != null" >
+        #{attrValue,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContExtAttrValueExample" resultType="java.lang.Integer" >
+    select count(*) from cont_ext_attr_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cont_ext_attr_value
+    <set >
+      <if test="record.valueId != null" >
+        VALUE_ID = #{record.valueId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrId != null" >
+        ATTR__ID = #{record.attrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.contentId != null" >
+        CONTENT_ID = #{record.contentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.extAttrId != null" >
+        EXT_ATTR_ID = #{record.extAttrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrValue != null" >
+        ATTR_VALUE = #{record.attrValue,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cont_ext_attr_value
+    set VALUE_ID = #{record.valueId,jdbcType=BIGINT},
+      ATTR__ID = #{record.attrId,jdbcType=BIGINT},
+      CONTENT_ID = #{record.contentId,jdbcType=BIGINT},
+      EXT_ATTR_ID = #{record.extAttrId,jdbcType=BIGINT},
+      ATTR_VALUE = #{record.attrValue,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bsb.cms.model.po.content.ContExtAttrValue" >
+    update cont_ext_attr_value
+    <set >
+      <if test="attrId != null" >
+        ATTR__ID = #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null" >
+        CONTENT_ID = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="extAttrId != null" >
+        EXT_ATTR_ID = #{extAttrId,jdbcType=BIGINT},
+      </if>
+      <if test="attrValue != null" >
+        ATTR_VALUE = #{attrValue,jdbcType=BIGINT},
+      </if>
+    </set>
+    where VALUE_ID = #{valueId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContExtAttrValue" >
+    update cont_ext_attr_value
+    set ATTR__ID = #{attrId,jdbcType=BIGINT},
+      CONTENT_ID = #{contentId,jdbcType=BIGINT},
+      EXT_ATTR_ID = #{extAttrId,jdbcType=BIGINT},
+      ATTR_VALUE = #{attrValue,jdbcType=BIGINT}
+    where VALUE_ID = #{valueId,jdbcType=BIGINT}
+  </update> -->
+</mapper>

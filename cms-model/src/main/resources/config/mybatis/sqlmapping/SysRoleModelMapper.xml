@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.SysRoleModelMapper">
+
+	<resultMap id="sysRoleModelResult" type="sysRoleModel">
+		<result column="SYS_MODEL_ID" property="sysModelId" />
+		<result column="SYS_ROLE_ID" property="sysRoleId" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="CREATOR" property="creator" />
+	</resultMap>
+
+	<delete id="deleteByRoleId" parameterType="java.lang.Long">
+		DELETE FROM SYS_ROLE_MODEL
+		WHERE SYS_ROLE_ID = #{sysRoleId}
+	</delete>
+
+
+	<insert id="insert" parameterType="sysRoleModel">
+		INSERT INTO SYS_ROLE_MODEL (SYS_MODEL_ID, SYS_ROLE_ID, CREATE_DATE, CREATOR)
+		VALUES (#{sysModelId}, #{sysRoleId}, NOW(), #{creator})
+	</insert>
+
+</mapper>

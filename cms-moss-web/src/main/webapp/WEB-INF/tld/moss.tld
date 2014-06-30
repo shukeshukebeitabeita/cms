@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>j</short-name>
+  <uri>/moss-tags</uri>
+  <display-name>"moss Tags"</display-name>
+  <description><![CDATA[moss tag: 1. auth button tag.]]></description>
+ 
+
+  <tag>
+    <name>existsAuth</name>
+    <tag-class>com.bsb.cms.moss.commons.tag.ExistsAuth</tag-class>
+    <body-content>JSP</body-content>
+    <description><![CDATA[auth button check.]]></description>
+    <attribute>
+      <name>code</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description><![CDATA[auth code]]></description>
+    </attribute>
+
+  </tag>
+  
+  <tag>
+    <name>notExistsAuth</name>
+    <tag-class>com.bsb.cms.moss.commons.tag.NotExistsAuth</tag-class>
+    <body-content>JSP</body-content>
+    <description><![CDATA[auth button check.]]></description>
+     <attribute>
+      <name>code</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description><![CDATA[auth code]]></description>
+    </attribute>
+  </tag>
+  
+  <tag>
+    <name>ifAuth</name>
+    <tag-class>com.bsb.cms.moss.commons.tag.IfAuthButtonTag</tag-class>
+    <body-content>JSP</body-content>
+    <description><![CDATA[auth button check.]]></description>
+    <attribute>
+      <name>code</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description><![CDATA[auth code]]></description>
+    </attribute>
+
+  </tag>
+  
+  <tag>
+    <name>elseAuth</name>
+    <tag-class>com.bsb.cms.moss.commons.tag.ElseAuthTag</tag-class>
+    <body-content>JSP</body-content>
+    <description><![CDATA[auth button check.]]></description>
+  </tag>
+</taglib>

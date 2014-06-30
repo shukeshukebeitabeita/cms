@@ -1,0 +1,23 @@
+input {
+	border: solid 1px #6DB2E4
+}
+
+body {
+	background: #EFF5FF
+}
+.jbackground{
+	background: #EFF5FF
+}
+.jinputMiddleWidth{
+	width: 250px;
+}
+.jinputMaxWidth{
+	width: 500px;
+}
+
+table {
+	font-size: 12px
+}
+.jinputMinWidth{
+	width: 150px;
+}

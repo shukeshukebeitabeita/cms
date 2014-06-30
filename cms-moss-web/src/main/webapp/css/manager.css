@@ -1,0 +1,100 @@
+
+
+/* 全局样式 */
+*{padding:0;margin:0;}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select,a{ margin:0; padding:0; outline:0;}
+body{font-size:0.75em;font-family:'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;color:#000;-webkit-font-size-adjust:none;}
+img,fieldset{border:0;}
+ul,li,ol{list-style-type:none;}
+i,em,address{font-style:normal;}
+table{border-collapse:collapse;}
+a,a:visited{ color:#000; text-decoration:none;}
+.hidden{display:none;}
+article, aside, footer, header, hgroup, nav, section {display: block;}
+.wrap_box{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;padding:10px;}
+
+/* 表单样式 */
+.input-style{width:500px;border-left:1px solid #666;border-top:1px solid #666;border-right:1px solid #aaa;border-bottom:1px solid #aaa;height:16px;line-height:16px;padding:5px;}
+.short{width:80px;}
+.date{width:100px;}
+.medium{width:200px;}
+.select-style{width:150px;height:105px;vertical-align:top;}
+.area-style{width:90%;height:150px;border-left:1px solid #666;border-top:1px solid #666;border-right:1px solid #aaa;border-bottom:1px solid #aaa;padding:5px;}
+.btn-style{background:#eff5ff;width:120px;height:30px;line-height:30px;text-align:center;border:1px solid #95b8e7;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 2px #ddd;cursor:pointer;}
+
+/* 文件上传样式 */
+.uploader{position:relative;display:inline-block;overflow:hidden;cursor:default;padding:0;-moz-box-shadow:0px 0px 5px #ddd;-webkit-box-shadow:0px 0px 5px #ddd;box-shadow:0px 0px 5px #ddd;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.filename{float:left;display:inline-block;outline:0 none;height:32px;width:430px;margin:0;padding:8px 10px;overflow:hidden;cursor:default;border:1px solid;border-right:0;font:9pt/100% Arial, Helvetica, sans-serif; color:#777;text-shadow:1px 1px 0px #fff;text-overflow:ellipsis;white-space:nowrap;-moz-border-radius:5px 0px 0px 5px;-webkit-border-radius:5px 0px 0px 5px;border-radius:5px 0px 0px 5px;background:#f5f5f5;background:-moz-linear-gradient(top, #fafafa 0%, #eee 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#f5f5f5));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#f5f5f5',GradientType=0);border-color:#ccc;-moz-box-shadow:0px 0px 1px #fff inset;-webkit-box-shadow:0px 0px 1px #fff inset;box-shadow:0px 0px 1px #fff inset;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.wid{width:200px;}
+.button{float:left;height:32px;display:inline-block;outline:0 none;padding:8px 12px;margin:0;cursor:pointer;border:1px solid;
+font:bold 9pt/100% Arial, Helvetica, sans-serif;-moz-border-radius:0px 5px 5px 0px;-webkit-border-radius:0px 5px 5px 0px;border-radius:0px 5px 5px 0px;-moz-box-shadow:0px 0px 1px #fff inset;-webkit-box-shadow:0px 0px 1px #fff inset;box-shadow:0px 0px 1px #fff inset;}
+.uploader input[type=file]{position:absolute;top:0; right:0; bottom:0;border:0;padding:0; margin:0;height:30px;cursor:pointer;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;}
+input[type=button]::-moz-focus-inner{padding:0; border:0 none; -moz-box-sizing:content-box;}
+input[type=button]::-webkit-focus-inner{padding:0; border:0 none; -webkit-box-sizing:content-box;}
+input[type=text]::-moz-focus-inner{padding:0; border:0 none; -moz-box-sizing:content-box;}
+input[type=text]::-webkit-focus-inner{padding:0; border:0 none; -webkit-box-sizing:content-box;}
+
+/* White Color Scheme ------------------------ */
+.white .button{color:#555;text-shadow:1px 1px 0px #fff;background:#ddd;background:-moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0);border-color:#ccc;}
+.white:hover .button{background:#eee;background:-moz-linear-gradient(top, #dddddd 0%, #eeeeee 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#eeeeee));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee',GradientType=0);}
+
+/* 表格边框样式 */
+.gridtable{width:100%;border-collapse:collapse;font-size:12px;}
+.gridtable td{border:1px solid #95b8e7;padding:8px;vertical-align:middle;}
+.grid-tab-l{width:15%;text-align:right;min-width:150px;background:#eff5ff;color:#0e2d5f;}
+.grid-tab-r{width:85%;min-width:700px;}
+.single-tab{text-align:center;}
+.grid-tab-r a{color:#F00;}
+.grid-tab-r a:hover{text-decoration:underline;color:#00C;}
+
+.discount{display:inline-block;margin-top:10px;border:1px dashed #900;padding:10px;} 
+.catalog{margin-top:10px;}
+.grid-tab-r span.end-date{padding-left:40px;}
+
+/*活动详情页*/
+.head-title,.operation{height:36px;line-height:36px;border:1px solid #95b8e7;background:#e8f1ff;min-width:883px;}
+.head-title h3{padding-left:10px;font-size:14px;}
+.operation{border-bottom:none;background:#FFF;text-align:center;padding:10px;}
+.operation a,.condition a{padding:5px 20px;;width:160px;margin:10px;background:#eff5ff;height:30px;line-height:30px;text-align:center;border:1px solid #95b8e7;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 2px #ddd;cursor:pointer;}
+.operation a:hover{background:#fdfdfd;border:1px solid #aaaaaa;}
+
+/* 商品管理 */
+.goods-manage{border:1px solid #95b8e7;padding:10px;min-width:863px;}
+.condition{margin-top:10px;border-bottom:1px solid #95b8e7;padding-bottom:10px;}
+.status{padding-left:10px;font-size:14px;}
+.condition span{padding-left:10px;}
+.con-rel,.sigle-rel,.file-rel{position:relative;}
+.con-pos{position:absolute;top:0;right:0;}
+.goods-empty{width:150px;color:#F00;font-size:14px;margin:30px auto;}
+.goods-list{display:block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;}
+.goods-list li{width:252px;display:inline-block;margin-left:15px;margin-top:15px;background:#FFF;vertical-align:top;}
+.goods-list li:hover{background:#eee;}
+.goods-sigle{width:230px;border:1px solid #ddd;padding:10px;}
+.goods-sigle goods-img{vertical-align:top;width:230px;height:230px;display:block;}
+.goods-sigle span.goods-title{font-weight:normal;font-size:14px;}
+.goods-sigle p{padding-top:5px;}
+.goods-sigle p i{font-size:14px;}
+.goods-sigle p i.cost-price{text-decoration:line-through;padding-right:20px;}
+.goods-sigle span.shop-name{width:140px;display:inline-block;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;padding-right:10px;vertical-align:top;}
+.sigle-pos{position:absolute;left:1px;bottom:1px;width:250px;height:60px;background:#FFF;opacity:0.9;filter:alpha(opaacity=90);display:none;}
+.sigle-pos a{width:90px;margin-top:15px;margin-left:80px;display:inline-block;padding:5px 0;border:1px solid #929292;background:#ebebeb; text-align:center;}
+.sigle-pos a:hover{border:1px solid #26a0da;background:#a6f4ff;}
+.number-sort{margin-top:15px;height:25px;position:relative;display:block;padding-left:15px;font-size:14px;}
+.number-sort p{display:inline-block;}
+.number-sort p.number-shop span{color:#900;padding:0 3px;}
+.number-sort p.number-shop a{margin-left:10px;font-size:12px;border:1px solid #707070;background:#eaeaea;padding:5px 20px;text-align:center;}
+.number-sort p.number-shop a:hover{border:1px solid #26a0da;background:#a6f4ff;}
+.number-sort p.sort-method{position:absolute;right:5px;}
+.number-sort p.sort-method a{font-size:12px;border:1px solid #707070;background:#eaeaea;padding:5px 15px;text-align:center;margin:0 5px;}
+.number-sort p.sort-method a:hover{border:1px solid #26a0da;background:#a6f4ff;}
+.number-sort p.sort-method a.cur{border:1px solid #091115;background:#ebac4e;}
+
+/* 弹出层活动页 */
+.layer_notice{width:360px;height:150px;border:1px solid #999;background:#FFF;display:none;padding:20px;}
+.layer_notice p{display:inline-block;vertical-align:middle;}
+.activity-upload-page{font-size:14px;}
+.layer_notice span{display:block;font-size:14px;margin-top:20px;}
+.upload-after{border:1px dashed #666;padding:10px;color:#900;}
+.upload-btn{text-align:center;}
+.upload-btn a{padding:5px 30px;margin:10px;height:30px;line-height:30px;text-align:center;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 2px #ddd;cursor:pointer;border:1px solid #aaaaaa;background:#fdfdfd;}
+.upload-btn a:hover{border:1px solid #95b8e7;background:#eff5ff;}

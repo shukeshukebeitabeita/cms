@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.content.ContExtAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.ContExtAttribute" >
+    <id column="EXT_ID" property="extId" jdbcType="BIGINT" />
+    <id column="ATTR_ID" property="attrId" jdbcType="BIGINT" />
+    <result column="EXT_ATTR_NAME" property="extAttrName" jdbcType="VARCHAR" />
+    <result column="EXT_ATTR_TYPE" property="extAttrType" jdbcType="SMALLINT" />
+    <result column="EXT_DEFAULT_VALUE" property="extDefaultValue" jdbcType="VARCHAR" />
+    <result column="EXT_ATTR_DESC" property="extAttrDesc" jdbcType="VARCHAR" />
+    <result column="EXT_SORT" property="extSort" jdbcType="SMALLINT" />
+  </resultMap>
+ <!--  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EXT_ID, ATTR_ID, EXT_ATTR_NAME, EXT_ATTR_TYPE, EXT_DEFAULT_VALUE, EXT_ATTR_DESC, 
+    EXT_SORT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContExtAttributeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cont_ext_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContExtAttributeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_ext_attribute
+    where EXT_ID = #{extId,jdbcType=BIGINT}
+      and ATTR_ID = #{attrId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContExtAttributeKey" >
+    delete from cont_ext_attribute
+    where EXT_ID = #{extId,jdbcType=BIGINT}
+      and ATTR_ID = #{attrId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContExtAttributeExample" >
+    delete from cont_ext_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContExtAttribute" >
+    insert into cont_ext_attribute (EXT_ID, ATTR_ID, EXT_ATTR_NAME, 
+      EXT_ATTR_TYPE, EXT_DEFAULT_VALUE, EXT_ATTR_DESC, 
+      EXT_SORT)
+    values (#{extId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, #{extAttrName,jdbcType=VARCHAR}, 
+      #{extAttrType,jdbcType=SMALLINT}, #{extDefaultValue,jdbcType=VARCHAR}, #{extAttrDesc,jdbcType=VARCHAR}, 
+      #{extSort,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContExtAttribute" >
+    insert into cont_ext_attribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="extId != null" >
+        EXT_ID,
+      </if>
+      <if test="attrId != null" >
+        ATTR_ID,
+      </if>
+      <if test="extAttrName != null" >
+        EXT_ATTR_NAME,
+      </if>
+      <if test="extAttrType != null" >
+        EXT_ATTR_TYPE,
+      </if>
+      <if test="extDefaultValue != null" >
+        EXT_DEFAULT_VALUE,
+      </if>
+      <if test="extAttrDesc != null" >
+        EXT_ATTR_DESC,
+      </if>
+      <if test="extSort != null" >
+        EXT_SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="extId != null" >
+        #{extId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="extAttrName != null" >
+        #{extAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttrType != null" >
+        #{extAttrType,jdbcType=SMALLINT},
+      </if>
+      <if test="extDefaultValue != null" >
+        #{extDefaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttrDesc != null" >
+        #{extAttrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="extSort != null" >
+        #{extSort,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContExtAttributeExample" resultType="java.lang.Integer" >
+    select count(*) from cont_ext_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cont_ext_attribute
+    <set >
+      <if test="record.extId != null" >
+        EXT_ID = #{record.extId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrId != null" >
+        ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.extAttrName != null" >
+        EXT_ATTR_NAME = #{record.extAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extAttrType != null" >
+        EXT_ATTR_TYPE = #{record.extAttrType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.extDefaultValue != null" >
+        EXT_DEFAULT_VALUE = #{record.extDefaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extAttrDesc != null" >
+        EXT_ATTR_DESC = #{record.extAttrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extSort != null" >
+        EXT_SORT = #{record.extSort,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cont_ext_attribute
+    set EXT_ID = #{record.extId,jdbcType=BIGINT},
+      ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      EXT_ATTR_NAME = #{record.extAttrName,jdbcType=VARCHAR},
+      EXT_ATTR_TYPE = #{record.extAttrType,jdbcType=SMALLINT},
+      EXT_DEFAULT_VALUE = #{record.extDefaultValue,jdbcType=VARCHAR},
+      EXT_ATTR_DESC = #{record.extAttrDesc,jdbcType=VARCHAR},
+      EXT_SORT = #{record.extSort,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bsb.cms.model.po.content.ContExtAttribute" >
+    update cont_ext_attribute
+    <set >
+      <if test="extAttrName != null" >
+        EXT_ATTR_NAME = #{extAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttrType != null" >
+        EXT_ATTR_TYPE = #{extAttrType,jdbcType=SMALLINT},
+      </if>
+      <if test="extDefaultValue != null" >
+        EXT_DEFAULT_VALUE = #{extDefaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttrDesc != null" >
+        EXT_ATTR_DESC = #{extAttrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="extSort != null" >
+        EXT_SORT = #{extSort,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where EXT_ID = #{extId,jdbcType=BIGINT}
+      and ATTR_ID = #{attrId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContExtAttribute" >
+    update cont_ext_attribute
+    set EXT_ATTR_NAME = #{extAttrName,jdbcType=VARCHAR},
+      EXT_ATTR_TYPE = #{extAttrType,jdbcType=SMALLINT},
+      EXT_DEFAULT_VALUE = #{extDefaultValue,jdbcType=VARCHAR},
+      EXT_ATTR_DESC = #{extAttrDesc,jdbcType=VARCHAR},
+      EXT_SORT = #{extSort,jdbcType=SMALLINT}
+    where EXT_ID = #{extId,jdbcType=BIGINT}
+      and ATTR_ID = #{attrId,jdbcType=BIGINT}
+  </update> -->
+</mapper>

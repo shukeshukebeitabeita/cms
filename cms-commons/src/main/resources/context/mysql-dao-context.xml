@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- <bean id="defaultSqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> 
+		<property name="configLocation" value="classpath:config/ibatis/sqlmap-config.xml" 
+		/> <property name="mappingLocations"> <value>classpath*:config/ibatis/map/**/*.xml</value> 
+		</property> <property name="dataSource" ref="defaultDataSource" /> <property 
+		name="lobHandler" ref="defaultLobHandler" /> </bean> -->
+
+	<bean id="paginationInterceptor" class="com.bsb.cms.commons.page.interceptor.PaginationInterceptor"></bean>
+
+	<!-- myBatis文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="defaultDataSource" />
+		<!-- 配置mybatis配置文件的位置 -->
+		<property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath*:config/mybatis/sqlmapping/**/*.xml" />
+		<property name="plugins">
+	    	<ref bean="paginationInterceptor"/>
+	    </property>
+		
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.bsb.cms.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+
+</beans>

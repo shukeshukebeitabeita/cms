@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.content.ContContentMapper" >
+  <resultMap id="BaseResultMap" type="contContent" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="ABOUT" property="about" jdbcType="VARCHAR" />
+    <result column="DEFAULT_IMG" property="defaultImg" jdbcType="VARCHAR" />
+    <result column="VEDIO" property="vedio" jdbcType="VARCHAR" />
+    <result column="AUDIO" property="audio" jdbcType="VARCHAR" />
+    <result column="LINK" property="link" jdbcType="VARCHAR" />
+    <result column="TYPE_ID" property="typeId" jdbcType="BIGINT" />
+    <result column="ATTR_ID" property="attrId" jdbcType="BIGINT" />
+    <result column="TEMPLATE_ID" property="templateId" jdbcType="BIGINT" />
+    <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="HAS_HOT" property="hasHot" jdbcType="SMALLINT" />
+    <result column="HAS_LATEST" property="hasLatest" jdbcType="SMALLINT" />
+    <result column="HAS_TOP" property="hasTop" jdbcType="SMALLINT" />
+    <result column="META_TITLE" property="metaTitle" jdbcType="VARCHAR" />
+    <result column="META_KEYWORDS" property="metaKeywords" jdbcType="VARCHAR" />
+    <result column="META_DESCRIPTION" property="metaDescription" jdbcType="VARCHAR" />
+    <result column="C_TAG" property="cTag" jdbcType="VARCHAR" />
+    <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="SALE_PRICE" property="salePrice" jdbcType="DECIMAL" />
+    <result column="STOCK" property="stock" jdbcType="INTEGER" />
+    <result column="DISCOUNT" property="discount" jdbcType="DECIMAL" />
+    <result column="BRAND" property="brand" jdbcType="VARCHAR" />
+    <result column="GOODS_URL" property="goodsUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="TITLE_STYLE" property="titleStyle" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <select id="findListPage" parameterType="com.bsb.cms.model.vo.content.ContentSearchVO" resultMap="BaseResultMap">
+  	SELECT
+	  	  ID, 
+	  	  TITLE, 
+	  	  DEFAULT_IMG, 
+	  	  LINK, 
+	  	  TYPE_ID, 
+	  	  ATTR_ID, 
+	  	  TEMPLATE_ID, 
+	      AUTHOR, 
+	      PUBLISH_TIME, 
+	      HAS_HOT, 
+	      HAS_LATEST, 
+	      HAS_TOP, 
+	      SORT,
+          SALE_PRICE, 
+          DISCOUNT, 
+          GOODS_URL, 
+          STATUS,
+          TITLE_STYLE, 
+          CREATE_DATE, 
+          UPDATE_DATE,
+          CREATE_USER, 
+          UPDATE_USER
+  	 FROM CONT_CONTENT
+  </select>
+ <!--  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TITLE, ABOUT, DEFAULT_IMG, VEDIO, AUDIO, LINK, TYPE_ID, ATTR_ID, TEMPLATE_ID, 
+    AUTHOR, PUBLISH_TIME, HAS_HOT, HAS_LATEST, HAS_TOP, META_TITLE, META_KEYWORDS, META_DESCRIPTION, 
+    C_TAG, KEYWORD, SORT, SOURCE, PRICE, SALE_PRICE, STOCK, DISCOUNT, BRAND, GOODS_URL, 
+    STATUS, TITLE_STYLE, CREATE_DATE, UPDATE_DATE, CREATE_USER, UPDATE_USER
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cont_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_content
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cont_content
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
+    delete from cont_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContContent" >
+    insert into cont_content (ID, TITLE, ABOUT, 
+      DEFAULT_IMG, VEDIO, AUDIO, 
+      LINK, TYPE_ID, ATTR_ID, 
+      TEMPLATE_ID, AUTHOR, PUBLISH_TIME, 
+      HAS_HOT, HAS_LATEST, HAS_TOP, 
+      META_TITLE, META_KEYWORDS, META_DESCRIPTION, 
+      C_TAG, KEYWORD, SORT, 
+      SOURCE, PRICE, SALE_PRICE, 
+      STOCK, DISCOUNT, BRAND, 
+      GOODS_URL, STATUS, TITLE_STYLE, 
+      CREATE_DATE, UPDATE_DATE, CREATE_USER, 
+      UPDATE_USER)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
+      #{defaultImg,jdbcType=VARCHAR}, #{vedio,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, 
+      #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, 
+      #{templateId,jdbcType=BIGINT}, #{author,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{hasHot,jdbcType=SMALLINT}, #{hasLatest,jdbcType=SMALLINT}, #{hasTop,jdbcType=SMALLINT}, 
+      #{metaTitle,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, #{metaDescription,jdbcType=VARCHAR}, 
+      #{cTag,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, 
+      #{stock,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, #{brand,jdbcType=VARCHAR}, 
+      #{goodsUrl,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{titleStyle,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
+    insert into cont_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="about != null" >
+        ABOUT,
+      </if>
+      <if test="defaultImg != null" >
+        DEFAULT_IMG,
+      </if>
+      <if test="vedio != null" >
+        VEDIO,
+      </if>
+      <if test="audio != null" >
+        AUDIO,
+      </if>
+      <if test="link != null" >
+        LINK,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="attrId != null" >
+        ATTR_ID,
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID,
+      </if>
+      <if test="author != null" >
+        AUTHOR,
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME,
+      </if>
+      <if test="hasHot != null" >
+        HAS_HOT,
+      </if>
+      <if test="hasLatest != null" >
+        HAS_LATEST,
+      </if>
+      <if test="hasTop != null" >
+        HAS_TOP,
+      </if>
+      <if test="metaTitle != null" >
+        META_TITLE,
+      </if>
+      <if test="metaKeywords != null" >
+        META_KEYWORDS,
+      </if>
+      <if test="metaDescription != null" >
+        META_DESCRIPTION,
+      </if>
+      <if test="cTag != null" >
+        C_TAG,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="salePrice != null" >
+        SALE_PRICE,
+      </if>
+      <if test="stock != null" >
+        STOCK,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="brand != null" >
+        BRAND,
+      </if>
+      <if test="goodsUrl != null" >
+        GOODS_URL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="titleStyle != null" >
+        TITLE_STYLE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultImg != null" >
+        #{defaultImg,jdbcType=VARCHAR},
+      </if>
+      <if test="vedio != null" >
+        #{vedio,jdbcType=VARCHAR},
+      </if>
+      <if test="audio != null" >
+        #{audio,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasHot != null" >
+        #{hasHot,jdbcType=SMALLINT},
+      </if>
+      <if test="hasLatest != null" >
+        #{hasLatest,jdbcType=SMALLINT},
+      </if>
+      <if test="hasTop != null" >
+        #{hasTop,jdbcType=SMALLINT},
+      </if>
+      <if test="metaTitle != null" >
+        #{metaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null" >
+        #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescription != null" >
+        #{metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cTag != null" >
+        #{cTag,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUrl != null" >
+        #{goodsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="titleStyle != null" >
+        #{titleStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContContentExample" resultType="java.lang.Integer" >
+    select count(*) from cont_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cont_content
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.about != null" >
+        ABOUT = #{record.about,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultImg != null" >
+        DEFAULT_IMG = #{record.defaultImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vedio != null" >
+        VEDIO = #{record.vedio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audio != null" >
+        AUDIO = #{record.audio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link != null" >
+        LINK = #{record.link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        TYPE_ID = #{record.typeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrId != null" >
+        ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.templateId != null" >
+        TEMPLATE_ID = #{record.templateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.author != null" >
+        AUTHOR = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTime != null" >
+        PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hasHot != null" >
+        HAS_HOT = #{record.hasHot,jdbcType=SMALLINT},
+      </if>
+      <if test="record.hasLatest != null" >
+        HAS_LATEST = #{record.hasLatest,jdbcType=SMALLINT},
+      </if>
+      <if test="record.hasTop != null" >
+        HAS_TOP = #{record.hasTop,jdbcType=SMALLINT},
+      </if>
+      <if test="record.metaTitle != null" >
+        META_TITLE = #{record.metaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metaKeywords != null" >
+        META_KEYWORDS = #{record.metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metaDescription != null" >
+        META_DESCRIPTION = #{record.metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTag != null" >
+        C_TAG = #{record.cTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        KEYWORD = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        PRICE = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salePrice != null" >
+        SALE_PRICE = #{record.salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stock != null" >
+        STOCK = #{record.stock,jdbcType=INTEGER},
+      </if>
+      <if test="record.discount != null" >
+        DISCOUNT = #{record.discount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.brand != null" >
+        BRAND = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsUrl != null" >
+        GOODS_URL = #{record.goodsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.titleStyle != null" >
+        TITLE_STYLE = #{record.titleStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cont_content
+    set ID = #{record.id,jdbcType=BIGINT},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      ABOUT = #{record.about,jdbcType=VARCHAR},
+      DEFAULT_IMG = #{record.defaultImg,jdbcType=VARCHAR},
+      VEDIO = #{record.vedio,jdbcType=VARCHAR},
+      AUDIO = #{record.audio,jdbcType=VARCHAR},
+      LINK = #{record.link,jdbcType=VARCHAR},
+      TYPE_ID = #{record.typeId,jdbcType=BIGINT},
+      ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      TEMPLATE_ID = #{record.templateId,jdbcType=BIGINT},
+      AUTHOR = #{record.author,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      HAS_HOT = #{record.hasHot,jdbcType=SMALLINT},
+      HAS_LATEST = #{record.hasLatest,jdbcType=SMALLINT},
+      HAS_TOP = #{record.hasTop,jdbcType=SMALLINT},
+      META_TITLE = #{record.metaTitle,jdbcType=VARCHAR},
+      META_KEYWORDS = #{record.metaKeywords,jdbcType=VARCHAR},
+      META_DESCRIPTION = #{record.metaDescription,jdbcType=VARCHAR},
+      C_TAG = #{record.cTag,jdbcType=VARCHAR},
+      KEYWORD = #{record.keyword,jdbcType=VARCHAR},
+      SORT = #{record.sort,jdbcType=INTEGER},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=DECIMAL},
+      SALE_PRICE = #{record.salePrice,jdbcType=DECIMAL},
+      STOCK = #{record.stock,jdbcType=INTEGER},
+      DISCOUNT = #{record.discount,jdbcType=DECIMAL},
+      BRAND = #{record.brand,jdbcType=VARCHAR},
+      GOODS_URL = #{record.goodsUrl,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=SMALLINT},
+      TITLE_STYLE = #{record.titleStyle,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
+    update cont_content
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        ABOUT = #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultImg != null" >
+        DEFAULT_IMG = #{defaultImg,jdbcType=VARCHAR},
+      </if>
+      <if test="vedio != null" >
+        VEDIO = #{vedio,jdbcType=VARCHAR},
+      </if>
+      <if test="audio != null" >
+        AUDIO = #{audio,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        LINK = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        ATTR_ID = #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        AUTHOR = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasHot != null" >
+        HAS_HOT = #{hasHot,jdbcType=SMALLINT},
+      </if>
+      <if test="hasLatest != null" >
+        HAS_LATEST = #{hasLatest,jdbcType=SMALLINT},
+      </if>
+      <if test="hasTop != null" >
+        HAS_TOP = #{hasTop,jdbcType=SMALLINT},
+      </if>
+      <if test="metaTitle != null" >
+        META_TITLE = #{metaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null" >
+        META_KEYWORDS = #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescription != null" >
+        META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cTag != null" >
+        C_TAG = #{cTag,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        KEYWORD = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null" >
+        SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        STOCK = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="brand != null" >
+        BRAND = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUrl != null" >
+        GOODS_URL = #{goodsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="titleStyle != null" >
+        TITLE_STYLE = #{titleStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContContent" >
+    update cont_content
+    set TITLE = #{title,jdbcType=VARCHAR},
+      ABOUT = #{about,jdbcType=VARCHAR},
+      DEFAULT_IMG = #{defaultImg,jdbcType=VARCHAR},
+      VEDIO = #{vedio,jdbcType=VARCHAR},
+      AUDIO = #{audio,jdbcType=VARCHAR},
+      LINK = #{link,jdbcType=VARCHAR},
+      TYPE_ID = #{typeId,jdbcType=BIGINT},
+      ATTR_ID = #{attrId,jdbcType=BIGINT},
+      TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      HAS_HOT = #{hasHot,jdbcType=SMALLINT},
+      HAS_LATEST = #{hasLatest,jdbcType=SMALLINT},
+      HAS_TOP = #{hasTop,jdbcType=SMALLINT},
+      META_TITLE = #{metaTitle,jdbcType=VARCHAR},
+      META_KEYWORDS = #{metaKeywords,jdbcType=VARCHAR},
+      META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+      C_TAG = #{cTag,jdbcType=VARCHAR},
+      KEYWORD = #{keyword,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
+      STOCK = #{stock,jdbcType=INTEGER},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      BRAND = #{brand,jdbcType=VARCHAR},
+      GOODS_URL = #{goodsUrl,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=SMALLINT},
+      TITLE_STYLE = #{titleStyle,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update> -->
+</mapper>

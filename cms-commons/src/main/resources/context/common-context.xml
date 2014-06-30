@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->      
+    <context:component-scan base-package="com.bsb.cms"/>
+    
+	<bean id="commonProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:/opt/uns/mall/properties/common.properties
+				</value>
+				<value>file:/opt/uns/mall/properties/mail.properties
+				</value>
+				<value>file:/opt/uns/mall/properties/jdbc.properties
+				</value>
+			</list>
+		</property>
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+
+	<bean id="desKey" class="java.lang.String">
+		<constructor-arg value="111111">
+		</constructor-arg>
+	</bean>
+	<bean id="host" class="java.lang.String">
+		<constructor-arg value="${common.host}">
+		</constructor-arg>
+	</bean>
+
+
+	<!-- 发件人信息map {fromAddress,fromUserName} -->
+	<bean id="mailfrom" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="from" value="${mail.from}" />
+				<entry key="fromUser" value="${mail.fromUser}" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="freemarkerNotifyConfiguration"
+		class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="/WEB-INF/classes/template" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">1</prop>
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+			</props>
+		</property>
+		<!-- 全局变量部分 -->
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="staticRoot" value="/mall-static" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>${mail.host}</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+				<prop key="mail.debug">${mail.debug}</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>${mail.username}</value>
+		</property>
+		<property name="password">
+			<value>${mail.password}</value>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- <bean class="com.uns.mall.commons.util.SpringContextUtil" /> 暴露enum给freeMarker 
+		start <bean id="previlegeModuleEnumFactory" class="com.uns.mall.commons.util.ExposeEnumUtil"> 
+		<property name="packageName"> <value>com.uns.mall.commons.enums.PrevilegeModuleEnum</value> 
+		</property> </bean> <bean id="previlegeModuleEnum" factory-bean="previlegeModuleEnumFactory" 
+		factory-method="useModelPackage"> </bean> -->
+	<!-- end -->
+</beans>
