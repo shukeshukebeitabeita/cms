@@ -15,12 +15,8 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>file:/opt/uns/mall/properties/common.properties
-				</value>
-				<value>file:/opt/uns/mall/properties/mail.properties
-				</value>
-				<value>file:/opt/uns/mall/properties/jdbc.properties
-				</value>
+				<value>file:/opt/properties/common.properties</value>
+				<value>file:/opt/properties/jdbc.properties</value>
 			</list>
 		</property>
 		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
