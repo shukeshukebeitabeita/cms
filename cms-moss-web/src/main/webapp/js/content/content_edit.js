@@ -1,0 +1,5 @@
+$(function() {
+
+	
+	inputTrim('ff');
+});

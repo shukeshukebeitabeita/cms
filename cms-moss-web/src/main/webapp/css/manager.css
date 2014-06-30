@@ -16,7 +16,7 @@ article, aside, footer, header, hgroup, nav, section {display: block;}
 /* 表单样式 */
 .input-style{width:500px;border-left:1px solid #666;border-top:1px solid #666;border-right:1px solid #aaa;border-bottom:1px solid #aaa;height:16px;line-height:16px;padding:5px;}
 .short{width:80px;}
-.date{width:100px;}
+.date{width:100px;background:#FFF url(../images/calendar-blue.png) center right no-repeat;}
 .medium{width:200px;}
 .select-style{width:150px;height:105px;vertical-align:top;}
 .area-style{width:90%;height:150px;border-left:1px solid #666;border-top:1px solid #666;border-right:1px solid #aaa;border-bottom:1px solid #aaa;padding:5px;}
@@ -50,6 +50,8 @@ input[type=text]::-webkit-focus-inner{padding:0; border:0 none; -webkit-box-sizi
 .discount{display:inline-block;margin-top:10px;border:1px dashed #900;padding:10px;} 
 .catalog{margin-top:10px;}
 .grid-tab-r span.end-date{padding-left:40px;}
+span.left-padding{padding-left:40px;}
+span.left-padding-min{padding-left:20px;}
 
 /*活动详情页*/
 .head-title,.operation{height:36px;line-height:36px;border:1px solid #95b8e7;background:#e8f1ff;min-width:883px;}
