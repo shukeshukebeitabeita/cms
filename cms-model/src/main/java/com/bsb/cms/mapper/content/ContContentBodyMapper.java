@@ -35,4 +35,6 @@ public interface ContContentBodyMapper {
 //    int updateByPrimaryKeyWithBLOBs(ContContentBody record);
 //
 //    int updateByPrimaryKey(ContContentBody record);
+	
+	int insert(ContContentBody record);
 }

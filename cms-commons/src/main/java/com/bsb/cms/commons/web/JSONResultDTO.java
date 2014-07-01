@@ -52,6 +52,7 @@ public class JSONResultDTO implements Serializable{
 	public JSONResultDTO(String message) {
 		super();
 		this.message = message;
+		result = SUCCESS;
 	}
 
 	/**

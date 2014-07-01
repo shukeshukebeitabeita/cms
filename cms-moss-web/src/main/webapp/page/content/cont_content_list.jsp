@@ -23,7 +23,7 @@
 				pageList:[10,15,20,30,40,50],
 				pageSize:15,
 				url:'${rc.contextPath}/moss/cont/list.htm?typeId=${typeId}',
-				toolbar:'#tb'">
+				toolbar:'#tb'" sortName="UPDATE_DATE" sortOrder="desc">
 		<thead>
 			<tr>
 				<th data-options="field:'sort',hidden:true"></th>
@@ -49,11 +49,11 @@
 	</table>
 	
 	<div id="tb" style="padding:5px;height:auto">
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="	window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm');">Add</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="	window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">Add</a>
 		<a id="deleteContent"  href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
  		<a href="javascript:;" class="easyui-linkbutton" data-options="">回收站</a>
  
-	<form id="searchForm" action="${rc.contextPath}/moss/deposit/export.htm">
+	<form id="searchForm" action="${rc.contextPath}/moss/cont/list.htm">
 			<input type="hidden" name="typeId" id="typeId" value=${typeId}/>
 			<div style="margin-bottom:5px">
 			       商品编号:<input id="id" name="id" class="easyui-validatebox jinputMinWidth" type="text"  data-options="validType:['no','length[0,19]']"/>

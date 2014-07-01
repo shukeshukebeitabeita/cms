@@ -1,7 +1,6 @@
 package com.bsb.cms.model.po.content;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import com.bsb.cms.model.po.Entity;
 /**
@@ -38,13 +37,13 @@ public class ContContent extends Entity {
 
     private String author;
 
-    private Date publishTime;
+    private String publishTime;
 
-    private Short hasHot;
+    private Short hasHot = 0;
 
-    private Short hasLatest;
+    private Short hasLatest = 0;
 
-    private Short hasTop;
+    private Short hasTop = 0;
 
     private String metaTitle;
 
@@ -72,7 +71,7 @@ public class ContContent extends Entity {
 
     private String goodsUrl;
 
-    private Short status;
+    private Integer status;
 
     private String titleStyle;
 
@@ -164,11 +163,11 @@ public class ContContent extends Entity {
         this.author = author == null ? null : author.trim();
     }
 
-    public Date getPublishTime() {
+    public String getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(String publishTime) {
         this.publishTime = publishTime;
     }
 
@@ -300,11 +299,11 @@ public class ContContent extends Entity {
         this.goodsUrl = goodsUrl == null ? null : goodsUrl.trim();
     }
 
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

@@ -21,6 +21,9 @@ package com.bsb.cms.model.enums;
  * @since 1.0
  */
 public enum OperateTypeEnum {
+	
+	CONTENT_CREATE(1, "创建内容"),
+	CONTENT_UPDATE(2, "修改内容"),
 
 	RESET_PWD(13, "重置密码"),
 

@@ -345,8 +345,8 @@ function copyToClipboard(txt) {
 		if (!trans)
 			return;
 		trans.addDataFlavor('text/unicode');
-		var str = new Object();
-		var len = new Object();
+		//var str = new Object();
+		//var len = new Object();
 		var str = Components.classes["@mozilla.org/supports-string;1"]
 				.createInstance(Components.interfaces.nsISupportsString);
 		var copytext = txt;
@@ -358,3 +358,16 @@ function copyToClipboard(txt) {
 		clip.setData(trans, null, clipid.kGlobalClipboard);
 	}
 }
+
+
+$(function() {
+	//鼠标移入移出表格行变色效果
+	$('.gridtable').find('tr').hover(function() {
+		$(this).css('background', '#fffcd8');
+	}, //鼠标移入
+	function() {
+		$(this).css('background', '#fff');
+	} //鼠标移出
+	);
+});
+

@@ -18,7 +18,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.ibatis.annotations.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +26,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
-import com.bsb.cms.commons.web.MossActionUtils;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.model.dto.content.ContContentDTO;
+import com.bsb.cms.model.enums.ContentEnum;
 import com.bsb.cms.model.enums.OperateTypeEnum;
-import com.bsb.cms.model.po.auth.SysRole;
+import com.bsb.cms.model.po.content.ContContent;
+import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
 import com.bsb.cms.moss.controller.log.LogController;
 import com.bsb.cms.moss.controller.utils.DataGridJsonData;
@@ -73,7 +73,7 @@ public class ContContentController extends LogController {
 	@RequestMapping("list.htm")
 	@ResponseBody
 	public DataGridJsonData<ContContentDTO> list(ContentSearchVO conditions) {
-		//PageContext.initSort("c.UPDATE_DATE");
+		//PageContext.initSort("UPDATE_DATE");
 
 		return EasyUiUtils.getPageResult(contContentService.findListPage(conditions));
 	}
@@ -83,54 +83,50 @@ public class ContContentController extends LogController {
 	/**
 	 * 跳转到添加页面。
 	 * 
-	 * @param id
-	 *            模板id
+	 * @param id    模板id
 	 * @return
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.GET)
-	public String toCreate(Long sysRoleId, ModelMap model) {
+	public String toCreate(Long typeId, ModelMap modelMap) {
+		modelMap.put("typeId", 1);
+		modelMap.put("templateId", 1);
+		modelMap.put("attrId", 1);//TODO
+		
 		return "/page/content/cont_content_edit";
 	}
 
 	/**
 	 * 添加角色。
 	 * 
-	 * @param sysRole
-	 *            角色
-	 * @param sysModelIds
-	 *            选择的权限的id
+	 * @param content  
+	 * @param offerDesc 详细内容
+	 * @param modelMap  
 	 * @return
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO create(SysRole sysRole, String[] sysModelIds) {
+	public JSONResultDTO create(ContContent content, String offerDesc, ModelMap modelMap) {
 		JSONResultDTO result = new JSONResultDTO();
-//		try {
-//			if (sysModelIds == null || sysRole == null
-//					|| StringUtils.isBlank(sysRole.getRoleName())
-//					|| sysRole.getRoleName().length() > 16) {
-//				result.setMessage("输入信息不合法。");
-//				result.setResult(JSONResultDTO.ERROR);
-//				return result;
-//			}
-//
-//			try {
-//				sysRole.setCreator(MossActionUtils.getUserName());
-//				Long sysRoleId = sysRoleService.create(sysRole, sysModelIds);
-//				log(OperateTypeEnum.CREATE_ROLE, "角色id:" + sysRoleId, "角色新增");
-//				result.setMessage("创建成功");
-//				result.setResult(JSONResultDTO.SUCCESS);
-//			} catch (RenameRuntimeException e) {
-//				result.setMessage("角色名已经存在");
-//				result.setResult(JSONResultDTO.ERROR);
-//			}
-//
-//		} catch (Exception e) {
-//			result.setMessage("创建失败.请重试或联系管理员。");
-//			result.setResult(JSONResultDTO.ERROR);
-//			log.error(e.getMessage(), e.getCause());
-//			e.printStackTrace();
-//		}
+		ContContentBody contContentBody = null;
+		try {
+			if(StringUtils.isNotBlank(offerDesc)) {
+				contContentBody = new ContContentBody(offerDesc);
+			}
+			try {
+				content.setStatus(ContentEnum.DEPLOY.getCode());
+				Long id = contContentService.create(content, contContentBody);
+				log(OperateTypeEnum.CONTENT_CREATE, "id:" + id, "新增内容");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("标题名已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+
+		} catch (Exception e) {
+			result.setMessage("创建失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
 
 		return result;
 	}

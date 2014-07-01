@@ -3,6 +3,7 @@ package com.bsb.cms.mapper.content;
 import java.util.List;
 
 import com.bsb.cms.model.dto.content.ContContentDTO;
+import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
 
 public interface ContContentMapper {
@@ -11,10 +12,6 @@ public interface ContContentMapper {
 //    int deleteByExample(ContContentExample example);
 //
 //    int deleteByPrimaryKey(Long id);
-//
-//    int insert(ContContent record);
-//
-//    int insertSelective(ContContent record);
 //
 //    List<ContContent> selectByExample(ContContentExample example);
 //
@@ -27,6 +24,18 @@ public interface ContContentMapper {
 //    int updateByPrimaryKeySelective(ContContent record);
 //
 //    int updateByPrimaryKey(ContContent record);
-	
+	/**
+	 * moss-列表页面搜索
+	 * @param conditions
+	 * @return
+	 */
 	List<ContContentDTO> findListPage(ContentSearchVO conditions);
+	/**
+	 * create
+	 * @param content
+	 * @return
+	 */
+	Long insert(ContContent record);
+	
+	int insertSelective(ContContent record);
 }

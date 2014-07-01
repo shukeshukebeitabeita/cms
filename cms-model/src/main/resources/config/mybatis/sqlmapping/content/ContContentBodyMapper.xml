@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bsb.cms.mapper.content.ContContentBodyMapper" >
-  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.ContContentBody" >
+  <resultMap id="BaseResultMap" type="contContentBody" >
     <id column="ID" property="id" jdbcType="BIGINT" />
     <id column="CONTENT_ID" property="contentId" jdbcType="BIGINT" />
     <result column="EXT_ATTR_BODY" property="extAttrBody" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bsb.cms.model.po.content.ContContentBody" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="contContentBody" extends="BaseResultMap" >
     <result column="BODY" property="body" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
+  
+  <insert id="insert" parameterType="contContentBody" >
+    insert into cont_content_body (ID, CONTENT_ID, EXT_ATTR_BODY, 
+      BODY)
+    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, #{extAttrBody,jdbcType=VARCHAR}, 
+      #{body,jdbcType=LONGVARCHAR})
+  </insert>
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -123,12 +132,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContContentBody" >
-    insert into cont_content_body (ID, CONTENT_ID, EXT_ATTR_BODY, 
-      BODY)
-    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, #{extAttrBody,jdbcType=VARCHAR}, 
-      #{body,jdbcType=LONGVARCHAR})
-  </insert>
+  
   <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContentBody" >
     insert into cont_content_body
     <trim prefix="(" suffix=")" suffixOverrides="," >

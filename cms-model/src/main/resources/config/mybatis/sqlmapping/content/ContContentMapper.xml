@@ -65,102 +65,9 @@
           UPDATE_USER
   	 FROM CONT_CONTENT
   </select>
- <!--  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    ID, TITLE, ABOUT, DEFAULT_IMG, VEDIO, AUDIO, LINK, TYPE_ID, ATTR_ID, TEMPLATE_ID, 
-    AUTHOR, PUBLISH_TIME, HAS_HOT, HAS_LATEST, HAS_TOP, META_TITLE, META_KEYWORDS, META_DESCRIPTION, 
-    C_TAG, KEYWORD, SORT, SOURCE, PRICE, SALE_PRICE, STOCK, DISCOUNT, BRAND, GOODS_URL, 
-    STATUS, TITLE_STYLE, CREATE_DATE, UPDATE_DATE, CREATE_USER, UPDATE_USER
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from cont_content
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from cont_content
-    where ID = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from cont_content
-    where ID = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
-    delete from cont_content
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContContent" >
-    insert into cont_content (ID, TITLE, ABOUT, 
+  
+  <insert id="insert" parameterType="contContent" >
+    insert into cont_content (TITLE, ABOUT, 
       DEFAULT_IMG, VEDIO, AUDIO, 
       LINK, TYPE_ID, ATTR_ID, 
       TEMPLATE_ID, AUTHOR, PUBLISH_TIME, 
@@ -170,9 +77,9 @@
       SOURCE, PRICE, SALE_PRICE, 
       STOCK, DISCOUNT, BRAND, 
       GOODS_URL, STATUS, TITLE_STYLE, 
-      CREATE_DATE, UPDATE_DATE, CREATE_USER, 
+      CREATE_USER, 
       UPDATE_USER)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
+    values (#{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
       #{defaultImg,jdbcType=VARCHAR}, #{vedio,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, 
       #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, 
       #{templateId,jdbcType=BIGINT}, #{author,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
@@ -182,10 +89,11 @@
       #{source,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, 
       #{stock,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, #{brand,jdbcType=VARCHAR}, 
       #{goodsUrl,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{titleStyle,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, 
       #{updateUser,jdbcType=VARCHAR})
+  
   </insert>
-  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
+    <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
     insert into cont_content
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -396,6 +304,103 @@
       </if>
     </trim>
   </insert>
+  
+ <!--  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TITLE, ABOUT, DEFAULT_IMG, VEDIO, AUDIO, LINK, TYPE_ID, ATTR_ID, TEMPLATE_ID, 
+    AUTHOR, PUBLISH_TIME, HAS_HOT, HAS_LATEST, HAS_TOP, META_TITLE, META_KEYWORDS, META_DESCRIPTION, 
+    C_TAG, KEYWORD, SORT, SOURCE, PRICE, SALE_PRICE, STOCK, DISCOUNT, BRAND, GOODS_URL, 
+    STATUS, TITLE_STYLE, CREATE_DATE, UPDATE_DATE, CREATE_USER, UPDATE_USER
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cont_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_content
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cont_content
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContContentExample" >
+    delete from cont_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+
   <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContContentExample" resultType="java.lang.Integer" >
     select count(*) from cont_content
     <if test="_parameter != null" >

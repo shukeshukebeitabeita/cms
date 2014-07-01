@@ -16,7 +16,32 @@ public class ContContentBody extends ContContentBodyKey {
 
     private String body;
 
-    public String getExtAttrBody() {
+    /**
+	 * @param body
+	 */
+	public ContContentBody(String body) {
+		super();
+		this.body = body;
+	}
+
+	/**
+	 * 
+	 */
+	public ContContentBody() {
+		super();
+	}
+
+	/**
+	 * @param extAttrBody
+	 * @param body
+	 */
+	public ContContentBody(String extAttrBody, String body) {
+		super();
+		this.extAttrBody = extAttrBody;
+		this.body = body;
+	}
+
+	public String getExtAttrBody() {
         return extAttrBody;
     }
 
