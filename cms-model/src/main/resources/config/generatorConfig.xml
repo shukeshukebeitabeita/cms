@@ -45,7 +45,7 @@
 		<table tableName="sys_user" domainObjectName="SysUser" />
 		<table tableName="sys_role" domainObjectName="SysRole" />
 		<table tableName="sys_role_model" domainObjectName="SysRoleModel" /> -->
-		<table tableName="cont_attribute" domainObjectName="ContAttribute" />
+		<!-- <table tableName="cont_attribute" domainObjectName="ContAttribute" />
 		<table tableName="cont_content" domainObjectName="ContContent" />
 		<table tableName="cont_content_body" domainObjectName="ContContentBody" />
 		<table tableName="cont_ext_attr_value" domainObjectName="ContExtAttrValue" />
@@ -53,7 +53,7 @@
 		<table tableName="cont_type" domainObjectName="ContType" />
 		<table tableName="tmpt_template_body" domainObjectName="TmptTemplateBody" />
 		<table tableName="tmpt_template" domainObjectName="TmptTemplate" />
-		<table tableName="tmpt_template_group" domainObjectName="TmptTemplateGroup" />
+		<table tableName="tmpt_template_group" domainObjectName="TmptTemplateGroup" /> -->
 		
 	</context>
 </generatorConfiguration>  

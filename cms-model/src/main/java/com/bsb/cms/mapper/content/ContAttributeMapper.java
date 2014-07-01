@@ -1,11 +1,10 @@
 package com.bsb.cms.mapper.content;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import com.bsb.cms.model.po.content.ContAttribute;
 
+@Repository
 public interface ContAttributeMapper {
 //    int countByExample(ContAttributeExample example);
 //
@@ -19,7 +18,7 @@ public interface ContAttributeMapper {
 //
 //    List<ContAttribute> selectByExample(ContAttributeExample example);
 //
-//    ContAttribute selectByPrimaryKey(Long id);
+//    
 //
 //    int updateByExampleSelective(@Param("record") ContAttribute record, @Param("example") ContAttributeExample example);
 //
@@ -28,4 +27,6 @@ public interface ContAttributeMapper {
 //    int updateByPrimaryKeySelective(ContAttribute record);
 //
 //    int updateByPrimaryKey(ContAttribute record);
+	
+	ContAttribute selectByPrimaryKey(Long id);
 }

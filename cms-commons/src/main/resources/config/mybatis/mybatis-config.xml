@@ -29,7 +29,7 @@
 		<typeAlias alias="contContentDTO" type="com.bsb.cms.model.dto.content.ContContentDTO" />
 		<typeAlias alias="contContentBody" type="com.bsb.cms.model.po.content.ContContentBody" />
 		<typeAlias alias="tmptTemplate" type="com.bsb.cms.model.po.content.TmptTemplate" />
-		
+		<typeAlias alias="contAttribute" type="com.bsb.cms.model.po.content.ContAttribute" />
 		
 	</typeAliases>
 </configuration>

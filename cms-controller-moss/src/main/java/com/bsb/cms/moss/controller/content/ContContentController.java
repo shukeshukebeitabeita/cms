@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
+import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
@@ -58,6 +59,8 @@ public class ContContentController extends LogController {
 	private ContTypeCacheService contTypeCacheService;
 	@Resource(name="tmptTemplateCacheService")
 	private TmptTemplateCacheService tmptTemplateCacheService;
+	@Resource(name="contAttributeService")
+	private ContAttributeService contAttributeService;
 	
 	/**
 	 * 跳转到首页

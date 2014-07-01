@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bsb.cms.mapper.content.ContAttributeMapper" >
-  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.ContAttribute" >
+  <resultMap id="BaseResultMap" type="contAttribute" >
     <id column="ID" property="id" jdbcType="BIGINT" />
     <result column="HAS_IMG" property="hasImg" jdbcType="SMALLINT" />
     <result column="HAS_OUT_LINK" property="hasOutLink" jdbcType="SMALLINT" />
@@ -24,6 +24,18 @@
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
   </resultMap>
+  
+   <sql id="Base_Column_List" >
+    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORE, 
+    HAS_SOURCE, HAS_SHOW_TIME, HAS_META_TITLE, HAS_META_KEYWORDS, HAS_META_DESCRIPTION, 
+    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_attribute
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
 <!--   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -82,11 +94,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORE, 
-    HAS_SOURCE, HAS_SHOW_TIME, HAS_META_TITLE, HAS_META_KEYWORDS, HAS_META_DESCRIPTION, 
-    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER
-  </sql>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.ContAttributeExample" >
     select
     <if test="distinct" >
@@ -101,12 +109,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from cont_attribute
-    where ID = #{id,jdbcType=BIGINT}
-  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from cont_attribute
     where ID = #{id,jdbcType=BIGINT}

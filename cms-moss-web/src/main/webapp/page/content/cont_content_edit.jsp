@@ -18,7 +18,7 @@
 	<div class="wrap_box">
 		<form id="ff" action="create.htm" method="post">
 			<input type="hidden" name="typeId" value="${type.id} "/>
-			<input type="hidden" name="templateId" value="${template.Id} "/>
+			<input type="hidden" name="templateId" value="${template.id} "/>
 			<input type="hidden" name="attrId" value="${attrId} "/>
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
 				border="1" class="gridtable">
