@@ -1,5 +1,5 @@
 /**
- * @(#)ContTypeService.java 2014-6-25
+ * @(#)TmptTemplateService.java 2014-7-1
  *
  * Copyright (c) 2014-2015 BuShangBan (China) Int'l Co., Ltd
  * yongtai Road. pu dong District.Shanghai China
@@ -11,29 +11,17 @@
  * accordance with the terms of the license agreement you entered into
  * with BuShangBan (China).
  */
-package com.bsb.cms.content.service.content;
+package com.bsb.cms.content.service.tmpt;
 
-import java.util.List;
-
-import com.bsb.cms.model.po.content.ContType;
+import com.bsb.cms.model.po.content.TmptTemplate;
 
 /**
+ * 模板service
  * @author hongjian.liu
- * @version 1.0.0 2014-6-25
+ * @version 1.0.0 2014-7-1
  * @since 1.0
  */
-public interface ContTypeService {
-	/**
-	 * 查询用户有权看到的栏目。显示在左侧
-	 * @param sysUserId
-	 * @return
-	 */
-	List<ContType> findByUser(Long sysUserId);
+public interface TmptTemplateService {
 	
-	/**
-	 * find type by id
-	 * @param typeId
-	 * @return
-	 */
-	ContType findById(Long typeId);
+	TmptTemplate findById(Long id);
 }

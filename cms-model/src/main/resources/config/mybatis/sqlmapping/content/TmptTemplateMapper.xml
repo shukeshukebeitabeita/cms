@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bsb.cms.mapper.content.TmptTemplateMapper" >
-  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.TmptTemplate" >
+  <resultMap id="BaseResultMap" type="tmptTemplate" >
     <id column="ID" property="id" jdbcType="BIGINT" />
     <result column="GROUP_ID" property="groupId" jdbcType="BIGINT" />
     <result column="TEMPLATE_NAME" property="templateName" jdbcType="VARCHAR" />
@@ -14,6 +14,19 @@
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
     <result column="TEMPLATE_TYPE" property="templateType" jdbcType="SMALLINT" />
   </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, GROUP_ID, TEMPLATE_NAME, FILE_DIR, DESCRIPTION, STATUS, CREATE_DATE, UPDATE_DATE, 
+    CREATE_USER, UPDATE_USER, TEMPLATE_TYPE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tmpt_template
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -72,10 +85,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    ID, GROUP_ID, TEMPLATE_NAME, FILE_DIR, DESCRIPTION, STATUS, CREATE_DATE, UPDATE_DATE, 
-    CREATE_USER, UPDATE_USER, TEMPLATE_TYPE
-  </sql>
+ 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.TmptTemplateExample" >
     select
     <if test="distinct" >
@@ -90,12 +100,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from tmpt_template
-    where ID = #{id,jdbcType=BIGINT}
-  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tmpt_template
     where ID = #{id,jdbcType=BIGINT}

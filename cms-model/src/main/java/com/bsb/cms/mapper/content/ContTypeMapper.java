@@ -36,4 +36,11 @@ public interface ContTypeMapper {
 	 * @return
 	 */
 	List<ContType> findByUser(Long sysUserId);
+	
+	/**
+	 * find type by id
+	 * @param id
+	 * @return
+	 */
+	ContType selectByPrimaryKey(Long id);
 }

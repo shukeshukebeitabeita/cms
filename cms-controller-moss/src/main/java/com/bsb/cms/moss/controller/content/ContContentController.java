@@ -27,7 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
 import com.bsb.cms.content.service.content.ContContentService;
+import com.bsb.cms.content.service.content.ContTypeCacheService;
+import com.bsb.cms.content.service.content.TmptTemplateCacheService;
 import com.bsb.cms.model.dto.content.ContContentDTO;
+import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.enums.ContentEnum;
 import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.ContContent;
@@ -51,6 +54,10 @@ public class ContContentController extends LogController {
 	private static final Log log = LogFactory.getLog(ContContentController.class);
 	
 	private ContContentService contContentService;
+	@Resource(name="contTypeCacheService")
+	private ContTypeCacheService contTypeCacheService;
+	@Resource(name="tmptTemplateCacheService")
+	private TmptTemplateCacheService tmptTemplateCacheService;
 	
 	/**
 	 * 跳转到首页
@@ -88,8 +95,10 @@ public class ContContentController extends LogController {
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.GET)
 	public String toCreate(Long typeId, ModelMap modelMap) {
-		modelMap.put("typeId", 1);
-		modelMap.put("templateId", 1);
+		ContTypeDTO type = contTypeCacheService.getById(Long.valueOf(typeId));
+		modelMap.put("type", type);
+		modelMap.put("template", tmptTemplateCacheService.getById(type.getContent_template_id()));
+		
 		modelMap.put("attrId", 1);//TODO
 		
 		return "/page/content/cont_content_edit";

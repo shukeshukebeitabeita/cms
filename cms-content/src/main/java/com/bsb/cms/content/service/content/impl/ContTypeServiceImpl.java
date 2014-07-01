@@ -43,4 +43,12 @@ public class ContTypeServiceImpl implements ContTypeService {
 		return contTypeMapper.findByUser(sysUserId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContTypeService#findById(java.lang.Long)
+	 */
+	@Override
+	public ContType findById(Long typeId) {
+		return contTypeMapper.selectByPrimaryKey(typeId);
+	}
+
 }

@@ -17,8 +17,8 @@
 <body>
 	<div class="wrap_box">
 		<form id="ff" action="create.htm" method="post">
-			<input type="hidden" name="typeId" value="${typeId} "/>
-			<input type="hidden" name="templateId" value="${templateId} "/>
+			<input type="hidden" name="typeId" value="${type.id} "/>
+			<input type="hidden" name="templateId" value="${template.Id} "/>
 			<input type="hidden" name="attrId" value="${attrId} "/>
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
 				border="1" class="gridtable">
@@ -40,10 +40,37 @@
 						class="input-style short" /></td>
 				</tr>
 				<tr>
+					<td class="grid-tab-l">品牌：</td>
+					<td class="grid-tab-r"><input type="text" name="brand"
+						class="input-style short" value=""/></td>
+				</tr>
+				<tr>
+					<td class="grid-tab-l">原价：</td>
+					<td class="grid-tab-r"><input type="text" name="price"
+						class="input-style short" value=""/></td>
+				</tr>
+				<tr>
+					<td class="grid-tab-l">销售价：</td>
+					<td class="grid-tab-r"><input type="text" name="salePrice"
+						class="input-style short" value=""/></td>
+				</tr>
+			
+				<tr>
+					<td class="grid-tab-l">库存：</td>
+					<td class="grid-tab-r"><input type="text" name="stock"
+						class="input-style short" value=""/></td>
+				</tr>
+				<tr>
+					<td class="grid-tab-l">原商品连接：</td>
+					<td class="grid-tab-r"><input type="text" name="goodsUrl"
+						class="input-style" value=""/></td>
+				</tr>
+				<tr>
 					<td class="grid-tab-l">链接：</td>
 					<td class="grid-tab-r"><input type="text" name="link"
 						class="input-style" value="http://"/></td>
 				</tr>
+				
 				<tr>
 					<td class="grid-tab-l">图片：</td>
 					<td class="grid-tab-r"><input type="text" name="defaultImg"

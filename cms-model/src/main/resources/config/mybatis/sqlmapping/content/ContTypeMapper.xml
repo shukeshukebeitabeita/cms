@@ -34,6 +34,13 @@
   	  FROM CONT_TYPE
   </select>
   
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_type
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
