@@ -80,16 +80,15 @@ function setTotal(){
 function operator(val, row){
 	var operatorHtml = ''; 
 	
-		var delete_url = contextPath + "/moss/idle/delete.htm?id=" + row.id;
-		var recommend_url = contextPath + "/moss/idle/remmend.htm?id=" + row.id;
-		var recommendOpt = '<a href="javascript:j.openWindow(\'推荐管理\',\'' + recommend_url + '\',400,200)">推荐管理</a>';
-		var deleteOpt = '<a href="javascript:j.openWindow(\'删除\',\'' + delete_url + '\',460,410)">删除</a>';
-		if(row.status == 1) {
-			operatorHtml = deleteOpt;
-		} else {
-			operatorHtml = recommendOpt + '<br />' + deleteOpt;
-		}
-		
+	var delete_url = contextPath + "/moss/idle/delete.htm?id=" + row.id;
+	var edit_url = contextPath + "/moss/cont/update.htm?contentId=" + row.id;
+	var editOpt = '<a href="javascript:window.parent.j.addTab(\' 编辑内容-' + row.id + '\',\'' + edit_url + '\',400,200)">编辑</a>';
+	var deleteOpt = '<a href="javascript:j.openWindow(\'删除\',\'' + delete_url + '\',460,410)">删除</a>';
+	if(row.status == 1) {
+		operatorHtml = deleteOpt;
+	} else {
+		operatorHtml = editOpt + '<br />' + deleteOpt;
+	}
 	
 	return operatorHtml;
 }
@@ -122,24 +121,4 @@ function submitForm(){
 //关闭窗口
 function closeWin(){
 	window.parent.j.closeWindow('删除'); 
-}
-
-
-//推荐管理
-function recommendForm(){
-	var url = contextPath + '/moss/idle/remmend.htm?m=r&' + $("form").serialize();
-	$.post(url, {}, function(d) {
-		if (d.result == "Y") {
-			 j.show('信息', d.message); 
-			 closeRecommendWin();
-			 window.parent.$('#tt').datagrid('reload');
-		} else {
-			 j.error('信息', d.message);
-		}
-	}, "json");
-	
-}
-//关闭窗口
-function closeRecommendWin(){
-	window.parent.j.closeWindow('推荐管理'); 
 }

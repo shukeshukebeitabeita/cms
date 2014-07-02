@@ -17,7 +17,8 @@
 <body>
 	<div class="wrap_box">
 		<form id="ff" action="create.htm" method="post">
-			<input type="hidden" name="typeId" value="${type.id} "/>
+			<input type="hidden" name="id" value="${content.id}"/>
+			<input type="hidden" name="typeId" value="${type.id}"/>
 			<input type="hidden" name="templateId" value="${template.id} "/>
 			<input type="hidden" name="attrId" value="${attribute.id} "/>
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
@@ -25,7 +26,7 @@
 				<tr>
 					<td class="grid-tab-l"><b style="color: red">* </b>标题：</td>
 					<td class="grid-tab-r"><input type="text" id="_title" name="title"
-						class="input-style easyui-validatebox" data-options="required:true"/></td>
+						class="input-style easyui-validatebox" data-options="required:true" value="${content.title}"/></td>
 				</tr>
 				
 				<c:if test="${attribute.hasSource == 1 || attribute.hasShowTime == 1 || attribute.hasAuthor == 1}">
@@ -34,15 +35,15 @@
 					<td class="grid-tab-r">
 						<c:if test="${attribute.hasAuthor == 1}">
 						<span>作者：</span><input type="text" name="author"
-						class="input-style short" />
+						class="input-style short" value="${content.author}"/>
 						</c:if>
 						<c:if test="${attribute.hasShowTime == 1}">
 						<span class="end-date">发布时间：</span><input type="text" name="publishTime"
-						class="easyui-datebox  jinputMinWidth"  />
+						class="easyui-datebox  jinputMinWidth"  value="${content.publishTime}"/>
 						</c:if>
 						<c:if test="${attribute.hasSource == 1}">
 						<span class="left-padding">来源：</span><input type="text" name="source"
-						class="input-style short" />
+						class="input-style short" value="${content.source}"/>
 						</c:if>
 						</td>
 				</tr>
@@ -52,28 +53,28 @@
 				<tr>
 					<td class="grid-tab-l">品牌：</td>
 					<td class="grid-tab-r"><input type="text" name="brand"
-						class="input-style short" value=""/></td>
+						class="input-style short" value="${content.brand}"/></td>
 				</tr>
 				<tr>
 					<td class="grid-tab-l">原价：</td>
 					<td class="grid-tab-r"><input type="text" name="price"
-						class="input-style short" value=""/></td>
+						class="input-style short" value="${content.price}"/></td>
 				</tr>
 				<tr>
 					<td class="grid-tab-l">销售价：</td>
 					<td class="grid-tab-r"><input type="text" name="salePrice"
-						class="input-style short" value=""/></td>
+						class="input-style short" value="${content.salePrice}"/></td>
 				</tr>
 			
 				<tr>
 					<td class="grid-tab-l">库存：</td>
 					<td class="grid-tab-r"><input type="text" name="stock"
-						class="input-style short" value=""/></td>
+						class="input-style short" value="${content.stock}"/></td>
 				</tr>
 				<tr>
 					<td class="grid-tab-l">原商品连接：</td>
 					<td class="grid-tab-r"><input type="text" name="goodsUrl"
-						class="input-style" value=""/></td>
+						class="input-style" value="${content.goodsUrl}"/></td>
 				</tr>
 				</c:if>
 				
@@ -82,7 +83,7 @@
 				<tr>
 					<td class="grid-tab-l">链接到：</td>
 					<td class="grid-tab-r"><input type="text" name="link"
-						class="input-style" value="http://"/>
+						class="input-style" value="${content.link}"/>
 						注: 填写此项后, 此标题跳转到该链接, 本页填写的其他内容将失效.
 						</td>
 				</tr>
@@ -91,32 +92,32 @@
 				<tr>
 					<td class="grid-tab-l">图片：</td>
 					<td class="grid-tab-r"><input type="text" name="defaultImg"
-						class="input-style" value=""/></td>
+						class="input-style" value="${content.defaultImg}"/></td>
 				</tr>
 				</c:if>
 				<c:if test="${attribute.hasVedio == 1}">
 				<tr>
 					<td class="grid-tab-l">视频：</td>
 					<td class="grid-tab-r"><input type="text" name="vedio"
-						class="input-style" value=""/></td>
+						class="input-style" value="${content.vedio}"/></td>
 				</tr>
 				</c:if>
 				<!-- <tr>
 					<td class="grid-tab-l">音频：</td>
-					<td class="grid-tab-r"><input type="text" name="theme"
-						class="input-style" value=""/></td>
+					<td class="grid-tab-r"><input type="text" name="audio"
+						class="input-style" value="${content.audio}"/></td>
 				</tr> -->
 			<!-- 	<tr>
 					<td class="grid-tab-l">文件：</td>
-					<td class="grid-tab-r"><input type="text" name="theme"
-						class="input-style" value="http://"/></td>
+					<td class="grid-tab-r"><input type="text" name="fileUrl"
+						class="input-style" value="{content.fileUrl}"/></td>
 				</tr> -->
 				
 				<c:if test="${attribute.hasAbout == 1}">
 				<tr>
 					<td class="grid-tab-l">简介：</td>
 					<td class="grid-tab-r">
-					<textarea name="about" class="area-style"></textarea>
+					<textarea name="about" class="area-style">${content.about}</textarea>
 					</td>
 				</tr>
 				</c:if>
@@ -127,6 +128,7 @@
 					<td class="grid-tab-r">
 	
 						<textarea id="_offerDesc" name="offerDesc" rows="10" cols="50">
+						${content.body}
 						</textarea> <ckf:setupCKEditor basePath="../../ckfinder/"
 							editor="_offerDesc" /> <ck:replace
 							basePath="../../ckeditor" replace="_offerDesc" />
@@ -141,7 +143,7 @@
 				<tr>
 					<td class="grid-tab-l">关键词：</td>
 					<td class="grid-tab-r">
-						<input type="text" name="keyword"  class="input-style">
+						<input type="text" name="keyword"  class="input-style" value="${content.keyword}">
 						
 					</td>
 				</tr>
@@ -151,9 +153,10 @@
 				<tr>
 					<td class="grid-tab-l">标签：</td>
 					<td class="grid-tab-r">
-						置顶&nbsp;<input type="checkbox" name="hasTop" value="1">
-						<span class="left-padding-min">最新&nbsp;<input type="checkbox" name="hasLatest" value="1"></span>
-						<span class="left-padding-min">热点&nbsp;<input type="checkbox" name="hasHot" value="1"></span>
+						置顶&nbsp;
+						<input type="checkbox" name="hasTop" value="1" <c:if test="${content.hasTop == 1}">checked="checked"</c:if>>
+						<span class="left-padding-min">最新&nbsp;<input type="checkbox" name="hasLatest" value="1" <c:if test="${content.hasLatest == 1}">checked="checked"</c:if>></span>
+						<span class="left-padding-min">热点&nbsp;<input type="checkbox" name="hasHot" value="1" <c:if test="${content.hasHot == 1}">checked="checked"</c:if>></span>
 						
 						<span class="left-padding"><a href="javascript:alert('开发中，敬请期待...');">添加自定义标签</a></span>
 					</td>
@@ -164,9 +167,9 @@
 				<tr>
 					<td class="grid-tab-l">搜索引擎优化：</td>
 					<td class="grid-tab-r">
-						<div>内容标题 &nbsp;&nbsp;&nbsp;<input type="text" name="metaTitle" class="input-style"></div>
-						<div>内容关键字&nbsp;<input type="text" name="metaKeywords" class="input-style"></div>
-						<div>内容描述&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="metaDescription"  class="input-style"></div>
+						<div>内容标题 &nbsp;&nbsp;&nbsp;<input type="text" name="metaTitle" class="input-style" value="${content.metaTitle}"></div>
+						<div>内容关键字&nbsp;<input type="text" name="metaKeywords" class="input-style" value="${content.metaKeywords}"></div>
+						<div>内容描述&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="metaDescription"  class="input-style" value="${content.metaDescription}"></div>
 					</td>
 				</tr>
 				</c:if>

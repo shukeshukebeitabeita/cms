@@ -15,6 +15,7 @@ package com.bsb.cms.content.service.content;
 
 import java.util.List;
 
+import com.bsb.cms.model.dto.content.ContContentAllDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
@@ -40,4 +41,6 @@ public interface ContContentService {
 	 * @return
 	 */
 	long create(ContContent content, ContContentBody body);
+	
+	ContContentAllDTO findContentById(Long id);
 }

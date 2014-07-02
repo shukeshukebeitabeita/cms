@@ -28,6 +28,7 @@
 		<typeAlias alias="contContent" type="com.bsb.cms.model.po.content.ContContent" />
 		<typeAlias alias="contContentDTO" type="com.bsb.cms.model.dto.content.ContContentDTO" />
 		<typeAlias alias="contContentBody" type="com.bsb.cms.model.po.content.ContContentBody" />
+		<typeAlias alias="contContentAllDTO" type="com.bsb.cms.model.dto.content.ContContentAllDTO" />
 		<typeAlias alias="tmptTemplate" type="com.bsb.cms.model.po.content.TmptTemplate" />
 		<typeAlias alias="contAttribute" type="com.bsb.cms.model.po.content.ContAttribute" />
 		

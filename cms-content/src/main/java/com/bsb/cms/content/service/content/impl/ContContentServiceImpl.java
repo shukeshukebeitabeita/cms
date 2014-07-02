@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.mapper.content.ContContentBodyMapper;
 import com.bsb.cms.mapper.content.ContContentMapper;
+import com.bsb.cms.model.dto.content.ContContentAllDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
@@ -58,6 +59,15 @@ public class ContContentServiceImpl implements ContContentService {
 		}
 		
 		return contentId;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContContentService#findById(java.lang.Long)
+	 */
+	@Override
+	public ContContentAllDTO findContentById(Long id) {
+		
+		return contContentMapper.findContentById(id);
 	}
 
 }

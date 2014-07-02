@@ -27,19 +27,19 @@
 		<thead>
 			<tr>
 				<th data-options="field:'sort',hidden:true"></th>
-				<th data-options="field:'id', width:80">编号</th>
-				<th data-options="field:'title', width:130," sortable="true" >内容标题 </th>
-				<th data-options="field:'hasTop', width:50"  >置顶 </th>
-				<th data-options="field:'hasLatest', width:50"  >最新 </th>
-				<th data-options="field:'hasHot', width:50"  >热门</th>
+				<th data-options="field:'id', width:60">编号</th>
+				<th data-options="field:'title', width:200," sortable="true" >内容标题 </th>
+				<th data-options="field:'hasTop', width:40"  >置顶 </th>
+				<th data-options="field:'hasLatest', width:40"  >最新 </th>
+				<th data-options="field:'hasHot', width:40"  >热门</th>
 				<!-- <th data-options="field:'typeName', width:110,align:'center'" >栏目</th> -->
-				<th data-options="field:'attributeName', width:50,align:'center'" sortable="true" >类型 </th>
+				<th data-options="field:'attributeName', width:80,align:'center'" sortable="true" >类型 </th>
 				<th data-options="field:'updateDate', width:70,align:'right',
 				formatter:function(val, row, index){
 					return formatMyDate(val);
 				}" sortable="true" >更新时间 </th>
 				
-				<th data-options="field:'status', width:70,formatter:function(val, row, index){
+				<th data-options="field:'status', width:60,formatter:function(val, row, index){
 					return (val==0?'上架中':'下架中');
 				}" sortable="true" >状态 </th>
 				
@@ -49,7 +49,7 @@
 	</table>
 	
 	<div id="tb" style="padding:5px;height:auto">
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="	window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">Add</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">Add</a>
 		<a id="deleteContent"  href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
  		<a href="javascript:;" class="easyui-linkbutton" data-options="">回收站</a>
  

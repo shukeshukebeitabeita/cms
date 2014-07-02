@@ -30,6 +30,7 @@ import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
+import com.bsb.cms.model.dto.content.ContContentAllDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.enums.ContentEnum;
 import com.bsb.cms.model.enums.OperateTypeEnum;
@@ -116,6 +117,13 @@ public class ContContentController extends LogController {
 	 */
 	@RequestMapping(value = "update.htm", method = RequestMethod.GET)
 	public String toUpdate(Long contentId, ModelMap modelMap) {
+		ContContentAllDTO content = contContentService.findContentById(contentId);
+		modelMap.put("type", contTypeCacheService.getById(content.getTypeId()));
+		modelMap.put("template", tmptTemplateCacheService.getById(content.getTemplateId()));
+		modelMap.put("attribute", contAttributeService.findById(content.getAttrId()));
+		modelMap.put("extAttribute", null);//TODO
+		modelMap.put("content", content);
+		
 		return EDIT;
 	}
 
