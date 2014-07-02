@@ -42,6 +42,8 @@ public class ContTypeDTO implements Serializable {
 
     private String file_name;
 
+    private Long attr_id;
+    
     private Long content_template_id;
 
     private Long type_template_id;
@@ -201,6 +203,20 @@ public class ContTypeDTO implements Serializable {
 	 */
 	public void setStatus(Short status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the attr_id
+	 */
+	public Long getAttr_id() {
+		return attr_id;
+	}
+
+	/**
+	 * @param attr_id the attr_id to set
+	 */
+	public void setAttr_id(Long attr_id) {
+		this.attr_id = attr_id;
 	}
 
 }

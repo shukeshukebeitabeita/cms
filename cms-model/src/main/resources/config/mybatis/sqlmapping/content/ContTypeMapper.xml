@@ -13,6 +13,8 @@
     <result column="FILE_DIR" property="fileDir" jdbcType="VARCHAR" />
     <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
     <result column="TYPE_SORT" property="typeSort" jdbcType="SMALLINT" />
+    <result column="LIST_TEMPLATE" property="listTemplate" jdbcType="BIGINT" />
+    <result column="ATTR_ID" property="attrId" jdbcType="BIGINT" />
     <result column="CONTENT_TEMPLATE" property="contentTemplate" jdbcType="BIGINT" />
     <result column="TYPE_TEMPLATE" property="typeTemplate" jdbcType="BIGINT" />
     <result column="DEPTH" property="depth" jdbcType="SMALLINT" />
@@ -21,12 +23,15 @@
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="META_TITLE" property="metaTitle" jdbcType="VARCHAR" />
+    <result column="META_KEYWORDS" property="metaKeywords" jdbcType="VARCHAR" />
+    <result column="META_DESCRIPTION" property="metaDescription" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
     ID, ABOUT, TYPE_IMG, TYPE_NAME, SHOW_NAME, PARENT_ID, REMARK, FILE_DIR, FILE_NAME, 
-    TYPE_SORT, CONTENT_TEMPLATE, TYPE_TEMPLATE, DEPTH, STATUS, CREATE_DATE, UPDATE_DATE, CREATE_USER, 
-    UPDATE_USER
+    TYPE_SORT, LIST_TEMPLATE, ATTR_ID, CONTENT_TEMPLATE, TYPE_TEMPLATE, DEPTH, STATUS, CREATE_DATE, UPDATE_DATE, CREATE_USER, 
+    UPDATE_USER, META_TITLE, META_KEYWORDS, META_DESCRIPTION
   </sql>
   <select id="findByUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
   	SELECT 

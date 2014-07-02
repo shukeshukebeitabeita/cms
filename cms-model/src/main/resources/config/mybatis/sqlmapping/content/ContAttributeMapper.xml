@@ -9,12 +9,10 @@
     <result column="HAS_DETAIL" property="hasDetail" jdbcType="SMALLINT" />
     <result column="HAS_ABOUT" property="hasAbout" jdbcType="SMALLINT" />
     <result column="HAS_EXT_ATTRIBUTE" property="hasExtAttribute" jdbcType="SMALLINT" />
-    <result column="HAS_KEYWORE" property="hasKeywore" jdbcType="SMALLINT" />
+    <result column="HAS_KEYWORD" property="hasKeyword" jdbcType="SMALLINT" />
     <result column="HAS_SOURCE" property="hasSource" jdbcType="SMALLINT" />
     <result column="HAS_SHOW_TIME" property="hasShowTime" jdbcType="SMALLINT" />
-    <result column="HAS_META_TITLE" property="hasMetaTitle" jdbcType="SMALLINT" />
-    <result column="HAS_META_KEYWORDS" property="hasMetaKeywords" jdbcType="SMALLINT" />
-    <result column="HAS_META_DESCRIPTION" property="hasMetaDescription" jdbcType="SMALLINT" />
+    <result column="HAS_SEO" property="hasSEO" jdbcType="SMALLINT" />
     <result column="HAS_TAG" property="hasTag" jdbcType="SMALLINT" />
     <result column="HAS_ORDER_OPT" property="hasOrderOpt" jdbcType="SMALLINT" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
@@ -23,12 +21,13 @@
     <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="HAS_AUTHOR" property="hasAuthor" jdbcType="SMALLINT" />
   </resultMap>
   
    <sql id="Base_Column_List" >
-    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORE, 
-    HAS_SOURCE, HAS_SHOW_TIME, HAS_META_TITLE, HAS_META_KEYWORDS, HAS_META_DESCRIPTION, 
-    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER
+    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORD, 
+    HAS_SOURCE, HAS_SHOW_TIME, HAS_SEO, 
+    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER,HAS_AUTHOR
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 

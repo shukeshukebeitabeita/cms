@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.mapper.content.ContContentBodyMapper;
 import com.bsb.cms.mapper.content.ContContentMapper;
-import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
@@ -45,7 +44,7 @@ public class ContContentServiceImpl implements ContContentService {
 	 * @see com.bsb.cms.content.service.content.ContContentService#findListPage(com.bsb.cms.model.vo.content.ContentSearchVO)
 	 */
 	@Override
-	public List<ContContentDTO> findListPage(ContentSearchVO conditions) {
+	public List<ContContent> findListPage(ContentSearchVO conditions) {
 		return contContentMapper.findListPage(conditions);
 	}
 

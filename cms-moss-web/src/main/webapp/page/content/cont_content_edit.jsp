@@ -19,7 +19,7 @@
 		<form id="ff" action="create.htm" method="post">
 			<input type="hidden" name="typeId" value="${type.id} "/>
 			<input type="hidden" name="templateId" value="${template.id} "/>
-			<input type="hidden" name="attrId" value="${attrId} "/>
+			<input type="hidden" name="attrId" value="${attribute.id} "/>
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
 				border="1" class="gridtable">
 				<tr>
@@ -27,18 +27,28 @@
 					<td class="grid-tab-r"><input type="text" id="_title" name="title"
 						class="input-style easyui-validatebox" data-options="required:true"/></td>
 				</tr>
+				
+				<c:if test="${attribute.hasSource == 1 || attribute.hasShowTime == 1 || attribute.hasAuthor == 1}">
 				<tr>
 					<td class="grid-tab-l">发布属性：</td>
-					<td class="grid-tab-r"><span
-						>作者：</span><input type="text" name="author"
+					<td class="grid-tab-r">
+						<c:if test="${attribute.hasAuthor == 1}">
+						<span>作者：</span><input type="text" name="author"
 						class="input-style short" />
-						
+						</c:if>
+						<c:if test="${attribute.hasShowTime == 1}">
 						<span class="end-date">发布时间：</span><input type="text" name="publishTime"
 						class="easyui-datebox  jinputMinWidth"  />
-						
+						</c:if>
+						<c:if test="${attribute.hasSource == 1}">
 						<span class="left-padding">来源：</span><input type="text" name="source"
-						class="input-style short" /></td>
+						class="input-style short" />
+						</c:if>
+						</td>
 				</tr>
+				</c:if>
+				
+				<c:if test="${attribute.hasOrderOpt == 1}">
 				<tr>
 					<td class="grid-tab-l">品牌：</td>
 					<td class="grid-tab-r"><input type="text" name="brand"
@@ -65,39 +75,53 @@
 					<td class="grid-tab-r"><input type="text" name="goodsUrl"
 						class="input-style" value=""/></td>
 				</tr>
-				<tr>
-					<td class="grid-tab-l">链接：</td>
-					<td class="grid-tab-r"><input type="text" name="link"
-						class="input-style" value="http://"/></td>
-				</tr>
+				</c:if>
 				
+				
+				<c:if test="${attribute.hasOutLink == 1}">
+				<tr>
+					<td class="grid-tab-l">链接到：</td>
+					<td class="grid-tab-r"><input type="text" name="link"
+						class="input-style" value="http://"/>
+						注: 填写此项后, 此标题跳转到该链接, 本页填写的其他内容将失效.
+						</td>
+				</tr>
+				</c:if>
+				<c:if test="${attribute.hasImg == 1}">
 				<tr>
 					<td class="grid-tab-l">图片：</td>
 					<td class="grid-tab-r"><input type="text" name="defaultImg"
 						class="input-style" value=""/></td>
 				</tr>
+				</c:if>
+				<c:if test="${attribute.hasVedio == 1}">
 				<tr>
 					<td class="grid-tab-l">视频：</td>
 					<td class="grid-tab-r"><input type="text" name="vedio"
 						class="input-style" value=""/></td>
 				</tr>
-				<tr>
+				</c:if>
+				<!-- <tr>
 					<td class="grid-tab-l">音频：</td>
 					<td class="grid-tab-r"><input type="text" name="theme"
 						class="input-style" value=""/></td>
-				</tr>
+				</tr> -->
 			<!-- 	<tr>
 					<td class="grid-tab-l">文件：</td>
 					<td class="grid-tab-r"><input type="text" name="theme"
 						class="input-style" value="http://"/></td>
 				</tr> -->
+				
+				<c:if test="${attribute.hasAbout == 1}">
 				<tr>
 					<td class="grid-tab-l">简介：</td>
 					<td class="grid-tab-r">
 					<textarea name="about" class="area-style"></textarea>
 					</td>
 				</tr>
-			
+				</c:if>
+				
+				<c:if test="${attribute.hasDetail == 1}">
 				<tr>
 					<td class="grid-tab-l">详细内容：</td>
 					<td class="grid-tab-r">
@@ -105,9 +129,15 @@
 						<textarea id="_offerDesc" name="offerDesc" rows="10" cols="50">
 						</textarea> <ckf:setupCKEditor basePath="../../ckfinder/"
 							editor="_offerDesc" /> <ck:replace
-							basePath="../../ckeditor" replace="_offerDesc" /></td>
+							basePath="../../ckeditor" replace="_offerDesc" />
+					 <div style="display: none;">
+					 <textarea id="contentBody" name="contentBody" rows="4" cols="4" ></textarea>
+					 </div>	
+					</td>
 				</tr>
+				</c:if>
 				
+				<c:if test="${attribute.hasKeyword == 1}">
 				<tr>
 					<td class="grid-tab-l">关键词：</td>
 					<td class="grid-tab-r">
@@ -115,7 +145,9 @@
 						
 					</td>
 				</tr>
+				</c:if>
 				
+				<c:if test="${attribute.hasTag == 1}">
 				<tr>
 					<td class="grid-tab-l">标签：</td>
 					<td class="grid-tab-r">
@@ -126,7 +158,9 @@
 						<span class="left-padding"><a href="javascript:alert('开发中，敬请期待...');">添加自定义标签</a></span>
 					</td>
 				</tr>
+				</c:if>
 				
+				<c:if test="${attribute.hasSEO == 1}">
 				<tr>
 					<td class="grid-tab-l">搜索引擎优化：</td>
 					<td class="grid-tab-r">
@@ -135,11 +169,13 @@
 						<div>内容描述&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="metaDescription"  class="input-style"></div>
 					</td>
 				</tr>
-				
+				</c:if>
 				
 				<tr>
-					<td colspan="2" class="single-tab"><input id="submitButton" type="button"
-						value="确 定" class="btn-style" /></td>
+					<td colspan="2" class="single-tab">
+					<input id="postFormButton" type="button"
+						value="确 定" class="btn-style" />
+					</td>
 				</tr>
 			</table>
 		</form>

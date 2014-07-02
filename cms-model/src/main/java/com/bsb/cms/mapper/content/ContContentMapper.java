@@ -2,7 +2,6 @@ package com.bsb.cms.mapper.content;
 
 import java.util.List;
 
-import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
 
@@ -29,7 +28,7 @@ public interface ContContentMapper {
 	 * @param conditions
 	 * @return
 	 */
-	List<ContContentDTO> findListPage(ContentSearchVO conditions);
+	List<ContContent> findListPage(ContentSearchVO conditions);
 	/**
 	 * create
 	 * @param content

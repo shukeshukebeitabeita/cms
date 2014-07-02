@@ -12,9 +12,9 @@
   
   
   <insert id="insert" parameterType="contContentBody" >
-    insert into cont_content_body (ID, CONTENT_ID, EXT_ATTR_BODY, 
+    insert into cont_content_body (CONTENT_ID, EXT_ATTR_BODY, 
       BODY)
-    values (#{id,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, #{extAttrBody,jdbcType=VARCHAR}, 
+    values (#{contentId,jdbcType=BIGINT}, #{extAttrBody,jdbcType=VARCHAR}, 
       #{body,jdbcType=LONGVARCHAR})
   </insert>
   

@@ -32,7 +32,11 @@ public class ContType  extends Entity {
     private String fileName;
 
     private Short typeSort;
-
+    
+    private Long listTemplate;
+    
+    private Long attrId;
+    
     private Long contentTemplate;
 
     private Long typeTemplate;
@@ -40,6 +44,12 @@ public class ContType  extends Entity {
     private Short depth;
     
     private Short status;
+    
+    private String metaTitle;
+
+    private String metaKeywords;
+
+    private String metaDescription;
 
 
     public Long getId() {
@@ -50,7 +60,35 @@ public class ContType  extends Entity {
         this.id = id;
     }
 
-    public String getAbout() {
+    /**
+	 * @return the listTemplate
+	 */
+	public Long getListTemplate() {
+		return listTemplate;
+	}
+
+	/**
+	 * @param listTemplate the listTemplate to set
+	 */
+	public void setListTemplate(Long listTemplate) {
+		this.listTemplate = listTemplate;
+	}
+
+	/**
+	 * @return the attrId
+	 */
+	public Long getAttrId() {
+		return attrId;
+	}
+
+	/**
+	 * @param attrId the attrId to set
+	 */
+	public void setAttrId(Long attrId) {
+		this.attrId = attrId;
+	}
+
+	public String getAbout() {
         return about;
     }
 
@@ -159,6 +197,48 @@ public class ContType  extends Entity {
     public void setDepth(Short depth) {
         this.depth = depth;
     }
+
+	/**
+	 * @return the metaTitle
+	 */
+	public String getMetaTitle() {
+		return metaTitle;
+	}
+
+	/**
+	 * @param metaTitle the metaTitle to set
+	 */
+	public void setMetaTitle(String metaTitle) {
+		this.metaTitle = metaTitle;
+	}
+
+	/**
+	 * @return the metaKeywords
+	 */
+	public String getMetaKeywords() {
+		return metaKeywords;
+	}
+
+	/**
+	 * @param metaKeywords the metaKeywords to set
+	 */
+	public void setMetaKeywords(String metaKeywords) {
+		this.metaKeywords = metaKeywords;
+	}
+
+	/**
+	 * @return the metaDescription
+	 */
+	public String getMetaDescription() {
+		return metaDescription;
+	}
+
+	/**
+	 * @param metaDescription the metaDescription to set
+	 */
+	public void setMetaDescription(String metaDescription) {
+		this.metaDescription = metaDescription;
+	}
 
 
 }

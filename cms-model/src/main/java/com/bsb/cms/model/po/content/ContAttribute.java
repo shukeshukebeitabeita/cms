@@ -27,17 +27,13 @@ public class ContAttribute extends Entity {
 
     private Short hasExtAttribute;
 
-    private Short hasKeywore;
+    private Short hasKeyword;
 
     private Short hasSource;
 
     private Short hasShowTime;
 
-    private Short hasMetaTitle;
-
-    private Short hasMetaKeywords;
-
-    private Short hasMetaDescription;
+    private Short hasSEO;
 
     private Short hasTag;
 
@@ -46,6 +42,8 @@ public class ContAttribute extends Entity {
     private String name;
 
     private String remark;
+    
+    private Short hasAuthor;
 
 
     public Long getId() {
@@ -104,15 +102,21 @@ public class ContAttribute extends Entity {
         this.hasExtAttribute = hasExtAttribute;
     }
 
-    public Short getHasKeywore() {
-        return hasKeywore;
-    }
+    /**
+	 * @return the hasKeyword
+	 */
+	public Short getHasKeyword() {
+		return hasKeyword;
+	}
 
-    public void setHasKeywore(Short hasKeywore) {
-        this.hasKeywore = hasKeywore;
-    }
+	/**
+	 * @param hasKeyword the hasKeyword to set
+	 */
+	public void setHasKeyword(Short hasKeyword) {
+		this.hasKeyword = hasKeyword;
+	}
 
-    public Short getHasSource() {
+	public Short getHasSource() {
         return hasSource;
     }
 
@@ -128,31 +132,22 @@ public class ContAttribute extends Entity {
         this.hasShowTime = hasShowTime;
     }
 
-    public Short getHasMetaTitle() {
-        return hasMetaTitle;
-    }
 
-    public void setHasMetaTitle(Short hasMetaTitle) {
-        this.hasMetaTitle = hasMetaTitle;
-    }
+    /**
+	 * @return the hasSEO
+	 */
+	public Short getHasSEO() {
+		return hasSEO;
+	}
 
-    public Short getHasMetaKeywords() {
-        return hasMetaKeywords;
-    }
+	/**
+	 * @param hasSEO the hasSEO to set
+	 */
+	public void setHasSEO(Short hasSEO) {
+		this.hasSEO = hasSEO;
+	}
 
-    public void setHasMetaKeywords(Short hasMetaKeywords) {
-        this.hasMetaKeywords = hasMetaKeywords;
-    }
-
-    public Short getHasMetaDescription() {
-        return hasMetaDescription;
-    }
-
-    public void setHasMetaDescription(Short hasMetaDescription) {
-        this.hasMetaDescription = hasMetaDescription;
-    }
-
-    public Short getHasTag() {
+	public Short getHasTag() {
         return hasTag;
     }
 
@@ -183,5 +178,19 @@ public class ContAttribute extends Entity {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	/**
+	 * @return the hasAuthor
+	 */
+	public Short getHasAuthor() {
+		return hasAuthor;
+	}
+
+	/**
+	 * @param hasAuthor the hasAuthor to set
+	 */
+	public void setHasAuthor(Short hasAuthor) {
+		this.hasAuthor = hasAuthor;
+	}
   
 }

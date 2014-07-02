@@ -30,7 +30,6 @@ import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
-import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.enums.ContentEnum;
 import com.bsb.cms.model.enums.OperateTypeEnum;
@@ -53,6 +52,8 @@ import com.bsb.cms.moss.controller.utils.EasyUiUtils;
 public class ContContentController extends LogController {
 	// log
 	private static final Log log = LogFactory.getLog(ContContentController.class);
+	private static final String EDIT= "/page/content/cont_content_edit";
+	private static final String LIST= "/page/content/cont_content_list";
 	
 	private ContContentService contContentService;
 	@Resource(name="contTypeCacheService")
@@ -71,7 +72,7 @@ public class ContContentController extends LogController {
 	public String index(String typeId, ModelMap modelMap) {
 		modelMap.put("typeId", typeId);
 		
-		return "/page/content/cont_content_list";
+		return LIST;
 	}
 
 	/**
@@ -82,7 +83,7 @@ public class ContContentController extends LogController {
 	 */
 	@RequestMapping("list.htm")
 	@ResponseBody
-	public DataGridJsonData<ContContentDTO> list(ContentSearchVO conditions) {
+	public DataGridJsonData<ContContent> list(ContentSearchVO conditions) {
 		//PageContext.initSort("UPDATE_DATE");
 
 		return EasyUiUtils.getPageResult(contContentService.findListPage(conditions));
@@ -101,28 +102,39 @@ public class ContContentController extends LogController {
 		ContTypeDTO type = contTypeCacheService.getById(Long.valueOf(typeId));
 		modelMap.put("type", type);
 		modelMap.put("template", tmptTemplateCacheService.getById(type.getContent_template_id()));
+		modelMap.put("attribute", contAttributeService.findById(type.getAttr_id()));
+		modelMap.put("extAttribute", null);//TODO
 		
-		modelMap.put("attrId", 1);//TODO
-		
-		return "/page/content/cont_content_edit";
+		return EDIT;
+	}
+	
+	/**
+	 *  to update page 
+	 * @param contentId
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "update.htm", method = RequestMethod.GET)
+	public String toUpdate(Long contentId, ModelMap modelMap) {
+		return EDIT;
 	}
 
 	/**
 	 * 添加角色。
 	 * 
 	 * @param content  
-	 * @param offerDesc 详细内容
+	 * @param contentBody 详细内容
 	 * @param modelMap  
 	 * @return
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO create(ContContent content, String offerDesc, ModelMap modelMap) {
+	public JSONResultDTO create(ContContent content, String contentBody, ModelMap modelMap) {
 		JSONResultDTO result = new JSONResultDTO();
 		ContContentBody contContentBody = null;
 		try {
-			if(StringUtils.isNotBlank(offerDesc)) {
-				contContentBody = new ContContentBody(offerDesc);
+			if(StringUtils.isNotBlank(contentBody)) {
+				contContentBody = new ContContentBody(contentBody);
 			}
 			try {
 				content.setStatus(ContentEnum.DEPLOY.getCode());

@@ -1,5 +1,5 @@
 /**
- * @(#)ContContentService.java 2014-6-27
+ * @(#)ContAttributeCacheService.java 2014-7-2
  *
  * Copyright (c) 2014-2015 BuShangBan (China) Int'l Co., Ltd
  * yongtai Road. pu dong District.Shanghai China
@@ -13,31 +13,14 @@
  */
 package com.bsb.cms.content.service.content;
 
-import java.util.List;
-
-import com.bsb.cms.model.po.content.ContContent;
-import com.bsb.cms.model.po.content.ContContentBody;
-import com.bsb.cms.model.vo.content.ContentSearchVO;
+import com.bsb.cms.model.dto.content.ContAttributeDTO;
 
 /**
- * 内容服务
  * @author hongjian.liu
- * @version 1.0.0 2014-6-27
+ * @version 1.0.0 2014-7-2
  * @since 1.0
  */
-public interface ContContentService {
-	/**
-	 * 列表页面搜索
-	 * @param conditions
-	 * @return
-	 */
-	List<ContContent> findListPage(ContentSearchVO conditions);
+public interface ContAttributeCacheService {
 	
-	/**
-	 * 创建内容
-	 * @param content
-	 * @param body
-	 * @return
-	 */
-	long create(ContContent content, ContContentBody body);
+	ContAttributeDTO getById(Long id);
 }

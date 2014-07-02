@@ -66,6 +66,7 @@ public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 			dist.setStatus(src.getStatus());
 			dist.setTitle(src.getShowName());
 			dist.setType_template_id(src.getTypeTemplate());
+			dist.setAttr_id(src.getAttrId());
 		}
 	}
 
