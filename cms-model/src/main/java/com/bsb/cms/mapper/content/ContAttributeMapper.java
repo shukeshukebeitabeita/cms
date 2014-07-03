@@ -14,8 +14,6 @@ public interface ContAttributeMapper {
 //
 //    int deleteByPrimaryKey(Long id);
 //
-//    int insert(ContAttribute record);
-//
 //    int insertSelective(ContAttribute record);
 //
 //    List<ContAttribute> selectByExample(ContAttributeExample example);
@@ -26,7 +24,6 @@ public interface ContAttributeMapper {
 //
 //    int updateByPrimaryKeySelective(ContAttribute record);
 //
-//    int updateByPrimaryKey(ContAttribute record);
 	
 	ContAttribute selectByPrimaryKey(Long id);
 	
@@ -36,4 +33,8 @@ public interface ContAttributeMapper {
 	 * @return
 	 */
 	List<ContAttribute> findListPage(ContAttribute conditions);
+	
+	int updateByPrimaryKey(ContAttribute record);
+	
+	int insert(ContAttribute record);
 }

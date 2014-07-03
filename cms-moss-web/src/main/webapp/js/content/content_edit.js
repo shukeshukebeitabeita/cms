@@ -40,12 +40,20 @@ $(function() {
 		var contentBody = CKEDITOR.instances._offerDesc.getData();
 		$('#contentBody').val(contentBody);
 		
-		$('#ff').submit();
+		if (isNull($('#_contentId').val())) {
+			submitForm();
+		} else {
+			j.confirm('确认修改吗？', submitForm, 'param');
+		}
 	});
 	
 	$('span.datebox input').attr("readonly", "readonly");
 	inputTrim('ff');
 });
+
+function submitForm(){
+	$('#ff').submit();
+}
 
 function validate(){
 	var validata =$('#ff').form('validate');

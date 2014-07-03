@@ -43,6 +43,47 @@
     
   </select>
   
+   <insert id="insert" parameterType="contAttribute" useGeneratedKeys="true" keyProperty="id">
+    insert into cont_attribute (HAS_IMG, HAS_OUT_LINK, 
+      HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, 
+      HAS_EXT_ATTRIBUTE, HAS_KEYWORD, HAS_SOURCE, 
+      HAS_SHOW_TIME, 
+      HAS_SEO, HAS_TAG, HAS_ORDER_OPT, 
+      NAME, REMARK, CREATE_DATE, 
+      CREATE_USER, UPDATE_DATE, UPDATE_USER
+      )
+    values (#{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
+      #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
+      #{hasExtAttribute,jdbcType=SMALLINT}, #{hasKeyword,jdbcType=SMALLINT}, #{hasSource,jdbcType=SMALLINT}, 
+      #{hasShowTime,jdbcType=SMALLINT}, #{hasSEO,jdbcType=SMALLINT},
+       #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
+      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="contAttribute" >
+    update cont_attribute
+    set HAS_IMG = #{hasImg,jdbcType=SMALLINT},
+      HAS_OUT_LINK = #{hasOutLink,jdbcType=SMALLINT},
+      HAS_VEDIO = #{hasVedio,jdbcType=SMALLINT},
+      HAS_DETAIL = #{hasDetail,jdbcType=SMALLINT},
+      HAS_ABOUT = #{hasAbout,jdbcType=SMALLINT},
+      HAS_EXT_ATTRIBUTE = #{hasExtAttribute,jdbcType=SMALLINT},
+      HAS_KEYWORD = #{hasKeyword,jdbcType=SMALLINT},
+      HAS_SOURCE = #{hasSource,jdbcType=SMALLINT},
+      HAS_SHOW_TIME = #{hasShowTime,jdbcType=SMALLINT},
+      HAS_SEO = #{hasSEO,jdbcType=SMALLINT},
+      HAS_TAG = #{hasTag,jdbcType=SMALLINT},
+      HAS_ORDER_OPT = #{hasOrderOpt,jdbcType=SMALLINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      UPDATE_DATE = NOW(),
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update> 
+  
+  
 <!--   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -127,349 +168,5 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bsb.cms.model.po.content.ContAttribute" >
-    insert into cont_attribute (ID, HAS_IMG, HAS_OUT_LINK, 
-      HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, 
-      HAS_EXT_ATTRIBUTE, HAS_KEYWORE, HAS_SOURCE, 
-      HAS_SHOW_TIME, HAS_META_TITLE, HAS_META_KEYWORDS, 
-      HAS_META_DESCRIPTION, HAS_TAG, HAS_ORDER_OPT, 
-      NAME, REMARK, CREATE_DATE, 
-      CREATE_USER, UPDATE_DATE, UPDATE_USER
-      )
-    values (#{id,jdbcType=BIGINT}, #{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
-      #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
-      #{hasExtAttribute,jdbcType=SMALLINT}, #{hasKeywore,jdbcType=SMALLINT}, #{hasSource,jdbcType=SMALLINT}, 
-      #{hasShowTime,jdbcType=SMALLINT}, #{hasMetaTitle,jdbcType=SMALLINT}, #{hasMetaKeywords,jdbcType=SMALLINT}, 
-      #{hasMetaDescription,jdbcType=SMALLINT}, #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
-      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContAttribute" >
-    insert into cont_attribute
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="hasImg != null" >
-        HAS_IMG,
-      </if>
-      <if test="hasOutLink != null" >
-        HAS_OUT_LINK,
-      </if>
-      <if test="hasVedio != null" >
-        HAS_VEDIO,
-      </if>
-      <if test="hasDetail != null" >
-        HAS_DETAIL,
-      </if>
-      <if test="hasAbout != null" >
-        HAS_ABOUT,
-      </if>
-      <if test="hasExtAttribute != null" >
-        HAS_EXT_ATTRIBUTE,
-      </if>
-      <if test="hasKeywore != null" >
-        HAS_KEYWORE,
-      </if>
-      <if test="hasSource != null" >
-        HAS_SOURCE,
-      </if>
-      <if test="hasShowTime != null" >
-        HAS_SHOW_TIME,
-      </if>
-      <if test="hasMetaTitle != null" >
-        HAS_META_TITLE,
-      </if>
-      <if test="hasMetaKeywords != null" >
-        HAS_META_KEYWORDS,
-      </if>
-      <if test="hasMetaDescription != null" >
-        HAS_META_DESCRIPTION,
-      </if>
-      <if test="hasTag != null" >
-        HAS_TAG,
-      </if>
-      <if test="hasOrderOpt != null" >
-        HAS_ORDER_OPT,
-      </if>
-      <if test="name != null" >
-        NAME,
-      </if>
-      <if test="remark != null" >
-        REMARK,
-      </if>
-      <if test="createDate != null" >
-        CREATE_DATE,
-      </if>
-      <if test="createUser != null" >
-        CREATE_USER,
-      </if>
-      <if test="updateDate != null" >
-        UPDATE_DATE,
-      </if>
-      <if test="updateUser != null" >
-        UPDATE_USER,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="hasImg != null" >
-        #{hasImg,jdbcType=SMALLINT},
-      </if>
-      <if test="hasOutLink != null" >
-        #{hasOutLink,jdbcType=SMALLINT},
-      </if>
-      <if test="hasVedio != null" >
-        #{hasVedio,jdbcType=SMALLINT},
-      </if>
-      <if test="hasDetail != null" >
-        #{hasDetail,jdbcType=SMALLINT},
-      </if>
-      <if test="hasAbout != null" >
-        #{hasAbout,jdbcType=SMALLINT},
-      </if>
-      <if test="hasExtAttribute != null" >
-        #{hasExtAttribute,jdbcType=SMALLINT},
-      </if>
-      <if test="hasKeywore != null" >
-        #{hasKeywore,jdbcType=SMALLINT},
-      </if>
-      <if test="hasSource != null" >
-        #{hasSource,jdbcType=SMALLINT},
-      </if>
-      <if test="hasShowTime != null" >
-        #{hasShowTime,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaTitle != null" >
-        #{hasMetaTitle,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaKeywords != null" >
-        #{hasMetaKeywords,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaDescription != null" >
-        #{hasMetaDescription,jdbcType=SMALLINT},
-      </if>
-      <if test="hasTag != null" >
-        #{hasTag,jdbcType=SMALLINT},
-      </if>
-      <if test="hasOrderOpt != null" >
-        #{hasOrderOpt,jdbcType=SMALLINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUser != null" >
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null" >
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUser != null" >
-        #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.ContAttributeExample" resultType="java.lang.Integer" >
-    select count(*) from cont_attribute
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update cont_attribute
-    <set >
-      <if test="record.id != null" >
-        ID = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.hasImg != null" >
-        HAS_IMG = #{record.hasImg,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasOutLink != null" >
-        HAS_OUT_LINK = #{record.hasOutLink,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasVedio != null" >
-        HAS_VEDIO = #{record.hasVedio,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasDetail != null" >
-        HAS_DETAIL = #{record.hasDetail,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasAbout != null" >
-        HAS_ABOUT = #{record.hasAbout,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasExtAttribute != null" >
-        HAS_EXT_ATTRIBUTE = #{record.hasExtAttribute,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasKeywore != null" >
-        HAS_KEYWORE = #{record.hasKeywore,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasSource != null" >
-        HAS_SOURCE = #{record.hasSource,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasShowTime != null" >
-        HAS_SHOW_TIME = #{record.hasShowTime,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasMetaTitle != null" >
-        HAS_META_TITLE = #{record.hasMetaTitle,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasMetaKeywords != null" >
-        HAS_META_KEYWORDS = #{record.hasMetaKeywords,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasMetaDescription != null" >
-        HAS_META_DESCRIPTION = #{record.hasMetaDescription,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasTag != null" >
-        HAS_TAG = #{record.hasTag,jdbcType=SMALLINT},
-      </if>
-      <if test="record.hasOrderOpt != null" >
-        HAS_ORDER_OPT = #{record.hasOrderOpt,jdbcType=SMALLINT},
-      </if>
-      <if test="record.name != null" >
-        NAME = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null" >
-        REMARK = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createDate != null" >
-        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.createUser != null" >
-        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateDate != null" >
-        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateUser != null" >
-        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update cont_attribute
-    set ID = #{record.id,jdbcType=BIGINT},
-      HAS_IMG = #{record.hasImg,jdbcType=SMALLINT},
-      HAS_OUT_LINK = #{record.hasOutLink,jdbcType=SMALLINT},
-      HAS_VEDIO = #{record.hasVedio,jdbcType=SMALLINT},
-      HAS_DETAIL = #{record.hasDetail,jdbcType=SMALLINT},
-      HAS_ABOUT = #{record.hasAbout,jdbcType=SMALLINT},
-      HAS_EXT_ATTRIBUTE = #{record.hasExtAttribute,jdbcType=SMALLINT},
-      HAS_KEYWORE = #{record.hasKeywore,jdbcType=SMALLINT},
-      HAS_SOURCE = #{record.hasSource,jdbcType=SMALLINT},
-      HAS_SHOW_TIME = #{record.hasShowTime,jdbcType=SMALLINT},
-      HAS_META_TITLE = #{record.hasMetaTitle,jdbcType=SMALLINT},
-      HAS_META_KEYWORDS = #{record.hasMetaKeywords,jdbcType=SMALLINT},
-      HAS_META_DESCRIPTION = #{record.hasMetaDescription,jdbcType=SMALLINT},
-      HAS_TAG = #{record.hasTag,jdbcType=SMALLINT},
-      HAS_ORDER_OPT = #{record.hasOrderOpt,jdbcType=SMALLINT},
-      NAME = #{record.name,jdbcType=VARCHAR},
-      REMARK = #{record.remark,jdbcType=VARCHAR},
-      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
-      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
-      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
-      UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bsb.cms.model.po.content.ContAttribute" >
-    update cont_attribute
-    <set >
-      <if test="hasImg != null" >
-        HAS_IMG = #{hasImg,jdbcType=SMALLINT},
-      </if>
-      <if test="hasOutLink != null" >
-        HAS_OUT_LINK = #{hasOutLink,jdbcType=SMALLINT},
-      </if>
-      <if test="hasVedio != null" >
-        HAS_VEDIO = #{hasVedio,jdbcType=SMALLINT},
-      </if>
-      <if test="hasDetail != null" >
-        HAS_DETAIL = #{hasDetail,jdbcType=SMALLINT},
-      </if>
-      <if test="hasAbout != null" >
-        HAS_ABOUT = #{hasAbout,jdbcType=SMALLINT},
-      </if>
-      <if test="hasExtAttribute != null" >
-        HAS_EXT_ATTRIBUTE = #{hasExtAttribute,jdbcType=SMALLINT},
-      </if>
-      <if test="hasKeywore != null" >
-        HAS_KEYWORE = #{hasKeywore,jdbcType=SMALLINT},
-      </if>
-      <if test="hasSource != null" >
-        HAS_SOURCE = #{hasSource,jdbcType=SMALLINT},
-      </if>
-      <if test="hasShowTime != null" >
-        HAS_SHOW_TIME = #{hasShowTime,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaTitle != null" >
-        HAS_META_TITLE = #{hasMetaTitle,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaKeywords != null" >
-        HAS_META_KEYWORDS = #{hasMetaKeywords,jdbcType=SMALLINT},
-      </if>
-      <if test="hasMetaDescription != null" >
-        HAS_META_DESCRIPTION = #{hasMetaDescription,jdbcType=SMALLINT},
-      </if>
-      <if test="hasTag != null" >
-        HAS_TAG = #{hasTag,jdbcType=SMALLINT},
-      </if>
-      <if test="hasOrderOpt != null" >
-        HAS_ORDER_OPT = #{hasOrderOpt,jdbcType=SMALLINT},
-      </if>
-      <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUser != null" >
-        CREATE_USER = #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null" >
-        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUser != null" >
-        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContAttribute" >
-    update cont_attribute
-    set HAS_IMG = #{hasImg,jdbcType=SMALLINT},
-      HAS_OUT_LINK = #{hasOutLink,jdbcType=SMALLINT},
-      HAS_VEDIO = #{hasVedio,jdbcType=SMALLINT},
-      HAS_DETAIL = #{hasDetail,jdbcType=SMALLINT},
-      HAS_ABOUT = #{hasAbout,jdbcType=SMALLINT},
-      HAS_EXT_ATTRIBUTE = #{hasExtAttribute,jdbcType=SMALLINT},
-      HAS_KEYWORE = #{hasKeywore,jdbcType=SMALLINT},
-      HAS_SOURCE = #{hasSource,jdbcType=SMALLINT},
-      HAS_SHOW_TIME = #{hasShowTime,jdbcType=SMALLINT},
-      HAS_META_TITLE = #{hasMetaTitle,jdbcType=SMALLINT},
-      HAS_META_KEYWORDS = #{hasMetaKeywords,jdbcType=SMALLINT},
-      HAS_META_DESCRIPTION = #{hasMetaDescription,jdbcType=SMALLINT},
-      HAS_TAG = #{hasTag,jdbcType=SMALLINT},
-      HAS_ORDER_OPT = #{hasOrderOpt,jdbcType=SMALLINT},
-      NAME = #{name,jdbcType=VARCHAR},
-      REMARK = #{remark,jdbcType=VARCHAR},
-      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      CREATE_USER = #{createUser,jdbcType=VARCHAR},
-      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
-      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
-  </update> -->
+-->
 </mapper>

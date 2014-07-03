@@ -33,4 +33,8 @@ public interface ContAttributeService {
 	 * @return
 	 */
 	List<ContAttribute> findListPage(ContAttribute conditions);
+	
+	Long create(ContAttribute record);
+	
+	void updateById(ContAttribute record);
 }

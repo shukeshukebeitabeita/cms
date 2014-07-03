@@ -18,7 +18,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.bsb.cms.commons.exceptions.NotFoundDaoException;
 import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.mapper.content.ContAttributeMapper;
 import com.bsb.cms.model.po.content.ContAttribute;
@@ -31,14 +34,14 @@ import com.bsb.cms.model.po.content.ContAttribute;
 @Service("contAttributeService")
 public class ContAttributeServiceImpl implements ContAttributeService {
 	@Resource(name="contAttributeMapper")
-	private ContAttributeMapper ContAttributeMapper;
+	private ContAttributeMapper contAttributeMapper;
 	
 	/* (non-Javadoc)
 	 * @see com.bsb.cms.content.service.content.ContAttributeService#findById(java.lang.Long)
 	 */
 	@Override
 	public ContAttribute findById(Long id) {
-		return ContAttributeMapper.selectByPrimaryKey(id);
+		return contAttributeMapper.selectByPrimaryKey(id);
 	}
 
 	/* (non-Javadoc)
@@ -46,7 +49,27 @@ public class ContAttributeServiceImpl implements ContAttributeService {
 	 */
 	@Override
 	public List<ContAttribute> findListPage(ContAttribute conditions) {
-		return ContAttributeMapper.findListPage(conditions);
+		return contAttributeMapper.findListPage(conditions);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContAttributeService#create(com.bsb.cms.model.po.content.ContAttribute)
+	 */
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Long create(ContAttribute record) {
+		contAttributeMapper.insert(record);
+		return record.getId();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContAttributeService#updateById(com.bsb.cms.model.po.content.ContAttribute)
+	 */
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void updateById(ContAttribute record) {
+		int count = contAttributeMapper.updateByPrimaryKey(record);
+		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
 	}
 
 

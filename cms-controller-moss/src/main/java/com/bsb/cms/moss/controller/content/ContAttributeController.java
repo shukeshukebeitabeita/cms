@@ -15,7 +15,6 @@ package com.bsb.cms.moss.controller.content;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -27,13 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
 import com.bsb.cms.content.service.content.ContAttributeService;
-import com.bsb.cms.model.dto.content.ContContentAllDTO;
-import com.bsb.cms.model.dto.content.ContTypeDTO;
-import com.bsb.cms.model.enums.ContentEnum;
 import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.ContAttribute;
-import com.bsb.cms.model.po.content.ContContent;
-import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.moss.controller.log.LogController;
 import com.bsb.cms.moss.controller.utils.DataGridJsonData;
 import com.bsb.cms.moss.controller.utils.EasyUiUtils;
@@ -105,64 +99,61 @@ public class ContAttributeController extends LogController {
 		return EDIT;
 	}
 
-//	/**
-//	 * 添加角色。
-//	 * 
-//	 * @param content  
-//	 * @param contentBody 详细内容
-//	 * @param modelMap  
-//	 * @return
-//	 */
-//	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
-//	@ResponseBody
-//	public JSONResultDTO create(ContContent content, String contentBody, ModelMap modelMap) {
-//		JSONResultDTO result = new JSONResultDTO();
-//		ContContentBody contContentBody = null;
-//		try {
-//			if(StringUtils.isNotBlank(contentBody)) {
-//				contContentBody = new ContContentBody(contentBody);
-//			}
-//			try {
-//				content.setStatus(ContentEnum.DEPLOY.getCode());
-//				Long id = contContentService.create(content, contContentBody);
-//				log(OperateTypeEnum.CONTENT_CREATE, "id:" + id, "新增内容");
-//			} catch (RenameRuntimeException e) {
-//				result.setMessage("标题名已经存在");
-//				result.setResult(JSONResultDTO.ERROR);
-//			}
-//
-//		} catch (Exception e) {
-//			result.setMessage("创建失败.请重试或联系管理员。");
-//			result.setResult(JSONResultDTO.ERROR);
-//			log.error(e.getMessage(), e.getCause());
-//			e.printStackTrace();
-//		}
-//
-//		return result;
-//	}
-//
-//	
-//	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
-//	@ResponseBody
-//	public JSONResultDTO update(ContContent content, ContContentBody contContentBody, ModelMap modelMap) {
-//		JSONResultDTO result = new JSONResultDTO();
-//		try {
-//			try {
-//				content.setStatus(ContentEnum.DEPLOY.getCode());
-//				contContentService.updateById(content, contContentBody);
-//				log(OperateTypeEnum.CONTENT_UPDATE, "id:" + content.getId(), "编辑内容");
-//			} catch (RenameRuntimeException e) {
-//				result.setMessage("标题名已经存在");
-//				result.setResult(JSONResultDTO.ERROR);
-//			}
-//
-//		} catch (Exception e) {
-//			result.setMessage("编辑失败.请重试或联系管理员。");
-//			result.setResult(JSONResultDTO.ERROR);
-//			log.error(e.getMessage(), e.getCause());
-//			e.printStackTrace();
-//		}
-//
-//		return result;
-//	}
+	/**
+	 * 添加角色。
+	 * 
+	 * @param attribute  
+	 * @param modelMap  
+	 * @return
+	 */
+	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONResultDTO create(ContAttribute attribute,  ModelMap modelMap) {
+		JSONResultDTO result = new JSONResultDTO();
+		try {
+			try {
+				Long id = contAttributeService.create(attribute);
+				log(OperateTypeEnum.ATTRIBUTE_CREATE, "id:" + id, "新增类型");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("标题名已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+
+		} catch (Exception e) {
+			result.setMessage("创建失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param attribute
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONResultDTO update(ContAttribute attribute, ModelMap modelMap) {
+		JSONResultDTO result = new JSONResultDTO();
+		try {
+			try {
+				contAttributeService.updateById(attribute);
+				log(OperateTypeEnum.ATTRIBUTE_UPDATE, "id:" + attribute.getId(), "编辑类型");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("标题名已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+		} catch (Exception e) {
+			result.setMessage("编辑失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

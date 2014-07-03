@@ -62,7 +62,7 @@
 				<tr>
 					<td class="grid-tab-l">是否显示简介：</td>
 					<td class="grid-tab-r">
-					<input type="checkbox" name="hasAuthor" value="1" <c:if test="${attribute.hasAuthor == 1}">checked="checked"</c:if>>
+					<input type="checkbox" name="hasAbout" value="1" <c:if test="${attribute.hasAbout == 1}">checked="checked"</c:if>>
 					</td>
 				</tr>
 				<tr>

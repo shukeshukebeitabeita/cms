@@ -24,6 +24,8 @@ public enum OperateTypeEnum {
 	
 	CONTENT_CREATE(1, "创建内容"),
 	CONTENT_UPDATE(2, "修改内容"),
+	ATTRIBUTE_CREATE(3, "创建类型"),
+	ATTRIBUTE_UPDATE(4, "修改类型"),
 
 	RESET_PWD(13, "重置密码"),
 

@@ -28,18 +28,26 @@ $(function() {
 	}
 
 	$('#postFormButton').click(function() {
-
-		$('#ff').submit();
+		if (isNull($('#_entityId').val())) {
+			submitForm();
+		} else {
+			j.confirm('确认修改吗？', submitForm, 'param');
+		}
 	});
 
 	inputTrim('ff');
 });
+
+function submitForm(){
+	$('#ff').submit();
+}
 
 function validate() {
 	var validata = $('#ff').form('validate');
 	if (!validata) {
 		return false;
 	}
+	 
 	return true;
 }
 
