@@ -13,6 +13,8 @@
  */
 package com.bsb.cms.content.service.content;
 
+import java.util.List;
+
 import com.bsb.cms.model.po.content.ContAttribute;
 
 /**
@@ -25,4 +27,10 @@ public interface ContAttributeService {
 	
 	ContAttribute findById(Long id);
 
+	/**
+	 * 列表页面搜索
+	 * @param conditions
+	 * @return
+	 */
+	List<ContAttribute> findListPage(ContAttribute conditions);
 }

@@ -35,6 +35,14 @@
     from cont_attribute
     where ID = #{id,jdbcType=BIGINT}
   </select>
+  
+  <select id="findListPage" parameterType="contAttribute" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from cont_attribute
+    
+  </select>
+  
 <!--   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

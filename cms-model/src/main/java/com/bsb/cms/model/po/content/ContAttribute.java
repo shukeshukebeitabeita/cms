@@ -15,35 +15,36 @@ public class ContAttribute extends Entity {
 
 	private Long id;
 
-    private Short hasImg;
+    private Short hasImg = 0;
 
-    private Short hasOutLink;
+    private Short hasOutLink = 0;
 
-    private Short hasVedio;
+    private Short hasVedio = 0;
 
-    private Short hasDetail;
+    private Short hasDetail = 0;
 
-    private Short hasAbout;
+    private Short hasAbout = 0;
 
-    private Short hasExtAttribute;
+    private Short hasExtAttribute = 0;
 
-    private Short hasKeyword;
+    private Short hasKeyword = 0;
 
-    private Short hasSource;
+    private Short hasSource = 0;
 
-    private Short hasShowTime;
+    private Short hasShowTime = 0;
 
-    private Short hasSEO;
+    private Short hasSEO = 0;
 
-    private Short hasTag;
+    private Short hasTag = 0;
 
-    private Short hasOrderOpt;
+    private Short hasOrderOpt = 0;
+    
+    private Short hasAuthor = 0;
 
     private String name;
 
     private String remark;
     
-    private Short hasAuthor;
 
 
     public Long getId() {

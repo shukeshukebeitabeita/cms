@@ -13,6 +13,8 @@
  */
 package com.bsb.cms.content.service.content.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -38,5 +40,15 @@ public class ContAttributeServiceImpl implements ContAttributeService {
 	public ContAttribute findById(Long id) {
 		return ContAttributeMapper.selectByPrimaryKey(id);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContAttributeService#findListPage(com.bsb.cms.model.po.content.ContAttribute)
+	 */
+	@Override
+	public List<ContAttribute> findListPage(ContAttribute conditions) {
+		return ContAttributeMapper.findListPage(conditions);
+	}
+
+
 
 }
