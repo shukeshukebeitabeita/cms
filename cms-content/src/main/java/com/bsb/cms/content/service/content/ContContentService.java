@@ -43,4 +43,6 @@ public interface ContContentService {
 	long create(ContContent content, ContContentBody body);
 	
 	ContContentAllDTO findContentById(Long id);
+	
+	void updateById(ContContent content, ContContentBody body);
 }

@@ -23,7 +23,7 @@ public interface ContContentMapper {
 //
 //    int updateByPrimaryKeySelective(ContContent record);
 //
-//    int updateByPrimaryKey(ContContent record);
+	
 	/**
 	 * moss-列表页面搜索
 	 * @param conditions
@@ -32,12 +32,14 @@ public interface ContContentMapper {
 	List<ContContent> findListPage(ContentSearchVO conditions);
 	/**
 	 * create
-	 * @param content
-	 * @return
+	 * @param content,包含返回的id
+	 * @return insert count
 	 */
-	Long insert(ContContent record);
+	long insert(ContContent record);
 	
 	int insertSelective(ContContent record);
 	
 	ContContentAllDTO findContentById(Long id);
+	
+	int updateByPrimaryKey(ContContent record);
 }

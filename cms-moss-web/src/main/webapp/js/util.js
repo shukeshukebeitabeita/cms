@@ -55,6 +55,11 @@ function isNull(str) {
 	return true;
 }
 
+function isNotNull(str) {
+	
+	return !isNull(str);
+}
+
 // 去空格
 String.prototype.Trim = function() {
 	var m = this.match(/^\s*(\S+(\s+\S+)*)\s*$/);

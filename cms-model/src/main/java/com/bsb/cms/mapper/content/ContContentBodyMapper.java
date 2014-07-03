@@ -1,11 +1,6 @@
 package com.bsb.cms.mapper.content;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.bsb.cms.model.po.content.ContContentBody;
-import com.bsb.cms.model.po.content.ContContentBodyKey;
 
 public interface ContContentBodyMapper {
 //    int countByExample(ContContentBodyExample example);
@@ -34,7 +29,9 @@ public interface ContContentBodyMapper {
 //
 //    int updateByPrimaryKeyWithBLOBs(ContContentBody record);
 //
-//    int updateByPrimaryKey(ContContentBody record);
+//    
 	
 	int insert(ContContentBody record);
+	
+	int updateByPrimaryKey(ContContentBody record);
 }

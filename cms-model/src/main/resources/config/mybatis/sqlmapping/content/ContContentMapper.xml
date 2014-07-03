@@ -39,9 +39,9 @@
   </resultMap>
   
   <resultMap type="contContentAllDTO" id="ContentResultMap" extends="BaseResultMap">
-  	 <id column="ID" property="bodyId" jdbcType="BIGINT" />
+  	 <id column="BODY_ID" property="bodyId" jdbcType="BIGINT" />
      <result column="EXT_ATTR_BODY" property="extAttrBody" jdbcType="VARCHAR" />
-     <result column="BODY" property="body" jdbcType="LONGVARCHAR" />
+     <result column="CONTENT_BODY" property="contentBody" jdbcType="LONGVARCHAR" />
   </resultMap>
   
   
@@ -81,13 +81,51 @@
     c.AUTHOR, c.PUBLISH_TIME, c.HAS_HOT, c.HAS_LATEST, c.HAS_TOP, c.META_TITLE, c.META_KEYWORDS, c.META_DESCRIPTION, 
     c.C_TAG, c.KEYWORD, c.SORT, c.SOURCE, c.PRICE, c.SALE_PRICE, c.STOCK, c.DISCOUNT, c.BRAND, c.GOODS_URL, 
     STATUS, TITLE_STYLE, CREATE_DATE, UPDATE_DATE, CREATE_USER, UPDATE_USER,
-     b.ID as BODY_ID, b.EXT_ATTR_BODY, b.BODY
+     b.BODY_ID, b.EXT_ATTR_BODY, b.CONTENT_BODY
     FROM CONT_CONTENT c
     LEFT JOIN cont_content_body b on c.ID = b.CONTENT_ID
     WHERE c.ID = #{id,jdbcType=BIGINT}
   </select>
   
-  <insert id="insert" parameterType="contContent" >
+  <update id="updateByPrimaryKey" parameterType="contContent" >
+    update cont_content
+    set TITLE = #{title,jdbcType=VARCHAR},
+      ABOUT = #{about,jdbcType=VARCHAR},
+      DEFAULT_IMG = #{defaultImg,jdbcType=VARCHAR},
+      VEDIO = #{vedio,jdbcType=VARCHAR},
+      AUDIO = #{audio,jdbcType=VARCHAR},
+      LINK = #{link,jdbcType=VARCHAR},
+      TYPE_ID = #{typeId,jdbcType=BIGINT},
+      ATTR_ID = #{attrId,jdbcType=BIGINT},
+      TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      HAS_HOT = #{hasHot,jdbcType=SMALLINT},
+      HAS_LATEST = #{hasLatest,jdbcType=SMALLINT},
+      HAS_TOP = #{hasTop,jdbcType=SMALLINT},
+      META_TITLE = #{metaTitle,jdbcType=VARCHAR},
+      META_KEYWORDS = #{metaKeywords,jdbcType=VARCHAR},
+      META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+      C_TAG = #{cTag,jdbcType=VARCHAR},
+      KEYWORD = #{keyword,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
+      STOCK = #{stock,jdbcType=INTEGER},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      BRAND = #{brand,jdbcType=VARCHAR},
+      GOODS_URL = #{goodsUrl,jdbcType=VARCHAR},
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      TITLE_STYLE = #{titleStyle,jdbcType=VARCHAR},
+      UPDATE_DATE = NOW(),
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insert" parameterType="contContent" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO CONT_CONTENT (TITLE, ABOUT, 
       DEFAULT_IMG, VEDIO, AUDIO, 
       LINK, TYPE_ID, ATTR_ID, 
@@ -114,7 +152,8 @@
       #{updateUser,jdbcType=VARCHAR})
   
   </insert>
-    <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
+  
+<!--     <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
     INSERT INTO CONT_CONTENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -324,7 +363,7 @@
         #{updateUser,jdbcType=VARCHAR},
       </if>
     </trim>
-  </insert>
+  </insert> -->
   
  <!--  <sql id="Example_Where_Clause" >
     <where >
@@ -683,41 +722,5 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.ContContent" >
-    update cont_content
-    set TITLE = #{title,jdbcType=VARCHAR},
-      ABOUT = #{about,jdbcType=VARCHAR},
-      DEFAULT_IMG = #{defaultImg,jdbcType=VARCHAR},
-      VEDIO = #{vedio,jdbcType=VARCHAR},
-      AUDIO = #{audio,jdbcType=VARCHAR},
-      LINK = #{link,jdbcType=VARCHAR},
-      TYPE_ID = #{typeId,jdbcType=BIGINT},
-      ATTR_ID = #{attrId,jdbcType=BIGINT},
-      TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
-      AUTHOR = #{author,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
-      HAS_HOT = #{hasHot,jdbcType=SMALLINT},
-      HAS_LATEST = #{hasLatest,jdbcType=SMALLINT},
-      HAS_TOP = #{hasTop,jdbcType=SMALLINT},
-      META_TITLE = #{metaTitle,jdbcType=VARCHAR},
-      META_KEYWORDS = #{metaKeywords,jdbcType=VARCHAR},
-      META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
-      C_TAG = #{cTag,jdbcType=VARCHAR},
-      KEYWORD = #{keyword,jdbcType=VARCHAR},
-      SORT = #{sort,jdbcType=INTEGER},
-      SOURCE = #{source,jdbcType=VARCHAR},
-      PRICE = #{price,jdbcType=DECIMAL},
-      SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
-      STOCK = #{stock,jdbcType=INTEGER},
-      DISCOUNT = #{discount,jdbcType=DECIMAL},
-      BRAND = #{brand,jdbcType=VARCHAR},
-      GOODS_URL = #{goodsUrl,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=SMALLINT},
-      TITLE_STYLE = #{titleStyle,jdbcType=VARCHAR},
-      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
-      CREATE_USER = #{createUser,jdbcType=VARCHAR},
-      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
-  </update> -->
+   -->
 </mapper>

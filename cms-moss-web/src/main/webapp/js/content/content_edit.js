@@ -1,5 +1,9 @@
 $(function() {
 	
+	if(isNotNull($('#_contentId').val())){
+		$('#ff').attr("action", "update.htm");
+	}
+
 	try {
 		var options = {
 		        // dataType identifies the expected content type of the server response
@@ -30,10 +34,10 @@ $(function() {
 	} catch (e) {
 	}
 
+	
 	$('#postFormButton').click(function() {
 		$('#contentBody').val('');
 		var contentBody = CKEDITOR.instances._offerDesc.getData();
-	//	alert(contentBody);
 		$('#contentBody').val(contentBody);
 		
 		$('#ff').submit();
@@ -50,11 +54,9 @@ function validate(){
 	}
 	return true;
 }
-//数据验证。 type: 1,创建时； 2，修改时
-function checkData(type){
-	return true;
-}
 
 function resetForm(){
-	$('#ff').resetForm();
+	if(isNull($('#_contentId').val())){
+		$('#ff').resetForm();
+	}
 }

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bsb.cms.commons.exceptions.NotFoundDaoException;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.mapper.content.ContContentBodyMapper;
 import com.bsb.cms.mapper.content.ContContentMapper;
@@ -54,7 +55,7 @@ public class ContContentServiceImpl implements ContContentService {
 	public long create(ContContent content, ContContentBody body) {
 		long contentId = contContentMapper.insert(content);
 		if(body != null && contentId > 0) {
-			body.setContentId(contentId);
+			body.setContentId(content.getId());
 			contContentBodyMapper.insert(body);
 		}
 		
@@ -62,12 +63,26 @@ public class ContContentServiceImpl implements ContContentService {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bsb.cms.content.service.content.ContContentService#findById(java.lang.Long)
+	 * @see com.bsb.cms.content.service.content.ContContentService#findContentById(java.lang.Long)
 	 */
 	@Override
 	public ContContentAllDTO findContentById(Long id) {
 		
 		return contContentMapper.findContentById(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContContentService#updateById(com.bsb.cms.model.po.content.ContContent, com.bsb.cms.model.po.content.ContContentBody)
+	 */
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void updateById(ContContent content, ContContentBody body) {
+		int count = contContentMapper.updateByPrimaryKey(content);
+		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
+		
+		body.setContentId(content.getId());
+		count = contContentBodyMapper.updateByPrimaryKey(body);
+		if(count <= 0) contContentBodyMapper.insert(body);
 	}
 
 }

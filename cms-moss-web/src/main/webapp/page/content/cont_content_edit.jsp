@@ -17,7 +17,8 @@
 <body>
 	<div class="wrap_box">
 		<form id="ff" action="create.htm" method="post">
-			<input type="hidden" name="id" value="${content.id}"/>
+			<input type="hidden" id="_contentId" name="id" value="${content.id}"/>
+			<input type="hidden" name="bodyId" value="${content.bodyId}"/>
 			<input type="hidden" name="typeId" value="${type.id}"/>
 			<input type="hidden" name="templateId" value="${template.id} "/>
 			<input type="hidden" name="attrId" value="${attribute.id} "/>
@@ -128,7 +129,7 @@
 					<td class="grid-tab-r">
 	
 						<textarea id="_offerDesc" name="offerDesc" rows="10" cols="50">
-						${content.body}
+						${content.contentBody}
 						</textarea> <ckf:setupCKEditor basePath="../../ckfinder/"
 							editor="_offerDesc" /> <ck:replace
 							basePath="../../ckeditor" replace="_offerDesc" />

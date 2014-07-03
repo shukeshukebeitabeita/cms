@@ -50,6 +50,7 @@ moss.addTab=function(subtitle, url, flag, icon) {
 		//判断是否进行iframe方式打开tab，默认为href方式
 		if(url.indexOf('noIframe') != -1){
 			$('#maintabs').tabs('add', {
+				//id : id,
 				title : subtitle,
 				//----------------------------------------------------------------
 				href : url,

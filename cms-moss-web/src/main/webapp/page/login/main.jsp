@@ -123,7 +123,7 @@
 				<script type="text/javascript">
 					function newOpen() {//新窗口打开
 						var node = $('#leftContentType').tree('getSelected');
-						j.addTab(" " + node.attributes.name, node.attributes.url);
+						j.addTab(" " + node.attributes.name, contextPath + node.attributes.url);
 					}
 				
 					function append() {

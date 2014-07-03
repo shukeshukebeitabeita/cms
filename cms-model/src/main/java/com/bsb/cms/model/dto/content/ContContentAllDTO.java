@@ -29,7 +29,7 @@ public class ContContentAllDTO extends ContContent {
 
 	private String extAttrBody;
 
-    private String body;
+    private String contentBody;
     
     private Long bodyId;
 
@@ -47,18 +47,20 @@ public class ContContentAllDTO extends ContContent {
 		this.extAttrBody = extAttrBody;
 	}
 
+	
+
 	/**
-	 * @return the body
+	 * @return the contentBody
 	 */
-	public String getBody() {
-		return body;
+	public String getContentBody() {
+		return contentBody;
 	}
 
 	/**
-	 * @param body the body to set
+	 * @param contentBody the contentBody to set
 	 */
-	public void setBody(String body) {
-		this.body = body;
+	public void setContentBody(String contentBody) {
+		this.contentBody = contentBody;
 	}
 
 	/**

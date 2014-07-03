@@ -163,6 +163,30 @@ public class ContContentController extends LogController {
 		return result;
 	}
 
+	
+	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONResultDTO update(ContContent content, ContContentBody contContentBody, ModelMap modelMap) {
+		JSONResultDTO result = new JSONResultDTO();
+		try {
+			try {
+				content.setStatus(ContentEnum.DEPLOY.getCode());
+				contContentService.updateById(content, contContentBody);
+				log(OperateTypeEnum.CONTENT_UPDATE, "id:" + content.getId(), "编辑内容");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("标题名已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+
+		} catch (Exception e) {
+			result.setMessage("编辑失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	/**
 	 * @param contContentService the contContentService to set
