@@ -195,11 +195,13 @@
 					function appendTemplate() {
 						var t = $('#leftTemplateType');
 						var node = t.tree('getSelected');
-						j.addTab(" " + node.text + "-新增", contextPath + "/moss/template/create.htm");
+						j.addTab(" " + node.text + "-新增", contextPath + "/moss/template/create.htm?parentId=" + node.id);
 					}
 					
 					function removeTemplate() {
 						alert("未实现");
+						//var node = $('#tt2').tree('getSelected');  
+			            //$('#tt2').tree('remove', node.target); 
 					}
 				</script>
 			</div>

@@ -18,10 +18,15 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.bsb.cms.commons.exceptions.NotFoundDaoException;
 import com.bsb.cms.content.service.tmpt.TmptTemplateService;
+import com.bsb.cms.mapper.content.TmptTemplateBodyMapper;
 import com.bsb.cms.mapper.content.TmptTemplateMapper;
 import com.bsb.cms.model.po.content.TmptTemplate;
+import com.bsb.cms.model.po.content.TmptTemplateBody;
 
 /**
  * @author hongjian.liu
@@ -32,6 +37,8 @@ import com.bsb.cms.model.po.content.TmptTemplate;
 public class TmptTemplateServiceImpl implements TmptTemplateService {
 	@Resource
 	private TmptTemplateMapper tmptTemplateMapper;
+	@Resource
+	private TmptTemplateBodyMapper tmptTemplateBodyMapper;
 
 	/* (non-Javadoc)
 	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#findById(java.lang.Long)
@@ -47,6 +54,39 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 	@Override
 	public List<TmptTemplate> findChildrenById(Long id) {
 		return tmptTemplateMapper.findChildrenById(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#findBodyByTemplateId(long)
+	 */
+	@Override
+	public TmptTemplateBody findBodyByTemplateId(long templateId) {
+		return tmptTemplateBodyMapper.selectByTemplateId(templateId);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#create(com.bsb.cms.model.po.content.TmptTemplate, com.bsb.cms.model.po.content.TmptTemplateBody)
+	 */
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Long create(TmptTemplate template, TmptTemplateBody body) {
+		int count = tmptTemplateMapper.insert(template);
+		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
+		body.setTemplateId(template.getId());
+		count = tmptTemplateBodyMapper.insert(body);
+		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
+		
+		return template.getId();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#update(com.bsb.cms.model.po.content.TmptTemplate, com.bsb.cms.model.po.content.TmptTemplateBody)
+	 */
+	@Override
+	public void update(TmptTemplate template, TmptTemplateBody body) {
+		tmptTemplateMapper.updateByPrimaryKey(template);
+		body.setTemplateId(template.getId());
+		tmptTemplateBodyMapper.updateByTemplateId(body);
 	}
 	
 }

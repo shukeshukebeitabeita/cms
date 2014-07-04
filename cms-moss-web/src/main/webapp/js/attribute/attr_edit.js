@@ -11,7 +11,7 @@ $(function() {
 			beforeSubmit : validate,
 			success : function(d) {
 				if (d.result == "Y") {
-					j.show('信息', '内容编辑成功');
+					j.show('信息', '编辑成功');
 					resetForm();
 				} else {
 					j.error('信息', d.message);

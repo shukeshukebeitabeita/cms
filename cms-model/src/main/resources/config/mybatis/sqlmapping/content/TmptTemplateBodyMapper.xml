@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bsb.cms.mapper.content.TmptTemplateBodyMapper" >
-  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.content.TmptTemplateBody" >
+  <resultMap id="BaseResultMap" type="tmptTemplateBody" >
     <id column="ID" property="id" jdbcType="BIGINT" />
     <result column="TEMPLATE_ID" property="templateId" jdbcType="BIGINT" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bsb.cms.model.po.content.TmptTemplateBody" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="tmptTemplateBody" extends="BaseResultMap" >
     <result column="TEMPLATE_BODY" property="templateBody" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
+   <sql id="Base_Column_List" >
+    ID, TEMPLATE_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    TEMPLATE_BODY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tmpt_template_body
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+   <select id="selectByTemplateId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tmpt_template_body
+    where TEMPLATE_ID = #{templateId,jdbcType=BIGINT}
+  </select>
+  
+   <insert id="insert" parameterType="tmptTemplateBody" useGeneratedKeys="true" keyProperty="id">
+    insert into tmpt_template_body (TEMPLATE_ID, TEMPLATE_BODY
+      )
+    values (#{templateId,jdbcType=BIGINT}, #{templateBody,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  
+  <update id="updateByTemplateId" parameterType="tmptTemplateBody" >
+    update tmpt_template_body
+    set TEMPLATE_BODY = #{templateBody,jdbcType=LONGVARCHAR}
+    where TEMPLATE_ID = #{templateId,jdbcType=BIGINT}
+  </update>
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -66,28 +104,8 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    ID, TEMPLATE_ID
-  </sql>
-  <sql id="Blob_Column_List" >
-    TEMPLATE_BODY
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bsb.cms.model.po.content.TmptTemplateBodyExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tmpt_template_body
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
+ 
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bsb.cms.model.po.content.TmptTemplateBodyExample" >
     select
     <if test="distinct" >
@@ -102,14 +120,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tmpt_template_body
-    where ID = #{id,jdbcType=BIGINT}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tmpt_template_body
     where ID = #{id,jdbcType=BIGINT}
@@ -120,43 +131,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bsb.cms.model.po.content.TmptTemplateBody" >
-    insert into tmpt_template_body (ID, TEMPLATE_ID, TEMPLATE_BODY
-      )
-    values (#{id,jdbcType=BIGINT}, #{templateId,jdbcType=BIGINT}, #{templateBody,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.TmptTemplateBody" >
-    insert into tmpt_template_body
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="templateId != null" >
-        TEMPLATE_ID,
-      </if>
-      <if test="templateBody != null" >
-        TEMPLATE_BODY,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="templateId != null" >
-        #{templateId,jdbcType=BIGINT},
-      </if>
-      <if test="templateBody != null" >
-        #{templateBody,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bsb.cms.model.po.content.TmptTemplateBodyExample" resultType="java.lang.Integer" >
-    select count(*) from tmpt_template_body
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+
+
   <update id="updateByExampleSelective" parameterType="map" >
     update tmpt_template_body
     <set >
@@ -174,15 +150,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update tmpt_template_body
-    set ID = #{record.id,jdbcType=BIGINT},
-      TEMPLATE_ID = #{record.templateId,jdbcType=BIGINT},
-      TEMPLATE_BODY = #{record.templateBody,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+
   <update id="updateByExample" parameterType="map" >
     update tmpt_template_body
     set ID = #{record.id,jdbcType=BIGINT},
@@ -203,15 +171,5 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bsb.cms.model.po.content.TmptTemplateBody" >
-    update tmpt_template_body
-    set TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
-      TEMPLATE_BODY = #{templateBody,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.TmptTemplateBody" >
-    update tmpt_template_body
-    set TEMPLATE_ID = #{templateId,jdbcType=BIGINT}
-    where ID = #{id,jdbcType=BIGINT}
-  </update> -->
+   -->
 </mapper>

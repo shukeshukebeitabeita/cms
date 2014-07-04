@@ -21,7 +21,7 @@ function loadLeftTemplate(){
 //		      }
 		      if(node.attributes!=undefined){
 		       	if(node.attributes.isTemplate==1) {
-		       		j.addTab(" " + node.text, contextPath + "/moss/template/create.htm");
+		       		j.addTab(" " + node.text + "-编辑", contextPath + "/moss/template/update.htm?id=" + node.id);
 		       	} 
 		      }
 		     }

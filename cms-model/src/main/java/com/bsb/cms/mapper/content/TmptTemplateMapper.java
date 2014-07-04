@@ -14,27 +14,14 @@ import com.bsb.cms.model.po.content.TmptTemplate;
  */
 @Repository
 public interface TmptTemplateMapper {
-//    int countByExample(TmptTemplateExample example);
-//
-//    int deleteByExample(TmptTemplateExample example);
-//
+
 //    int deleteByPrimaryKey(Long id);
-//
-//    int insert(TmptTemplate record);
-//
-//    int insertSelective(TmptTemplate record);
-//
-//    List<TmptTemplate> selectByExample(TmptTemplateExample example);
-//
-//    int updateByExampleSelective(@Param("record") TmptTemplate record, @Param("example") TmptTemplateExample example);
-//
-//    int updateByExample(@Param("record") TmptTemplate record, @Param("example") TmptTemplateExample example);
-//
-//    int updateByPrimaryKeySelective(TmptTemplate record);
-//
-//    int updateByPrimaryKey(TmptTemplate record);
 	
 	TmptTemplate selectByPrimaryKey(Long id);
 	
 	List<TmptTemplate> findChildrenById(Long parentId);
+	
+	int insert(TmptTemplate record);
+	
+	int updateByPrimaryKey(TmptTemplate record);
 }

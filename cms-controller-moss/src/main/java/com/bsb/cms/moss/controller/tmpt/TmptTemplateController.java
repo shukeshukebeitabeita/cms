@@ -24,13 +24,19 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bsb.cms.commons.exceptions.RenameRuntimeException;
+import com.bsb.cms.commons.web.JSONResultDTO;
 import com.bsb.cms.content.service.tmpt.TmptTemplateService;
 import com.bsb.cms.model.enums.DefaultBoolean;
+import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.TmptTemplate;
+import com.bsb.cms.model.po.content.TmptTemplateBody;
+import com.bsb.cms.moss.controller.log.LogController;
 import com.bsb.cms.moss.controller.vo.EasyUiTreeObj;
 
 /**
@@ -40,7 +46,7 @@ import com.bsb.cms.moss.controller.vo.EasyUiTreeObj;
  */
 @Controller
 @RequestMapping("/moss/template/")
-public class TmptTemplateController {
+public class TmptTemplateController extends LogController {
 	// log
 	private static final Log log = LogFactory.getLog(TmptTemplateController.class);
 	private static final String EDIT= "/page/template/tmpt_template_edit";
@@ -85,84 +91,89 @@ public class TmptTemplateController {
 	
 	/**
 	 * 跳转到添加页面。
-	 * 
+	 * @param parentId
 	 * @return
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.GET)
-	public String toCreate() {
+	public String toCreate(Long parentId, ModelMap modelMap) {
+		modelMap.put("parentId", parentId);
 		
 		return EDIT;
 	}
-//	
-//	/**
-//	 *  to update page 
-//	 * @param id
-//	 * @param modelMap
-//	 * @return
-//	 */
-//	@RequestMapping(value = "update.htm", method = RequestMethod.GET)
-//	public String toUpdate(Long id, ModelMap modelMap) {
-//		modelMap.put("attribute", contAttributeService.findById(id));
-//		modelMap.put("extAttribute", null);//TODO
-//		
-//		return EDIT;
-//	}
-//
-//	/**
-//	 * 添加角色。
-//	 * 
-//	 * @param attribute  
-//	 * @param modelMap  
-//	 * @return
-//	 */
-//	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
-//	@ResponseBody
-//	public JSONResultDTO create(ContAttribute attribute,  ModelMap modelMap) {
-//		JSONResultDTO result = new JSONResultDTO();
-//		try {
-//			try {
-//				Long id = contAttributeService.create(attribute);
-//				log(OperateTypeEnum.ATTRIBUTE_CREATE, "id:" + id, "新增类型");
-//			} catch (RenameRuntimeException e) {
-//				result.setMessage("标题名已经存在");
-//				result.setResult(JSONResultDTO.ERROR);
-//			}
-//
-//		} catch (Exception e) {
-//			result.setMessage("创建失败.请重试或联系管理员。");
-//			result.setResult(JSONResultDTO.ERROR);
-//			log.error(e.getMessage(), e.getCause());
-//			e.printStackTrace();
-//		}
-//
-//		return result;
-//	}
-//
-//	/**
-//	 * 
-//	 * @param attribute
-//	 * @param modelMap
-//	 * @return
-//	 */
-//	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
-//	@ResponseBody
-//	public JSONResultDTO update(ContAttribute attribute, ModelMap modelMap) {
-//		JSONResultDTO result = new JSONResultDTO();
-//		try {
-//			try {
-//				contAttributeService.updateById(attribute);
-//				log(OperateTypeEnum.ATTRIBUTE_UPDATE, "id:" + attribute.getId(), "编辑类型");
-//			} catch (RenameRuntimeException e) {
-//				result.setMessage("标题名已经存在");
-//				result.setResult(JSONResultDTO.ERROR);
-//			}
-//		} catch (Exception e) {
-//			result.setMessage("编辑失败.请重试或联系管理员。");
-//			result.setResult(JSONResultDTO.ERROR);
-//			log.error(e.getMessage(), e.getCause());
-//			e.printStackTrace();
-//		}
-//
-//		return result;
-//	}
+	
+	/**
+	 *  to update page 
+	 * @param id
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "update.htm", method = RequestMethod.GET)
+	public String toUpdate(Long id, ModelMap modelMap) {
+		TmptTemplate template = tmptTemplateService.findById(id);
+		modelMap.put("template", template);
+		modelMap.put("parentId", template.getParentId());
+		modelMap.put("templateBody", tmptTemplateService.findBodyByTemplateId(template.getId()));
+		
+		return EDIT;
+	}
+
+	/**
+	 * 添加。
+	 * 
+	 * @param template  
+	 * @param tmptTemplateBody
+	 * @param modelMap  
+	 * @return
+	 */
+	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONResultDTO create(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
+		JSONResultDTO result = new JSONResultDTO();
+		try {
+			try {
+				Long id = tmptTemplateService.create(template, tmptTemplateBody);
+				log(OperateTypeEnum.TEMPLATE_CREATE, "id:" + id, "新增");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("名称已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+
+		} catch (Exception e) {
+			result.setMessage("创建失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * update
+	 * @param template  
+	 * @param tmptTemplateBody
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONResultDTO update(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
+		JSONResultDTO result = new JSONResultDTO();
+		try {
+			try {
+				tmptTemplateService.update(template, tmptTemplateBody);
+				log(OperateTypeEnum.TEMPLATE_UPDATE, "id:" + template.getId(), "编辑");
+			} catch (RenameRuntimeException e) {
+				result.setMessage("名称已经存在");
+				result.setResult(JSONResultDTO.ERROR);
+			}
+		} catch (Exception e) {
+			result.setMessage("编辑失败.请重试或联系管理员。");
+			result.setResult(JSONResultDTO.ERROR);
+			log.error(e.getMessage(), e.getCause());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

@@ -100,7 +100,7 @@ public class ContAttributeController extends LogController {
 	}
 
 	/**
-	 * 添加角色。
+	 * 添加。
 	 * 
 	 * @param attribute  
 	 * @param modelMap  
@@ -130,7 +130,7 @@ public class ContAttributeController extends LogController {
 	}
 
 	/**
-	 * 
+	 * update
 	 * @param attribute
 	 * @param modelMap
 	 * @return

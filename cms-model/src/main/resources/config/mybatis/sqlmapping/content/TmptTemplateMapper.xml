@@ -36,6 +36,30 @@
       AND STATUS=1
   </select>
   
+  <insert id="insert" parameterType="tmptTemplate" useGeneratedKeys="true" keyProperty="id">
+    insert into tmpt_template (PARENT_ID, TEMPLATE_NAME, 
+      FILE_DIR, DESCRIPTION, 
+      CREATE_USER, 
+      UPDATE_USER, TEMPLATE_TYPE, HAS_LEAF)
+    values (#{parentId,jdbcType=BIGINT}, #{templateName,jdbcType=VARCHAR}, 
+      #{fileDir,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{templateType,jdbcType=SMALLINT}, #{hasLeaf,jdbcType=SMALLINT})
+  </insert>
+  
+   <update id="updateByPrimaryKey" parameterType="tmptTemplate" >
+    update tmpt_template
+    set 
+      TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
+      FILE_DIR = #{fileDir,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=SMALLINT},
+      UPDATE_DATE = NOW(),
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update> 
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -303,18 +327,5 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.content.TmptTemplate" >
-    update tmpt_template
-    set GROUP_ID = #{groupId,jdbcType=BIGINT},
-      TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
-      FILE_DIR = #{fileDir,jdbcType=VARCHAR},
-      DESCRIPTION = #{description,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=SMALLINT},
-      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
-      CREATE_USER = #{createUser,jdbcType=VARCHAR},
-      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
-      TEMPLATE_TYPE = #{templateType,jdbcType=SMALLINT}
-    where ID = #{id,jdbcType=BIGINT}
-  </update> -->
+ -->
 </mapper>

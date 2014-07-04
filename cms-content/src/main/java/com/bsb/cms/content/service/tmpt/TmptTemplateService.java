@@ -16,6 +16,7 @@ package com.bsb.cms.content.service.tmpt;
 import java.util.List;
 
 import com.bsb.cms.model.po.content.TmptTemplate;
+import com.bsb.cms.model.po.content.TmptTemplateBody;
 
 /**
  * 模板service
@@ -28,4 +29,10 @@ public interface TmptTemplateService {
 	TmptTemplate findById(Long id);
 	
 	List<TmptTemplate> findChildrenById(Long id);
+	
+	TmptTemplateBody findBodyByTemplateId(long templateId);
+	
+	Long create(TmptTemplate template, TmptTemplateBody body);
+	
+	void update(TmptTemplate template, TmptTemplateBody body);
 }
