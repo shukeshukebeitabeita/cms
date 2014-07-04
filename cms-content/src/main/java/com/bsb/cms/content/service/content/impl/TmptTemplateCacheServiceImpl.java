@@ -56,7 +56,7 @@ public class TmptTemplateCacheServiceImpl implements TmptTemplateCacheService {
 			dist = null;
 		} else {
 			dist.setFile_dir(src.getFileDir());
-			dist.setGroup_id(src.getGroupId());
+			dist.setParent_id(src.getParentId());
 			dist.setId(src.getId());
 			dist.setName(src.getTemplateName());
 			dist.setStatus(src.getStatus());

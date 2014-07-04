@@ -5,15 +5,26 @@ function loadLeftType(){
 	var node = $("#leftContentType").tree("getRoot");
 	if(node == null) {
 		$("#leftContentType").tree({
-		     url: contextPath + "/moss/login/type_tree.htm",
-		  /*   onClick:function(node){
-		      for(var x in node){
-		       alert(x+"-----"+eval("node."+x));
-		      }
+		     url: contextPath + "/moss/login/type_tree.htm"
+		    });
+	}
+}
+//左边模板
+function loadLeftTemplate(){
+	var node = $("#leftTemplateType").tree("getRoot");
+	if(node == null) {
+		$("#leftTemplateType").tree({
+		     url: contextPath + "/moss/template/index.htm",
+		   onClick:function(node){
+//		      for(var x in node){
+//		       alert(x+"-----"+eval("node."+x));
+//		      }
 		      if(node.attributes!=undefined){
-		       alert("node's attributes is:"+node.attributes.url+"--"+node.attributes.name)
+		       	if(node.attributes.isTemplate==1) {
+		       		j.addTab(" " + node.text, contextPath + "/moss/template/create.htm");
+		       	} 
 		      }
-		     }*/
+		     }
 		    });
 	}
 }
@@ -43,6 +54,11 @@ moss.addTab=function(subtitle, url, flag, icon) {
 	if(subtitle == ' 内容') {
 		$('#letftAccordion').accordion("select", "内容栏目"); 
 		loadLeftType();
+		return ;
+	}
+	if(subtitle == ' 模板管理') {
+		$('#letftAccordion').accordion("select", "模板管理"); 
+		loadLeftTemplate();
 		return ;
 	}
 	

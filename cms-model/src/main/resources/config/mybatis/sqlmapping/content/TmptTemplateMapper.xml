@@ -3,7 +3,7 @@
 <mapper namespace="com.bsb.cms.mapper.content.TmptTemplateMapper" >
   <resultMap id="BaseResultMap" type="tmptTemplate" >
     <id column="ID" property="id" jdbcType="BIGINT" />
-    <result column="GROUP_ID" property="groupId" jdbcType="BIGINT" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
     <result column="TEMPLATE_NAME" property="templateName" jdbcType="VARCHAR" />
     <result column="FILE_DIR" property="fileDir" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
@@ -13,11 +13,12 @@
     <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
     <result column="TEMPLATE_TYPE" property="templateType" jdbcType="SMALLINT" />
+    <result column="HAS_LEAF" property="hasLeaf" jdbcType="SMALLINT" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    ID, GROUP_ID, TEMPLATE_NAME, FILE_DIR, DESCRIPTION, STATUS, CREATE_DATE, UPDATE_DATE, 
-    CREATE_USER, UPDATE_USER, TEMPLATE_TYPE
+    ID, PARENT_ID, TEMPLATE_NAME, FILE_DIR, DESCRIPTION, STATUS, CREATE_DATE, UPDATE_DATE, 
+    CREATE_USER, UPDATE_USER, TEMPLATE_TYPE,HAS_LEAF
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -25,6 +26,14 @@
     <include refid="Base_Column_List" />
     from tmpt_template
     where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="findChildrenById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select 
+    <include refid="Base_Column_List" />
+    from tmpt_template
+    where PARENT_ID = #{parentId,jdbcType=BIGINT}
+      AND STATUS=1
   </select>
   
  <!--  <sql id="Example_Where_Clause" >

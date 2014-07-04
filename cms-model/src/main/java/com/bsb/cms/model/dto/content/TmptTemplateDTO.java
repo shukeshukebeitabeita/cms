@@ -28,7 +28,7 @@ public class TmptTemplateDTO implements Serializable {
 
 	private Long id;
 
-	private Long group_id;
+	private Long parent_id;
 
 	private String name;
 
@@ -52,18 +52,19 @@ public class TmptTemplateDTO implements Serializable {
 		this.id = id;
 	}
 
+
 	/**
-	 * @return the group_id
+	 * @return the parent_id
 	 */
-	public Long getGroup_id() {
-		return group_id;
+	public Long getParent_id() {
+		return parent_id;
 	}
 
 	/**
-	 * @param group_id the group_id to set
+	 * @param parent_id the parent_id to set
 	 */
-	public void setGroup_id(Long group_id) {
-		this.group_id = group_id;
+	public void setParent_id(Long parent_id) {
+		this.parent_id = parent_id;
 	}
 
 	/**

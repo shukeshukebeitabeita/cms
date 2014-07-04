@@ -1,5 +1,7 @@
 package com.bsb.cms.mapper.content;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.bsb.cms.model.po.content.TmptTemplate;
@@ -24,8 +26,6 @@ public interface TmptTemplateMapper {
 //
 //    List<TmptTemplate> selectByExample(TmptTemplateExample example);
 //
-//    
-//
 //    int updateByExampleSelective(@Param("record") TmptTemplate record, @Param("example") TmptTemplateExample example);
 //
 //    int updateByExample(@Param("record") TmptTemplate record, @Param("example") TmptTemplateExample example);
@@ -35,4 +35,6 @@ public interface TmptTemplateMapper {
 //    int updateByPrimaryKey(TmptTemplate record);
 	
 	TmptTemplate selectByPrimaryKey(Long id);
+	
+	List<TmptTemplate> findChildrenById(Long parentId);
 }

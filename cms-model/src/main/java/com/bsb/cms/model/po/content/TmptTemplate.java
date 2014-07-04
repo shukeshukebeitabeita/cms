@@ -15,7 +15,7 @@ public class TmptTemplate  extends Entity {
 
 	private Long id;
 
-    private Long groupId;
+    private Long parentId;
 
     private String templateName;
 
@@ -26,6 +26,8 @@ public class TmptTemplate  extends Entity {
     private Short status;
 
     private Short templateType;
+    
+    private Short hasLeaf;
 
     public Long getId() {
         return id;
@@ -35,15 +37,36 @@ public class TmptTemplate  extends Entity {
         this.id = id;
     }
 
-    public Long getGroupId() {
-        return groupId;
-    }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
+	/**
+	 * @return the hasLeaf
+	 */
+	public Short getHasLeaf() {
+		return hasLeaf;
+	}
 
-    public String getTemplateName() {
+	/**
+	 * @param hasLeaf the hasLeaf to set
+	 */
+	public void setHasLeaf(Short hasLeaf) {
+		this.hasLeaf = hasLeaf;
+	}
+
+	/**
+	 * @return the parentId
+	 */
+	public Long getParentId() {
+		return parentId;
+	}
+
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getTemplateName() {
         return templateName;
     }
 

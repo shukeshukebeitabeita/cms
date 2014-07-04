@@ -42,8 +42,10 @@
 		
 		$('#letftAccordion').accordion({
 			"onSelect":function(title,index){
-				if(title == "内容栏目") {
+				if(index == 1) {//内容栏目
 					loadLeftType();
+				} else if(index == 2) {//if(title == "模板管理")
+					loadLeftTemplate();
 				}
 			}
 		});
@@ -114,9 +116,6 @@
 				<div id="mm" class="easyui-menu" style="width: 120px;">
 					<div onclick="newOpen()">新窗口打开</div>
 					<div class="menu-sep"></div>
-					<div onclick="append()" data-options="iconCls:'icon-add'">Append</div>
-					<div onclick="removeit()" data-options="iconCls:'icon-remove'">Remove</div>
-					<div class="menu-sep"></div>
 					<div onclick="expand()">Expand</div>
 					<div onclick="collapse()">Collapse</div>
 				</div>
@@ -126,22 +125,6 @@
 						j.addTab(" " + node.attributes.name, contextPath + node.attributes.url);
 					}
 				
-					function append() {
-						var t = $('#leftContentType');
-						var node = t.tree('getSelected');
-						t.tree('append', {
-							parent : (node ? node.target : null),
-							data : [ {
-								text : 'new item1'
-							}, {
-								text : 'new item2'
-							} ]
-						});
-					}
-					function removeit() {
-						var node = $('#leftContentType').tree('getSelected');
-						$('#leftContentType').tree('remove', node.target);
-					}
 					function collapse() {
 						var node = $('#leftContentType').tree('getSelected');
 						$('#leftContentType').tree('collapse', node.target);
@@ -153,7 +136,73 @@
 				</script>
 			</div>
 			
-			<div title="预留" style="padding: 10px"></div>
+			<div title="模板管理" style="padding: 10px" data-options="tools:[{
+						iconCls:'icon-reload',
+						 handler:function(){
+							$('#leftTemplateType').tree('reload');
+						}
+					}]">
+				<ul id="leftTemplateType" class="easyui-tree"
+					data-options=" method: 'get',animate:true,dnd:false,lines:true,onContextMenu: function(e,node){
+							 e.preventDefault();
+							 $(this).tree('select',node.target);
+							 if(node.attributes.isTemplate==1) {
+							 	$('#addTemplateFolderMenu').hide();
+							 	$('#addTemplatemenu').hide();
+							 	$('#updateTemplateMenu').hide();
+							 } else {
+							 	$('#addTemplateFolderMenu').show();
+							 	$('#addTemplatemenu').show();
+							 	$('#updateTemplateMenu').hide();
+							 }
+							 $('#tmpt_mm').menu('show',{
+													 left: e.pageX,
+													top: e.pageY
+							});
+				}">
+				</ul>
+				
+				<div id="tmpt_mm" class="easyui-menu" style="width: 120px;">
+				     <div id="updateTemplateMenu">刷新</div>
+					<!-- <div onclick="newOpenTemplate()">新窗口打开</div> -->
+					<div id="addTemplateFolderMenu" onclick="appendNode()" data-options="iconCls:'icon-add'">新增模板文件夹</div>
+					<div id="addTemplatemenu"onclick="appendTemplate()" data-options="iconCls:'icon-add'">新增模板</div>
+					<div class="menu-sep"></div>
+					<div onclick="removeTemplate()" data-options="iconCls:'icon-remove'">删除</div>
+				</div>
+				<script type="text/javascript">
+					
+					/* function newOpenTemplate() {//新窗口打开
+						var node = $('#leftTemplateType').tree('getSelected');
+						j.addTab(" " + node.attributes.name, contextPath
+								+ node.attributes.url);
+					} */
+
+					function appendNode() {
+						var t = $('#leftTemplateType');
+						var node = t.tree('getSelected');
+						
+						t.tree('append', {
+							parent : (node ? node.target : null),
+							data : [ {
+								text : 'new item1'
+							}, {
+								text : 'new item2'
+							} ]
+						});
+					}
+
+					function appendTemplate() {
+						var t = $('#leftTemplateType');
+						var node = t.tree('getSelected');
+						j.addTab(" " + node.text + "-新增", contextPath + "/moss/template/create.htm");
+					}
+					
+					function removeTemplate() {
+						alert("未实现");
+					}
+				</script>
+			</div>
 		</div>
 	</div>
 

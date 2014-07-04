@@ -13,6 +13,8 @@
  */
 package com.bsb.cms.content.service.tmpt.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +39,14 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 	@Override
 	public TmptTemplate findById(Long id) {
 		return tmptTemplateMapper.selectByPrimaryKey(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#findChildrenById(java.lang.Long)
+	 */
+	@Override
+	public List<TmptTemplate> findChildrenById(Long id) {
+		return tmptTemplateMapper.findChildrenById(id);
 	}
 	
 }

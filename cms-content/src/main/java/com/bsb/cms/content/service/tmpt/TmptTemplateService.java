@@ -13,6 +13,8 @@
  */
 package com.bsb.cms.content.service.tmpt;
 
+import java.util.List;
+
 import com.bsb.cms.model.po.content.TmptTemplate;
 
 /**
@@ -24,4 +26,6 @@ import com.bsb.cms.model.po.content.TmptTemplate;
 public interface TmptTemplateService {
 	
 	TmptTemplate findById(Long id);
+	
+	List<TmptTemplate> findChildrenById(Long id);
 }

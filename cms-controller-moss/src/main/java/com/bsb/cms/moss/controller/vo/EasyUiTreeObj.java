@@ -14,6 +14,7 @@
 package com.bsb.cms.moss.controller.vo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,12 @@ import java.util.Map;
  * @since 1.0
  */
 public class EasyUiTreeObj {
-
+	public static final String OPEN = "open";
+	public static final String CLOSED = "closed";
+	
     private String id;// id
     private String text;// 节点名
-    private String state = "open";// closed:关闭；open:打开
+    private String state = OPEN;// closed:关闭；open:打开
     private List<EasyUiTreeObj> children = new ArrayList<EasyUiTreeObj>();// 子菜单
     private Map<String, String> attributes;//自定义属性
     
@@ -158,5 +161,9 @@ public class EasyUiTreeObj {
 		this.attributes = attributes;
 	}
 
-
+	public void setOneAttribute(String key, String value) {
+		if(attributes == null)
+			attributes = new HashMap<String, String>();
+		this.attributes.put(key, value);
+	}
 }

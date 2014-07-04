@@ -42,7 +42,7 @@ import com.bsb.cms.moss.controller.utils.EasyUiUtils;
 @RequestMapping("/moss/attr/")
 public class ContAttributeController extends LogController {
 	// log
-	private static final Log log = LogFactory.getLog(ContContentController.class);
+	private static final Log log = LogFactory.getLog(ContAttributeController.class);
 	private static final String EDIT= "/page/attribute/cont_attr_edit";
 	private static final String LIST= "/page/attribute/cont_attr_list";
 	@Resource(name="contAttributeService")
