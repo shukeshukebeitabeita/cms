@@ -35,7 +35,7 @@
 				</tr>
 				
 				<tr>
-					<td class="grid-tab-l">模板内容：</td>
+					<td class="grid-tab-l"><b style="color: red">* </b>模板内容：</td>
 					<td class="grid-tab-r">
 					<textarea name="templateBody" class="area-style" style="height: 800px" rows="100">${templateBody.templateBody}</textarea>
 					</td>

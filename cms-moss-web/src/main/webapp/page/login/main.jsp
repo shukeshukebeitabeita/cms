@@ -146,14 +146,18 @@
 					data-options=" method: 'get',animate:true,dnd:false,lines:true,onContextMenu: function(e,node){
 							 e.preventDefault();
 							 $(this).tree('select',node.target);
-							 if(node.attributes.isTemplate==1) {
-							 	$('#addTemplateFolderMenu').hide();
+							 if(node.attributes.isTemplate==1 || node.id=='0') {
+							 	if(node.id != '0'){
+							 		$('#addTemplateFolderMenu').hide();
+							 	}
 							 	$('#addTemplatemenu').hide();
 							 	$('#updateTemplateMenu').hide();
+							 	$('#updateTemplateFolderMenu').hide();
 							 } else {
 							 	$('#addTemplateFolderMenu').show();
 							 	$('#addTemplatemenu').show();
-							 	$('#updateTemplateMenu').hide();
+							 	$('#updateTemplateMenu').show();
+							 	$('#updateTemplateFolderMenu').show();
 							 }
 							 $('#tmpt_mm').menu('show',{
 													 left: e.pageX,
@@ -163,33 +167,23 @@
 				</ul>
 				
 				<div id="tmpt_mm" class="easyui-menu" style="width: 120px;">
-				     <div id="updateTemplateMenu">刷新</div>
-					<!-- <div onclick="newOpenTemplate()">新窗口打开</div> -->
+				     <div id="updateTemplateMenu" onclick="reloadTemplateNode()" data-options="iconCls:'icon-reload'">刷新</div>
 					<div id="addTemplateFolderMenu" onclick="appendNode()" data-options="iconCls:'icon-add'">新增模板文件夹</div>
+					<div id="updateTemplateFolderMenu" onclick="updateNode()" data-options="iconCls:'icon-add'">修改模板文件夹</div>
 					<div id="addTemplatemenu"onclick="appendTemplate()" data-options="iconCls:'icon-add'">新增模板</div>
 					<div class="menu-sep"></div>
 					<div onclick="removeTemplate()" data-options="iconCls:'icon-remove'">删除</div>
 				</div>
 				<script type="text/javascript">
-					
-					/* function newOpenTemplate() {//新窗口打开
-						var node = $('#leftTemplateType').tree('getSelected');
-						j.addTab(" " + node.attributes.name, contextPath
-								+ node.attributes.url);
-					} */
-
 					function appendNode() {
 						var t = $('#leftTemplateType');
 						var node = t.tree('getSelected');
-						
-						t.tree('append', {
-							parent : (node ? node.target : null),
-							data : [ {
-								text : 'new item1'
-							}, {
-								text : 'new item2'
-							} ]
-						});
+						j.openWindow('编辑模板文件夹', (contextPath + "/moss/template/create.htm?type=f&parentId=" + node.id) ,740,620);
+					}
+					function updateNode() {
+						var t = $('#leftTemplateType');
+						var node = t.tree('getSelected');
+						j.openWindow('编辑模板文件夹', (contextPath + "/moss/template/update.htm?type=f&id=" + node.id) ,740,620);
 					}
 
 					function appendTemplate() {
@@ -202,6 +196,17 @@
 						alert("未实现");
 						//var node = $('#tt2').tree('getSelected');  
 			            //$('#tt2').tree('remove', node.target); 
+					}
+					
+					function reloadTemplateNode(nodeId){
+						var node;
+						var t = $('#leftTemplateType');
+						if(nodeId) {
+							node = t.tree('find', nodeId);
+						} else {
+							node = t.tree('getSelected');
+						}
+						t.tree('reload', node.target);
 					}
 				</script>
 			</div>

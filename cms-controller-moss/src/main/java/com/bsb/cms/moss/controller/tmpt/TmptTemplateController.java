@@ -50,6 +50,7 @@ public class TmptTemplateController extends LogController {
 	// log
 	private static final Log log = LogFactory.getLog(TmptTemplateController.class);
 	private static final String EDIT= "/page/template/tmpt_template_edit";
+	private static final String FOLDER_EDIT= "/page/template/tmpt_template_folder";
 	@Resource(name = "tmptTemplateService")
 	private TmptTemplateService tmptTemplateService;
 	
@@ -61,11 +62,19 @@ public class TmptTemplateController extends LogController {
 	@ResponseBody
 	@RequestMapping("index.htm")
 	public List<EasyUiTreeObj> getTemplateTree(String id, HttpServletRequest request) {
+		EasyUiTreeObj rootTree = null;
 		List<TmptTemplate> modelList;
 		List<EasyUiTreeObj> menuTrees = new ArrayList<EasyUiTreeObj>();
+		List<EasyUiTreeObj> returnTrees = new ArrayList<EasyUiTreeObj>();
 		try {
-			if(StringUtils.isBlank(id))
+			if(StringUtils.isBlank(id)) {
 				id = "0";
+				rootTree = new EasyUiTreeObj();
+				rootTree.setId(id);
+				rootTree.setText("全部");
+				rootTree.setOneAttribute("isTemplate", "0");
+			}
+			
 			modelList = tmptTemplateService.findChildrenById(Long.valueOf(id));
 			if (CollectionUtils.isNotEmpty(modelList)) {
 				EasyUiTreeObj easyTree;
@@ -81,12 +90,19 @@ public class TmptTemplateController extends LogController {
 					menuTrees.add(easyTree);
 				}
 			}
+			
+			if(rootTree != null) {
+				rootTree.setChildren(menuTrees);
+				returnTrees.add(rootTree);
+			} else {
+				returnTrees = menuTrees;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 		}
 
-		return menuTrees;
+		return returnTrees;
 	}
 	
 	/**
@@ -95,10 +111,10 @@ public class TmptTemplateController extends LogController {
 	 * @return
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.GET)
-	public String toCreate(Long parentId, ModelMap modelMap) {
+	public String toCreate(Long parentId, String type, ModelMap modelMap) {
 		modelMap.put("parentId", parentId);
 		
-		return EDIT;
+		return "f".equals(type)?FOLDER_EDIT:EDIT;
 	}
 	
 	/**
@@ -108,13 +124,15 @@ public class TmptTemplateController extends LogController {
 	 * @return
 	 */
 	@RequestMapping(value = "update.htm", method = RequestMethod.GET)
-	public String toUpdate(Long id, ModelMap modelMap) {
+	public String toUpdate(Long id, String type, ModelMap modelMap) {
 		TmptTemplate template = tmptTemplateService.findById(id);
 		modelMap.put("template", template);
-		modelMap.put("parentId", template.getParentId());
-		modelMap.put("templateBody", tmptTemplateService.findBodyByTemplateId(template.getId()));
+		modelMap.put("parentId", template==null?0:template.getParentId());
+		if(!"f".equals(type)){
+			modelMap.put("templateBody", tmptTemplateService.findBodyByTemplateId(template.getId()));
+		}
 		
-		return EDIT;
+		return "f".equals(type)?FOLDER_EDIT:EDIT;
 	}
 
 	/**

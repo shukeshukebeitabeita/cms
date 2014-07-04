@@ -72,9 +72,12 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 	public Long create(TmptTemplate template, TmptTemplateBody body) {
 		int count = tmptTemplateMapper.insert(template);
 		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
-		body.setTemplateId(template.getId());
-		count = tmptTemplateBodyMapper.insert(body);
-		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
+		
+		if(template.getHasLeaf().intValue() == 1) {
+			body.setTemplateId(template.getId());
+			count = tmptTemplateBodyMapper.insert(body);
+			if(count <= 0) throw new NotFoundDaoException("成功条数为0");
+		}
 		
 		return template.getId();
 	}
@@ -86,7 +89,9 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 	public void update(TmptTemplate template, TmptTemplateBody body) {
 		tmptTemplateMapper.updateByPrimaryKey(template);
 		body.setTemplateId(template.getId());
-		tmptTemplateBodyMapper.updateByTemplateId(body);
+		if(template.getHasLeaf().intValue() == 1) {
+			tmptTemplateBodyMapper.updateByTemplateId(body);
+		}
 	}
 	
 }
