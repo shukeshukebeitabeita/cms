@@ -242,5 +242,6 @@
 		<module>cms-controller-moss</module>
 		<module>cms-content</module>
     	<module>cms-config</module>
-  </modules>
+    	<module>cms-massage</module>
+	</modules>
 </project>
