@@ -57,7 +57,7 @@
 		<!-- 全局变量部分 -->
 		<property name="freemarkerVariables">
 			<map>
-				<entry key="staticRoot" value="/mall-static" />
+				<entry key="staticRoot" value="/cms-static" />
 			</map>
 		</property>
 	</bean>

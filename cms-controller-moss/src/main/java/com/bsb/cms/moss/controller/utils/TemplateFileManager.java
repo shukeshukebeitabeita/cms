@@ -17,8 +17,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.output.FileWriterWithEncoding;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,15 +26,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TemplateFileManager {
-	@Value("${cms.template.root.dir}")
-	public String defaultDir;
 
 	public void createFreemarkFile(String dirPath, String fileName,
 			String fileContent) {
 		FileWriterWithEncoding fw = null;
-		if (StringUtils.isBlank(dirPath)) {
-			dirPath = defaultDir;
-		}
 		File dirFile = new File(dirPath);
 		if (!dirFile.exists()) {
 			dirFile.mkdirs();
@@ -59,13 +52,6 @@ public class TemplateFileManager {
 				}
 		}
 
-	}
-
-	/**
-	 * @return the defaultDir
-	 */
-	public String getDefaultDir() {
-		return defaultDir;
 	}
 
 }

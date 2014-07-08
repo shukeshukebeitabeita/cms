@@ -151,7 +151,7 @@ public class TmptTemplateController extends LogController {
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO create(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
+	public JSONResultDTO create(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap, HttpServletRequest req) {
 		JSONResultDTO result = new JSONResultDTO();
 		try {
 			try {
@@ -161,9 +161,10 @@ public class TmptTemplateController extends LogController {
 					
 					String dirPath = template.getFileDir();
 					if (StringUtils.isBlank(dirPath)) {
-						dirPath = templateFileManager.getDefaultDir() + template.getParentId() + "/";
+						String realRootPath = req.getSession().getServletContext().getRealPath("/");
+						dirPath = realRootPath + "/WEB-INF/classes/template/" + template.getParentId() + "/";
 					}
-					templateFileManager.createFreemarkFile(template.getFileDir(), String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
+					templateFileManager.createFreemarkFile(dirPath, String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
 				}
 				log(OperateTypeEnum.TEMPLATE_CREATE, "id:" + id, "新增");
 			} catch (RenameRuntimeException e) {
@@ -190,7 +191,7 @@ public class TmptTemplateController extends LogController {
 	 */
 	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO update(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
+	public JSONResultDTO update(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap, HttpServletRequest req) {
 		JSONResultDTO result = new JSONResultDTO();
 		try {
 			try {
@@ -200,7 +201,8 @@ public class TmptTemplateController extends LogController {
 					
 					String dirPath = template.getFileDir();
 					if (StringUtils.isBlank(dirPath)) {
-						dirPath = templateFileManager.getDefaultDir() + template.getParentId() + "/";
+						String realRootPath = req.getSession().getServletContext().getRealPath("/");
+						dirPath = realRootPath + "/WEB-INF/classes/template/" + template.getParentId() + "/";
 					}
 					templateFileManager.createFreemarkFile(dirPath, String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
 				}

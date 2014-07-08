@@ -31,7 +31,7 @@
 				<tr>
 					<td class="grid-tab-l">生成目录：</td>
 					<td class="grid-tab-r"><input type="text" id="fileDir" name="fileDir"
-						class="input-style" value="${template.fileDir}"/> 不填,则生成在默认目录下</td>
+						class="input-style" value="${template.fileDir}" disabled="disabled"/> (--暂时不可用--)不填,则生成在默认目录下</td>
 				</tr>
 				
 				<tr>
