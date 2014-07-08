@@ -31,12 +31,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
+import com.bsb.cms.content.service.content.TmptTemplateCacheService;
 import com.bsb.cms.content.service.tmpt.TmptTemplateService;
 import com.bsb.cms.model.enums.DefaultBoolean;
 import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.TmptTemplate;
 import com.bsb.cms.model.po.content.TmptTemplateBody;
 import com.bsb.cms.moss.controller.log.LogController;
+import com.bsb.cms.moss.controller.utils.TemplateFileManager;
 import com.bsb.cms.moss.controller.vo.EasyUiTreeObj;
 
 /**
@@ -53,6 +55,10 @@ public class TmptTemplateController extends LogController {
 	private static final String FOLDER_EDIT= "/page/template/tmpt_template_folder";
 	@Resource(name = "tmptTemplateService")
 	private TmptTemplateService tmptTemplateService;
+	@Resource(name = "tmptTemplateCacheService")
+	private TmptTemplateCacheService tmptTemplateCacheService;
+	@Resource(name = "templateFileManager")
+	private TemplateFileManager templateFileManager;
 	
 	/**
 	 * 左边模板
@@ -150,6 +156,15 @@ public class TmptTemplateController extends LogController {
 		try {
 			try {
 				Long id = tmptTemplateService.create(template, tmptTemplateBody);
+				if(template.getHasLeaf().intValue() == 1) {//如果是模板,设置缓存,并生存文件
+					tmptTemplateCacheService.set(template);
+					
+					String dirPath = template.getFileDir();
+					if (StringUtils.isBlank(dirPath)) {
+						dirPath = templateFileManager.getDefaultDir() + template.getParentId() + "/";
+					}
+					templateFileManager.createFreemarkFile(template.getFileDir(), String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
+				}
 				log(OperateTypeEnum.TEMPLATE_CREATE, "id:" + id, "新增");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("名称已经存在");
@@ -180,6 +195,15 @@ public class TmptTemplateController extends LogController {
 		try {
 			try {
 				tmptTemplateService.update(template, tmptTemplateBody);
+				if(template.getHasLeaf().intValue() == 1) {//如果是模板,设置缓存,并生存文件
+					tmptTemplateCacheService.set(template);
+					
+					String dirPath = template.getFileDir();
+					if (StringUtils.isBlank(dirPath)) {
+						dirPath = templateFileManager.getDefaultDir() + template.getParentId() + "/";
+					}
+					templateFileManager.createFreemarkFile(dirPath, String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
+				}
 				log(OperateTypeEnum.TEMPLATE_UPDATE, "id:" + template.getId(), "编辑");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("名称已经存在");

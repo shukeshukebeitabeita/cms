@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
+import com.bsb.cms.content.service.content.ContAttributeCacheService;
 import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.ContAttribute;
@@ -47,6 +48,8 @@ public class ContAttributeController extends LogController {
 	private static final String LIST= "/page/attribute/cont_attr_list";
 	@Resource(name="contAttributeService")
 	private ContAttributeService contAttributeService;
+	@Resource(name="contAttributeCacheService")
+	private ContAttributeCacheService contAttributeCacheService;
 	
 	/**
 	 * 跳转到首页
@@ -113,6 +116,7 @@ public class ContAttributeController extends LogController {
 		try {
 			try {
 				Long id = contAttributeService.create(attribute);
+				contAttributeCacheService.set(attribute);
 				log(OperateTypeEnum.ATTRIBUTE_CREATE, "id:" + id, "新增类型");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");
@@ -142,6 +146,7 @@ public class ContAttributeController extends LogController {
 		try {
 			try {
 				contAttributeService.updateById(attribute);
+				contAttributeCacheService.set(attribute);
 				log(OperateTypeEnum.ATTRIBUTE_UPDATE, "id:" + attribute.getId(), "编辑类型");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");

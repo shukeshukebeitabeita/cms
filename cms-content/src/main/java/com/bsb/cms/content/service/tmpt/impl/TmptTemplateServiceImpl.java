@@ -86,6 +86,7 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#update(com.bsb.cms.model.po.content.TmptTemplate, com.bsb.cms.model.po.content.TmptTemplateBody)
 	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void update(TmptTemplate template, TmptTemplateBody body) {
 		tmptTemplateMapper.updateByPrimaryKey(template);
 		body.setTemplateId(template.getId());

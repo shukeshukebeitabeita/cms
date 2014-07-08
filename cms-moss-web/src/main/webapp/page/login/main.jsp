@@ -169,7 +169,7 @@
 				<div id="tmpt_mm" class="easyui-menu" style="width: 120px;">
 				     <div id="updateTemplateMenu" onclick="reloadTemplateNode()" data-options="iconCls:'icon-reload'">刷新</div>
 					<div id="addTemplateFolderMenu" onclick="appendNode()" data-options="iconCls:'icon-add'">新增模板文件夹</div>
-					<div id="updateTemplateFolderMenu" onclick="updateNode()" data-options="iconCls:'icon-add'">修改模板文件夹</div>
+					<div id="updateTemplateFolderMenu" onclick="updateNode()" data-options="iconCls:'icon-edit'">修改模板文件夹</div>
 					<div id="addTemplatemenu"onclick="appendTemplate()" data-options="iconCls:'icon-add'">新增模板</div>
 					<div class="menu-sep"></div>
 					<div onclick="removeTemplate()" data-options="iconCls:'icon-remove'">删除</div>

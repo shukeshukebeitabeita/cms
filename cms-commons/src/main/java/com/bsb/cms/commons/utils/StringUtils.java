@@ -1,5 +1,5 @@
 /**
- * @(#)ContAttributeCacheService.java 2014-7-2
+ * @(#)StringUtils.java 2014-7-7
  *
  * Copyright (c) 2014-2015 BuShangBan (China) Int'l Co., Ltd
  * yongtai Road. pu dong District.Shanghai China
@@ -11,23 +11,13 @@
  * accordance with the terms of the license agreement you entered into
  * with BuShangBan (China).
  */
-package com.bsb.cms.content.service.content;
-
-import com.bsb.cms.model.dto.content.ContAttributeDTO;
-import com.bsb.cms.model.po.content.ContAttribute;
+package com.bsb.cms.commons.utils;
 
 /**
  * @author hongjian.liu
- * @version 1.0.0 2014-7-2
+ * @version 1.0.0 2014-7-7
  * @since 1.0
  */
-public interface ContAttributeCacheService {
-	
-	ContAttributeDTO getById(Long id);
-	
-	/**
-	 * 放进缓存.已存在的话覆盖.
-	 * @param attribute
-	 */
-	void set(ContAttribute attribute);
+public class StringUtils {
+
 }

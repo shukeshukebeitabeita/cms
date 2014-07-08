@@ -70,4 +70,16 @@ public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContTypeCacheService#set(com.bsb.cms.model.po.content.ContType)
+	 */
+	@Override
+	public void set(ContType contType) {
+		ContTypeDTO type = new ContTypeDTO();
+		copy(contType, type);
+		types.put(contType.getId(), type);
+	}
+	
+	
+
 }

@@ -49,16 +49,16 @@
       HAS_EXT_ATTRIBUTE, HAS_KEYWORD, HAS_SOURCE, 
       HAS_SHOW_TIME, 
       HAS_SEO, HAS_TAG, HAS_ORDER_OPT, 
-      NAME, REMARK, CREATE_DATE, 
-      CREATE_USER, UPDATE_DATE, UPDATE_USER
+      NAME, REMARK, 
+      CREATE_USER,  UPDATE_USER
       )
     values (#{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
       #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
       #{hasExtAttribute,jdbcType=SMALLINT}, #{hasKeyword,jdbcType=SMALLINT}, #{hasSource,jdbcType=SMALLINT}, 
       #{hasShowTime,jdbcType=SMALLINT}, #{hasSEO,jdbcType=SMALLINT},
        #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
-      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}
+      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}
       )
   </insert>
   

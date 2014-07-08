@@ -14,6 +14,7 @@
 package com.bsb.cms.content.service.content;
 
 import com.bsb.cms.model.dto.content.ContTypeDTO;
+import com.bsb.cms.model.po.content.ContType;
 
 /**
  * 栏目缓存
@@ -24,4 +25,10 @@ import com.bsb.cms.model.dto.content.ContTypeDTO;
 public interface ContTypeCacheService {
 
 	ContTypeDTO getById(Long typeId);
+	
+	/**
+	 * 放进缓存.已存在的话覆盖.
+	 * @param contType
+	 */
+	void set(ContType contType);
 }

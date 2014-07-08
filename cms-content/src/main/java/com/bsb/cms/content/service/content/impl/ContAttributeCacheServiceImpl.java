@@ -18,6 +18,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
+
 import com.bsb.cms.content.service.content.ContAttributeCacheService;
 import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.model.dto.content.ContAttributeDTO;
@@ -28,6 +30,7 @@ import com.bsb.cms.model.po.content.ContAttribute;
  * @version 1.0.0 2014-7-2
  * @since 1.0
  */
+@Component("contAttributeCacheService")
 public class ContAttributeCacheServiceImpl implements ContAttributeCacheService {
 	private static Map<Long, ContAttributeDTO> attrs = new HashMap<Long, ContAttributeDTO>();
 	@Resource(name="contAttributeService")
@@ -66,6 +69,17 @@ public class ContAttributeCacheServiceImpl implements ContAttributeCacheService 
 			dist.setHas_vedio(src.getHasVedio());
 			dist.setHas_author(src.getHasAuthor());
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.ContAttributeCacheService#set(com.bsb.cms.model.po.content.ContAttribute)
+	 */
+	@Override
+	public void set(ContAttribute attribute) {
+		ContAttributeDTO attrDto = new ContAttributeDTO();
+		copy(attribute, attrDto);
+		attrs.put(attribute.getId(), attrDto);
+		
 	}
 
 }

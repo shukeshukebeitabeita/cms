@@ -64,4 +64,16 @@ public class TmptTemplateCacheServiceImpl implements TmptTemplateCacheService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.content.TmptTemplateCacheService#set(com.bsb.cms.model.po.content.TmptTemplate)
+	 */
+	@Override
+	public void set(TmptTemplate template) {
+		TmptTemplateDTO tmpt = new TmptTemplateDTO();
+		copy(template, tmpt);
+		templates.put(template.getId(), tmpt);
+	}
+	
+
+
 }

@@ -14,6 +14,7 @@
 package com.bsb.cms.content.service.content;
 
 import com.bsb.cms.model.dto.content.TmptTemplateDTO;
+import com.bsb.cms.model.po.content.TmptTemplate;
 
 /**
  * 模板cache
@@ -23,4 +24,9 @@ import com.bsb.cms.model.dto.content.TmptTemplateDTO;
  */
 public interface TmptTemplateCacheService {
 	TmptTemplateDTO getById(Long id);
+	/**
+	 * 放进缓存.已存在的话覆盖.
+	 * @param template
+	 */
+	void set(TmptTemplate template);
 }
