@@ -33,6 +33,7 @@ import org.springframework.core.io.ResourceLoader;
  */
 public class URLUtils {
 	private static ResourceLoader resourceLoader = new DefaultResourceLoader();
+	private static String templateDir;
 	
 	/**
 	 * 利用ResourceLoader取得excel路徑。
@@ -65,6 +66,16 @@ public class URLUtils {
 		return classpath;
 	}
 	
+	
+	public static String getTemplatePath(){
+		if(templateDir == null) {
+			URL url = new Object() {  }.getClass().getResource("/template");
+			String classpath = (new File(url.getFile())).getParentFile().getAbsolutePath();
+			templateDir = classpath + "/template/";
+		}
+	
+		return templateDir;
+	}
 	
 	/**
 	 * 其中 Base64 类来自 org.apache.commons.codec 组件 一个40多k的jar 要比javamail里的那个简洁很多

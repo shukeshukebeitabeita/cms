@@ -65,11 +65,11 @@ public class ContContentDTO implements Serializable {
 
     private String meta_description;
 
-    private String tag;
+//    private String tag;
 
     private String keyword;
 
-    private Integer sort;
+//    private Integer sort;
 
     private String source;
 
@@ -85,7 +85,7 @@ public class ContContentDTO implements Serializable {
 
     private String goods_url;
 
-    private Integer status;
+//    private Integer status;
 
     private String title_style;
     
@@ -345,19 +345,6 @@ public class ContContentDTO implements Serializable {
 		this.meta_description = meta_description;
 	}
 
-	/**
-	 * @return the tag
-	 */
-	public String getTag() {
-		return tag;
-	}
-
-	/**
-	 * @param tag the tag to set
-	 */
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
 
 	/**
 	 * @return the keyword
@@ -373,19 +360,6 @@ public class ContContentDTO implements Serializable {
 		this.keyword = keyword;
 	}
 
-	/**
-	 * @return the sort
-	 */
-	public Integer getSort() {
-		return sort;
-	}
-
-	/**
-	 * @param sort the sort to set
-	 */
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
 
 	/**
 	 * @return the source
@@ -483,20 +457,6 @@ public class ContContentDTO implements Serializable {
 	 */
 	public void setGoods_url(String goods_url) {
 		this.goods_url = goods_url;
-	}
-
-	/**
-	 * @return the status
-	 */
-	public Integer getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	/**

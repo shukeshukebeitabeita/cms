@@ -94,5 +94,13 @@ public class TmptTemplateServiceImpl implements TmptTemplateService {
 			tmptTemplateBodyMapper.updateByTemplateId(body);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see com.bsb.cms.content.service.tmpt.TmptTemplateService#findTemplateAll()
+	 */
+	@Override
+	public List<TmptTemplate> findTemplateAll() {
+		return tmptTemplateMapper.findTemplateAll();
+	}
 	
 }

@@ -19,7 +19,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.bsb.cms.commons.template.TemplateGenerator;
@@ -37,6 +37,7 @@ import com.bsb.cms.model.vo.PublishResult;
  * @version 1.0.0 2014-7-8
  * @since 1.0
  */
+@Service("contContentPublisherService")
 public class ContContentPublisherServiceImpl implements ContContentPublisherService {
 	@Resource(name="springFreemarkerGenerator")
 	private TemplateGenerator templateGenerator;
@@ -59,7 +60,7 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 	 */
 	@Override
 	public PublishResult publishContent(ContContentDTO content) {
-		Assert.isNull(content, "content is null");
+		Assert.notNull(content, "content is null");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("c", content);
 		TmptTemplateDTO template = tmptTemplateCacheService.getById(content.getTemplate_id());
@@ -75,9 +76,7 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 	@Override
 	public PublishResult publishContent(List<String> contentIds) {
 		// TODO Auto-generated method stub
-		if(CollectionUtils.isEmpty(contentIds)) {
-			return null;
-		}
+		Assert.notEmpty(contentIds, "contentIds is empty");
 		
 		return null;
 	}
@@ -88,7 +87,7 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 	@Override
 	public PublishResult publishType(ContTypeDTO type) {
 		//TODO 先一次查询出来,以后数据量大,分批查询生成. 另外列表页面不实现分页静态化,采用动态化
-		Assert.isNull(type, "type is null");
+		Assert.notNull(type, "type is null");
 		//生成栏目页
 		publishTypeIndex(type);
 		//生存内容页

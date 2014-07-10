@@ -24,4 +24,6 @@ public interface TmptTemplateMapper {
 	int insert(TmptTemplate record);
 	
 	int updateByPrimaryKey(TmptTemplate record);
+	
+	List<TmptTemplate> findTemplateAll();
 }

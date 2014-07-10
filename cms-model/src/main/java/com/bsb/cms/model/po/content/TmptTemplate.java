@@ -28,6 +28,8 @@ public class TmptTemplate  extends Entity {
     private Short templateType;
     
     private Short hasLeaf;
+    
+    private String templateBody;//temp , no db column
 
     public Long getId() {
         return id;
@@ -37,6 +39,20 @@ public class TmptTemplate  extends Entity {
         this.id = id;
     }
 
+
+	/**
+	 * @return the templateBody
+	 */
+	public String getTemplateBody() {
+		return templateBody;
+	}
+
+	/**
+	 * @param templateBody the templateBody to set
+	 */
+	public void setTemplateBody(String templateBody) {
+		this.templateBody = templateBody;
+	}
 
 	/**
 	 * @return the hasLeaf

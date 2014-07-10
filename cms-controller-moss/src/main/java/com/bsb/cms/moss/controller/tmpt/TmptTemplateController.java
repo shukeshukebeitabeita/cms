@@ -33,6 +33,7 @@ import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
 import com.bsb.cms.content.service.tmpt.TmptTemplateService;
+import com.bsb.cms.content.service.utils.PublishUtil;
 import com.bsb.cms.model.enums.DefaultBoolean;
 import com.bsb.cms.model.enums.OperateTypeEnum;
 import com.bsb.cms.model.po.content.TmptTemplate;
@@ -151,7 +152,7 @@ public class TmptTemplateController extends LogController {
 	 */
 	@RequestMapping(value = "create.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO create(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap, HttpServletRequest req) {
+	public JSONResultDTO create(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
 		JSONResultDTO result = new JSONResultDTO();
 		try {
 			try {
@@ -159,11 +160,12 @@ public class TmptTemplateController extends LogController {
 				if(template.getHasLeaf().intValue() == 1) {//如果是模板,设置缓存,并生存文件
 					tmptTemplateCacheService.set(template);
 					
-					String dirPath = template.getFileDir();
-					if (StringUtils.isBlank(dirPath)) {
-						String realRootPath = req.getSession().getServletContext().getRealPath("/");
-						dirPath = realRootPath + "/WEB-INF/classes/template/" + template.getParentId() + "/";
-					}
+					//String dirPath = template.getFileDir();
+					//if (StringUtils.isBlank(dirPath)) {
+						//String realRootPath = req.getSession().getServletContext().getRealPath("/");
+						//dirPath = realRootPath + "/WEB-INF/classes/template/" + template.getParentId() + "/";
+					//}
+					String dirPath = PublishUtil.getCreateTemplateDir(template.getParentId(), template.getFileDir());
 					templateFileManager.createFreemarkFile(dirPath, String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
 				}
 				log(OperateTypeEnum.TEMPLATE_CREATE, "id:" + id, "新增");
@@ -191,7 +193,7 @@ public class TmptTemplateController extends LogController {
 	 */
 	@RequestMapping(value = "update.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONResultDTO update(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap, HttpServletRequest req) {
+	public JSONResultDTO update(TmptTemplate template, TmptTemplateBody tmptTemplateBody, ModelMap modelMap) {
 		JSONResultDTO result = new JSONResultDTO();
 		try {
 			try {
@@ -199,11 +201,7 @@ public class TmptTemplateController extends LogController {
 				if(template.getHasLeaf().intValue() == 1) {//如果是模板,设置缓存,并生存文件
 					tmptTemplateCacheService.set(template);
 					
-					String dirPath = template.getFileDir();
-					if (StringUtils.isBlank(dirPath)) {
-						String realRootPath = req.getSession().getServletContext().getRealPath("/");
-						dirPath = realRootPath + "/WEB-INF/classes/template/" + template.getParentId() + "/";
-					}
+					String dirPath = PublishUtil.getCreateTemplateDir(template.getParentId(), template.getFileDir());
 					templateFileManager.createFreemarkFile(dirPath, String.valueOf(template.getId()), tmptTemplateBody.getTemplateBody());
 				}
 				log(OperateTypeEnum.TEMPLATE_UPDATE, "id:" + template.getId(), "编辑");

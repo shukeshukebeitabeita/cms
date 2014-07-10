@@ -13,10 +13,16 @@
  */
 package com.bsb.cms.content.service.utils;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.apache.commons.lang.StringUtils;
 
+import com.bsb.cms.commons.utils.ConfigUtils;
+import com.bsb.cms.commons.utils.URLUtils;
+import com.bsb.cms.commons.web.SpringContextUtil;
+import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.dto.content.TmptTemplateDTO;
+import com.bsb.cms.model.po.content.ContContent;
+import com.bsb.cms.model.po.content.ContContentBody;
 
 /**
  * @author hongjian.liu
@@ -24,23 +30,73 @@ import com.bsb.cms.model.dto.content.TmptTemplateDTO;
  * @since 1.0
  */
 public class PublishUtil {
-	@Value("${cms.html.publish.root.dir}")
-	public String rootPath;
 	/**
-	 * 返回模板相对路径.
+	 * 生成内容时取模板用. 返回模板相对路径.
+	 * 
 	 * @param template
 	 * @return
 	 */
-	public static String getTemplatePath(TmptTemplateDTO template){
+	public static String getTemplatePath(TmptTemplateDTO template) {
 		String templatePath;
-		templatePath = template.getType() + template.getParent_id() + "/";
-		
+		templatePath = template.getParent_id() + "/" + template.getId()
+				+ ".ftl";
+
 		return templatePath;
 	}
-	
-	public static String getPublishDir(ContTypeDTO type){
-		PublishUtil pu = new PublishUtil();
-		
-		return pu.rootPath + type.getFile_dir() + "/";
+
+	/**
+	 * 生成模板时用
+	 * 
+	 * @param template
+	 */
+	public static String getCreateTemplateDir(Long parentId, String fileDir) {
+		return URLUtils.getTemplatePath() + parentId + "/";
 	}
+
+	public static String getPublishDir(ContTypeDTO type) {
+		String dir;
+		if (StringUtils.isBlank(type.getFile_dir())) {
+			dir = String.valueOf(type.getId());
+		} else {
+			dir = type.getFile_dir();
+		}
+		ConfigUtils config = (ConfigUtils) SpringContextUtil
+				.getApplicationContextInstance().getBean("configUtils",
+						ConfigUtils.class);
+		return config.getRootPath() + dir + "/";
+	}
+
+	public static ContContentDTO translateContent(ContContent content,
+			ContContentBody contContentBody) {
+		ContContentDTO c = new ContContentDTO();
+		c.setAbout(content.getAbout());
+		c.setAttr_id(content.getAttrId());
+		c.setContent_body(contContentBody.getContentBody());
+		c.setContent_id(content.getId());
+		c.setDefault_img(content.getDefaultImg());
+		c.setDiscount(content.getDiscount());
+		c.setBrand(content.getBrand());
+		c.setExt_attr(contContentBody.getExtAttrBody());
+		c.setGoods_url(content.getGoodsUrl());
+		c.setHas_hot(content.getHasHot());
+		c.setHas_latest(content.getHasLatest());
+		c.setHas_top(content.getHasTop());
+		c.setKeyword(content.getKeyword());
+		c.setLink(content.getLink());
+		c.setMeta_description(content.getMetaDescription());
+		c.setMeta_keywords(content.getMetaKeywords());
+		c.setMeta_title(content.getMetaTitle());
+		c.setPrice(content.getPrice());
+		c.setPublish_time(content.getPublishTime());
+		c.setSalePrice(content.getSalePrice());
+		c.setSource(content.getSource());
+		c.setStock(content.getStock());
+		c.setTemplate_id(content.getTemplateId());
+		c.setTitle(content.getTitle());
+		c.setTitle_style(content.getTitleStyle());
+		c.setType_id(content.getTypeId());
+
+		return c;
+	}
+
 }

@@ -13,6 +13,7 @@
  */
 package com.bsb.cms.commons.template.freemarker;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -86,6 +88,13 @@ public class SpringFreemarkerGenerator implements TemplateGenerator {
 			String htmlText = FreeMarkerTemplateUtils
 					.processTemplateIntoString(
 							configuration.getTemplate(ftlTemplateFile), dataMap);
+
+			filePath = filePath.replace("\\", "/");
+			String savePath = StringUtils.substringBeforeLast(filePath, "/");
+			File file = new File(savePath);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
 
 			out = new OutputStreamWriter(new FileOutputStream(filePath),
 					"UTF-8");

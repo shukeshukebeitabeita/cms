@@ -35,4 +35,6 @@ public interface TmptTemplateService {
 	Long create(TmptTemplate template, TmptTemplateBody body);
 	
 	void update(TmptTemplate template, TmptTemplateBody body);
+	
+	List<TmptTemplate> findTemplateAll();
 }

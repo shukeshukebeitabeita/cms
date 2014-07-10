@@ -116,6 +116,9 @@
 				<div id="mm" class="easyui-menu" style="width: 120px;">
 					<div onclick="newOpen()">新窗口打开</div>
 					<div class="menu-sep"></div>
+					<div onclick="publicType('1')">仅发布栏目首页</div>
+					<div onclick="publicType('2')">发布栏目</div>
+					<div class="menu-sep"></div>
 					<div onclick="expand()">Expand</div>
 					<div onclick="collapse()">Collapse</div>
 				</div>
@@ -132,6 +135,10 @@
 					function expand() {
 						var node = $('#leftContentType').tree('getSelected');
 						$('#leftContentType').tree('expand', node.target);
+					}
+					
+					function publicType(publicType){
+						
 					}
 				</script>
 			</div>

@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
 import com.bsb.cms.content.service.content.ContAttributeService;
+import com.bsb.cms.content.service.content.ContContentPublisherService;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
+import com.bsb.cms.content.service.utils.PublishUtil;
 import com.bsb.cms.model.dto.content.ContContentAllDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.enums.ContentEnum;
@@ -63,6 +65,8 @@ public class ContContentController extends LogController {
 	private TmptTemplateCacheService tmptTemplateCacheService;
 	@Resource(name="contAttributeService")
 	private ContAttributeService contAttributeService;
+	@Resource(name="contContentPublisherService")
+	private ContContentPublisherService contContentPublisherService;
 	
 	/**
 	 * 跳转到首页
@@ -147,6 +151,9 @@ public class ContContentController extends LogController {
 			try {
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				Long id = contContentService.create(content, contContentBody);
+				
+				contContentPublisherService.publishContent(PublishUtil.translateContent(content, contContentBody));
+				
 				log(OperateTypeEnum.CONTENT_CREATE, "id:" + id, "新增内容");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");
@@ -172,6 +179,9 @@ public class ContContentController extends LogController {
 			try {
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				contContentService.updateById(content, contContentBody);
+				
+				contContentPublisherService.publishContent(PublishUtil.translateContent(content, contContentBody));
+				
 				log(OperateTypeEnum.CONTENT_UPDATE, "id:" + content.getId(), "编辑内容");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");

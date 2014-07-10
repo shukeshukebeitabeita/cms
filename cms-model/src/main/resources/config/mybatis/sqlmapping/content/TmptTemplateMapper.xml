@@ -16,6 +16,10 @@
     <result column="HAS_LEAF" property="hasLeaf" jdbcType="SMALLINT" />
   </resultMap>
   
+  <resultMap type="tmptTemplate" id="TemplateResultMap" extends="BaseResultMap">
+    <result column="TEMPLATE_BODY" property="templateBody" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     ID, PARENT_ID, TEMPLATE_NAME, FILE_DIR, DESCRIPTION, STATUS, CREATE_DATE, UPDATE_DATE, 
     CREATE_USER, UPDATE_USER, TEMPLATE_TYPE,HAS_LEAF
@@ -59,6 +63,16 @@
       UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update> 
+  
+   <select id="findTemplateAll" resultMap="TemplateResultMap" parameterType="java.lang.Long">
+  	select 
+     t.ID, t.PARENT_ID, t.TEMPLATE_NAME, t.FILE_DIR, t.DESCRIPTION, t.STATUS, t.CREATE_DATE, t.UPDATE_DATE, 
+    t.CREATE_USER, t.UPDATE_USER, t.TEMPLATE_TYPE, t.HAS_LEAF, b.TEMPLATE_BODY
+    from tmpt_template t
+    inner join tmpt_template_body b on t.ID=b.TEMPLATE_ID
+    where 
+      HAS_LEAF=1
+  </select>
   
  <!--  <sql id="Example_Where_Clause" >
     <where >
