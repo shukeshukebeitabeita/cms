@@ -29,17 +29,17 @@
 				<th data-options="field:'sort',hidden:true"></th>
 				<th data-options="field:'id', width:40" sortable="true" >编号</th>
 				<th data-options="field:'title', width:200," sortable="true" >内容标题 </th>
-				<th data-options="field:'hasTop', width:40,align:'center',formatter:function(val, row, index){
+				<th data-options="field:'hasTop', width:30,align:'center',formatter:function(val, row, index){
 					return (val==0?'否':'是');
 				}"  >置顶 </th>
-				<th data-options="field:'hasLatest', width:40,align:'center',formatter:function(val, row, index){
+				<th data-options="field:'hasLatest', width:30,align:'center',formatter:function(val, row, index){
 					return (val==0?'否':'是');
 				}"  >最新 </th>
-				<th data-options="field:'hasHot', width:40,align:'center',formatter:function(val, row, index){
+				<th data-options="field:'hasHot', width:30,align:'center',formatter:function(val, row, index){
 					return (val==0?'否':'是');
 				}"  >热门</th>
-			    <th data-options="field:'typeName', width:80,align:'center'" >栏目</th>
-				<th data-options="field:'attributeName', width:80,align:'center'" >类型 </th>
+			    <th data-options="field:'typeName', width:70,align:'center'" >栏目</th>
+				<th data-options="field:'attributeName', width:60,align:'center'" >类型 </th>
 				<th data-options="field:'updateDate', width:80,align:'right',
 				formatter:function(val, row, index){
 					return formatMyDate(val);
