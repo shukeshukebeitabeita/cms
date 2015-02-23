@@ -71,12 +71,16 @@ public class PublishUtil {
 		ContContentDTO c = new ContContentDTO();
 		c.setAbout(content.getAbout());
 		c.setAttr_id(content.getAttrId());
-		c.setContent_body(contContentBody.getContentBody());
+		if(contContentBody != null){
+			c.setContent_body(contContentBody.getContentBody());
+		}
 		c.setContent_id(content.getId());
 		c.setDefault_img(content.getDefaultImg());
 		c.setDiscount(content.getDiscount());
 		c.setBrand(content.getBrand());
-		c.setExt_attr(contContentBody.getExtAttrBody());
+	   if(contContentBody != null){
+		   c.setExt_attr(contContentBody.getExtAttrBody());
+		}
 		c.setGoods_url(content.getGoodsUrl());
 		c.setHas_hot(content.getHasHot());
 		c.setHas_latest(content.getHasLatest());

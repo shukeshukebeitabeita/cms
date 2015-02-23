@@ -4,7 +4,7 @@
 <%@ include file="../include/head.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>家里商城运营后台</title>
+<title>矩阵CMS运营后台</title>
 <style>
 .cs-tab-menu {
 	width: 120px;
@@ -96,6 +96,7 @@
 					data-options="url:'${rc.contextPath}/moss/login/treeMenu.htm',animate:true,dnd:false,lines:true"></ul>
 			</div>
 			
+			<!--  -->
 			<div title="内容栏目" style="padding: 10px;" data-options="tools:[{
 						iconCls:'icon-reload',
 						 handler:function(){
@@ -106,14 +107,14 @@
 					data-options=" method: 'get',animate:true,dnd:false,lines:true,onContextMenu: function(e,node){
 							 e.preventDefault();
 							 $(this).tree('select',node.target);
-							 $('#mm').menu('show',{
+							 $('#type-mm').menu('show',{
 													 left: e.pageX,
 													top: e.pageY
 							});
 				}">
 				</ul>
 
-				<div id="mm" class="easyui-menu" style="width: 120px;">
+				<div id="type-mm" class="easyui-menu" style="width: 120px;">
 					<div onclick="newOpen()">新窗口打开</div>
 					<div class="menu-sep"></div>
 					<div onclick="publicType('1')">仅发布栏目首页</div>
@@ -143,6 +144,7 @@
 				</script>
 			</div>
 			
+			<!-- 模板 -->
 			<div title="模板管理" style="padding: 10px" data-options="tools:[{
 						iconCls:'icon-reload',
 						 handler:function(){

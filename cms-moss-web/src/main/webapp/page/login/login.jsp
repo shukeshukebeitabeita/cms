@@ -38,7 +38,7 @@
 			
 			</div>
 	  </div>
-	  <div align="center" style="margin: 30px 0 0 0;">Copyright(C)家里商城 2014，All Rights Reserved</div>
+	  <div align="center" style="margin: 30px 0 0 0;">Copyright(C)矩阵CMS 2014，All Rights Reserved</div>
 	</div>
 </body>
 <script type="text/javascript" src="${rc.contextPath}/js/jquery/jquery.jrumble.1.3.min.js"></script>

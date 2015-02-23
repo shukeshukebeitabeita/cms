@@ -17,7 +17,11 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.output.FileWriterWithEncoding;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
+
+import com.bsb.cms.moss.controller.tmpt.TmptTemplateController;
 
 /**
  * @author hongjian.liu
@@ -26,7 +30,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TemplateFileManager {
-
+	// log
+	private static final Log log = LogFactory.getLog(TemplateFileManager.class);
+	
 	public void createFreemarkFile(String dirPath, String fileName,
 			String fileContent) {
 		FileWriterWithEncoding fw = null;
@@ -38,9 +44,11 @@ public class TemplateFileManager {
 		// FileOutputStream out = new FileOutputStream(dirPath + fileName +
 		// ".ftl");
 		try {
-			fw = new FileWriterWithEncoding(dirPath + fileName + ".ftl",
+			String filePath = dirPath + fileName + ".ftl";
+			fw = new FileWriterWithEncoding(filePath,
 					"UTF-8");
 			fw.write(fileContent);
+			log.info("template created:" + filePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

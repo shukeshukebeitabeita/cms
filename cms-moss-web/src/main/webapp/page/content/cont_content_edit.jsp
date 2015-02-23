@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
-<%@page import="com.ckeditor.CKEditorConfig"%>
+<%--@page import="com.ckeditor.CKEditorConfig"--%>
 <%@ taglib uri="/WEB-INF/tld/ckfinder.tld/" prefix="ckf"%>
 <%@ taglib uri="/WEB-INF/tld/ckeditor.tld/" prefix="ck"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -142,10 +142,10 @@
 				
 				<c:if test="${attribute.hasKeyword == 1}">
 				<tr>
-					<td class="grid-tab-l">关键词：</td>
+					<td class="grid-tab-l">关键词（tag）：</td>
 					<td class="grid-tab-r">
 						<input type="text" name="keyword"  class="input-style" value="${content.keyword}">
-						
+						以逗号或分号分割
 					</td>
 				</tr>
 				</c:if>
