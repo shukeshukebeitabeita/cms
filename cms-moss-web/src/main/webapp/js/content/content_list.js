@@ -20,14 +20,19 @@ $(function() {
 		
 		var id = $('#id').val();
 		var title = $('#title').val();
-		var account = $('#account').val();
+		
+		var status = $.trim($('#status').combobox('getValue'));
+		
+		/*var account = $('#account').val();
+		  var typeId = $('#typeId').val();
 		var categoryId = $('#_hidden4').val();
 		var startDate = $.trim($('#startDateStr').datebox('getValue'));
 		var endDate = $.trim($('#endDateStr').datebox('getValue'));
 		var recommendStatus = $.trim($('#recommendStatus').combobox('getValue'));
-		var recommendPostion = $.trim($('#recommendPostion').combobox('getValue'));
-		var status = $.trim($('#status').combobox('getValue'));
-		var data = {title: title,id:id,startDateStr:startDate,endDateStr:endDate,account:account,categoryId:categoryId,recommendStatus:recommendStatus,status:status,recommendPostion:recommendPostion};
+		var recommendPostion = $.trim($('#recommendPostion').combobox('getValue'));*/
+		//var data = {title: title,id:id,startDateStr:startDate,endDateStr:endDate,account:account,categoryId:categoryId,recommendStatus:recommendStatus,status:status,recommendPostion:recommendPostion};
+		
+		var data = {title: title,id:id,status:status};
 		$('#tt').datagrid({
 			queryParams:data,
 			onLoadSuccess:function(){
@@ -73,6 +78,7 @@ function tongji(d){
 }
 
 function setTotal(){
+	return;
 	$('#totalCount').html($('#tt').datagrid('getData')['total']);
 }
 

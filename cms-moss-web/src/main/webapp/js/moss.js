@@ -99,9 +99,9 @@ moss.addTab=function(subtitle, url, flag, icon) {
 
 	} else {
 		$('#maintabs').tabs('select', subtitle);
-		
+	
 		if(flag == "type") {//栏目
-			moss.updateTab(subtitle);//refresh tab
+			moss.updateTab(subtitle,url); //refresh tab
 		}
 	}
 	//$.messager.progress('close');

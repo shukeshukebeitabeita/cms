@@ -23,24 +23,30 @@
 				pageList:[10,15,20,30,40,50],
 				pageSize:15,
 				url:'${rc.contextPath}/moss/cont/list.htm?typeId=${typeId}',
-				toolbar:'#tb'" sortName="UPDATE_DATE" sortOrder="desc">
+				toolbar:'#tb'" sortName="UPDATE_DATE" sortOrder="desc"><!-- sortName="UPDATE_DATE" sortOrder="desc" -->
 		<thead>
 			<tr>
 				<th data-options="field:'sort',hidden:true"></th>
-				<th data-options="field:'id', width:60">编号</th>
+				<th data-options="field:'id', width:40" sortable="true" >编号</th>
 				<th data-options="field:'title', width:200," sortable="true" >内容标题 </th>
-				<th data-options="field:'hasTop', width:40"  >置顶 </th>
-				<th data-options="field:'hasLatest', width:40"  >最新 </th>
-				<th data-options="field:'hasHot', width:40"  >热门</th>
-				<!-- <th data-options="field:'typeName', width:110,align:'center'" >栏目</th> -->
-				<th data-options="field:'attributeName', width:80,align:'center'" sortable="true" >类型 </th>
-				<th data-options="field:'updateDate', width:70,align:'right',
+				<th data-options="field:'hasTop', width:40,align:'center',formatter:function(val, row, index){
+					return (val==0?'否':'是');
+				}"  >置顶 </th>
+				<th data-options="field:'hasLatest', width:40,align:'center',formatter:function(val, row, index){
+					return (val==0?'否':'是');
+				}"  >最新 </th>
+				<th data-options="field:'hasHot', width:40,align:'center',formatter:function(val, row, index){
+					return (val==0?'否':'是');
+				}"  >热门</th>
+			    <th data-options="field:'typeName', width:80,align:'center'" >栏目</th>
+				<th data-options="field:'attributeName', width:80,align:'center'" >类型 </th>
+				<th data-options="field:'updateDate', width:80,align:'right',
 				formatter:function(val, row, index){
 					return formatMyDate(val);
 				}" sortable="true" >更新时间 </th>
 				
-				<th data-options="field:'status', width:60,formatter:function(val, row, index){
-					return (val==0?'上架中':'下架中');
+				<th data-options="field:'status', width:40,formatter:function(val, row, index){
+					return (val==0?'未发布':'已发布');
 				}" sortable="true" >状态 </th>
 				
 				<th data-options="field:'titleStyle',width:70,align:'center',formatter:operator">操作</th>
@@ -49,13 +55,25 @@
 	</table>
 	
 	<div id="tb" style="padding:5px;height:auto">
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">Add</a>
-		<a id="deleteContent"  href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">&nbsp;&nbsp;新增&nbsp;&nbsp;</a>
+		<!-- <a id="deleteContent"  href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a> -->
  		<a href="javascript:;" class="easyui-linkbutton" data-options="">回收站</a>
  
 	<form id="searchForm" action="${rc.contextPath}/moss/cont/list.htm">
-			<input type="hidden" name="typeId" id="typeId" value=${typeId}/>
+			<input type="hidden" name="typeId" id="typeId" value="${typeId}"/>
 			<div style="margin-bottom:5px">
+			标题:<input id="title" name="title" class="easyui-validatebox jinputMinWidth" type="text"  data-options="validType:['length[0,100]']"/>
+			 &nbsp;&nbsp;状态: 
+				<select class="easyui-combobox" panelHeight="auto" style="width:100px" id="status" name="status">
+					<option value="">所有</option>
+					<option value="0">未发布</option>
+					<option value="9">已发布</option>
+				</select>
+				
+			&nbsp;&nbsp;<a href="javascript:void(0);" id="searchButton" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+				&nbsp;&nbsp;<a href="javascript:void(0);" id="searchAllButton" class="easyui-linkbutton" iconCls="icon-search">全部</a>
+			</div>
+			<%-- <div style="margin-bottom:5px">
 			       商品编号:<input id="id" name="id" class="easyui-validatebox jinputMinWidth" type="text"  data-options="validType:['no','length[0,19]']"/>
 			      &nbsp;&nbsp; 商品名称:<input id="title" name="title" class="easyui-validatebox jinputMinWidth" type="text"  data-options="validType:['length[0,100]']"/>
 			  &nbsp;&nbsp; 商品分类:<input type="hidden" id="_hidden4" name="categoryId">
@@ -91,7 +109,7 @@
 				，&nbsp;&nbsp;其中发布<span id="sjCount">0</span>条
 				，&nbsp;&nbsp;其中未发布<span id="xjCount">0</span>条
 			  </j:existsAuth>
-			</div>
+			</div> --%>
 		</form>
 		</div>
 </body>

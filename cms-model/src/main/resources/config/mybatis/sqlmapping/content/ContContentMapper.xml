@@ -70,6 +70,15 @@
           CREATE_USER, 
           UPDATE_USER
   	 FROM CONT_CONTENT
+  	 <where>
+			<if test="typeId != null">
+				AND TYPE_ID = #{typeId}
+			</if>
+			<if test="status != null">
+				AND STATUS = #{status}
+			</if>
+	</where>
+		<!-- order by HAS_TOP desc, SORT desc, CREATE_DATE desc -->
   </select>
   
   <sql id="Base_Column_List" >

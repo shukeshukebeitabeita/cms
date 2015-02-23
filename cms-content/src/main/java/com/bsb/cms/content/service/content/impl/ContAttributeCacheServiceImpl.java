@@ -55,6 +55,7 @@ public class ContAttributeCacheServiceImpl implements ContAttributeCacheService 
 		if(src == null) {
 			dist = null;
 		} else {
+			dist.setId(src.getId());
 			dist.setHas_about(src.getHasAbout());
 			dist.setHas_detail(src.getHasDetail());
 			dist.setHas_ext_attribute(src.getHasExtAttribute());
@@ -68,6 +69,7 @@ public class ContAttributeCacheServiceImpl implements ContAttributeCacheService 
 			dist.setHas_tag(src.getHasTag());
 			dist.setHas_vedio(src.getHasVedio());
 			dist.setHas_author(src.getHasAuthor());
+			dist.setName(src.getName());
 		}
 	}
 

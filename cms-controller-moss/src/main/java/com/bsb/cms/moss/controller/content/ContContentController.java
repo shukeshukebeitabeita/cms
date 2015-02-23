@@ -13,6 +13,8 @@
  */
 package com.bsb.cms.moss.controller.content;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bsb.cms.commons.exceptions.RenameRuntimeException;
 import com.bsb.cms.commons.web.JSONResultDTO;
+import com.bsb.cms.content.service.content.ContAttributeCacheService;
 import com.bsb.cms.content.service.content.ContAttributeService;
 import com.bsb.cms.content.service.content.ContContentPublisherService;
 import com.bsb.cms.content.service.content.ContContentService;
@@ -65,6 +68,8 @@ public class ContContentController extends LogController {
 	private TmptTemplateCacheService tmptTemplateCacheService;
 	@Resource(name="contAttributeService")
 	private ContAttributeService contAttributeService;
+	@Resource(name="contAttributeCacheService")
+	private ContAttributeCacheService contAttributeCacheService;
 	@Resource(name="contContentPublisherService")
 	private ContContentPublisherService contContentPublisherService;
 	
@@ -90,8 +95,14 @@ public class ContContentController extends LogController {
 	@ResponseBody
 	public DataGridJsonData<ContContent> list(ContentSearchVO conditions) {
 		//PageContext.initSort("UPDATE_DATE");
-
-		return EasyUiUtils.getPageResult(contContentService.findListPage(conditions));
+		List<ContContent> contents = contContentService.findListPage(conditions);
+		if(contents != null) {
+			for(ContContent c: contents) {
+				c.setTypeName(contTypeCacheService.getById(c.getTypeId()).getTitle());
+				c.setAttributeName(contAttributeCacheService.getById(c.getAttrId()).getName());
+			}
+		}
+		return EasyUiUtils.getPageResult(contents);
 	}
 	
 	
@@ -132,7 +143,7 @@ public class ContContentController extends LogController {
 	}
 
 	/**
-	 * 添加角色。
+	 * 添加。
 	 * 
 	 * @param content  
 	 * @param contentBody 详细内容

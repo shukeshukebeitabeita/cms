@@ -20,5 +20,28 @@ package com.bsb.cms.model.vo.content;
  * @since 1.0
  */
 public class ContentSearchVO {
-
+    private String title;
+    private Long typeId;
+    private Integer status;
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Long getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+    
+    
 }
