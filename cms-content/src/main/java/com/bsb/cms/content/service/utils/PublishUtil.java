@@ -50,7 +50,8 @@ public class PublishUtil {
 	 * @param template
 	 */
 	public static String getCreateTemplateDir(Long parentId, String fileDir) {
-		return URLUtils.getTemplatePath() + parentId + "/";
+		return "E:/opt/template/" + parentId + "/";//TODO
+		//return URLUtils.getTemplatePath() + parentId + "/";
 	}
 
 	public static String getPublishDir(ContTypeDTO type) {

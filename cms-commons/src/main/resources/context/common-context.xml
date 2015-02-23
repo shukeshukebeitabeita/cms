@@ -46,12 +46,14 @@
 
 	<bean id="freemarkerNotifyConfiguration"
 		class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-		<property name="templateLoaderPath" value="/WEB-INF/classes/template" />
+		<!-- <property name="templateLoaderPath" value="/WEB-INF/classes/template" /> -->
+		<property name="templateLoaderPath" value="file:E:/opt/template" /> 
 		<property name="freemarkerSettings">
 			<props>
 				<prop key="template_update_delay">1</prop>
 				<prop key="default_encoding">UTF-8</prop>
 				<prop key="locale">zh_CN</prop>
+				<prop key="auto_import">"freemark.ftl" as cms</prop><!-- file:E:/opt/template/freemark.ftl -->
 			</props>
 		</property>
 		<!-- 全局变量部分 -->
