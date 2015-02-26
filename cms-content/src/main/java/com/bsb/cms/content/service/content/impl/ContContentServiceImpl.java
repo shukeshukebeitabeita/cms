@@ -26,9 +26,11 @@ import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.mapper.content.ContContentBodyMapper;
 import com.bsb.cms.mapper.content.ContContentMapper;
 import com.bsb.cms.model.dto.content.ContContentAllDTO;
+import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
+import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 /**
  * @author hongjian.liu
@@ -84,5 +86,13 @@ public class ContContentServiceImpl implements ContContentService {
 		count = contContentBodyMapper.updateByPrimaryKey(body);
 		if(count <= 0) contContentBodyMapper.insert(body);
 	}
+
+	@Override
+	public List<ContContentDTO> findTypeListPage(TypeListSearchVO conditions) {
+		
+		return contContentMapper.findTypeListPage(conditions);
+	}
+
+
 
 }

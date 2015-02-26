@@ -45,6 +45,22 @@
   </resultMap>
   
   
+    <resultMap id="BaseFrontResultMap" type="contContentDTO" >
+    <id column="ID" property="content_id" jdbcType="BIGINT" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="ABOUT" property="about" jdbcType="VARCHAR" />
+    <result column="DEFAULT_IMG" property="default_img" jdbcType="VARCHAR" />
+    <result column="LINK" property="link" jdbcType="VARCHAR" />
+    <result column="TYPE_ID" property="type_id" jdbcType="BIGINT" />
+    <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
+    <result column="PUBLISH_TIME" property="publish_time" jdbcType="TIMESTAMP" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="TITLE_STYLE" property="title_style" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="create_date" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updat_date" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="create_user" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <select id="findListPage" parameterType="com.bsb.cms.model.vo.content.ContentSearchVO" resultMap="BaseResultMap">
   	SELECT
 	  	  ID, 
@@ -80,6 +96,32 @@
 	</where>
 		<!-- order by HAS_TOP desc, SORT desc, CREATE_DATE desc -->
   </select>
+  
+    <select id="findTypeListPage" parameterType="com.bsb.cms.model.vo.content.TypeListSearchVO" resultMap="BaseFrontResultMap">
+  	SELECT
+	  	  ID, 
+	  	  TITLE, 
+	  	  DEFAULT_IMG, 
+	  	  LINK, 
+	  	  TYPE_ID, 
+	      AUTHOR, 
+	      PUBLISH_TIME, 
+          TITLE_STYLE, 
+          CREATE_DATE, 
+          UPDATE_DATE,
+          CREATE_USER
+  	 FROM CONT_CONTENT
+  	 <where>
+			<if test="type_id != null">
+				AND TYPE_ID = #{type_id}
+			</if>
+			<if test="status != null">
+				AND STATUS = #{status}
+			</if>
+	</where>
+		<!-- order by HAS_TOP desc, SORT desc, CREATE_DATE desc -->
+  </select>
+  
   
   <sql id="Base_Column_List" >
     

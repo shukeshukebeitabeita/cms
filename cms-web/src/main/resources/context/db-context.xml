@@ -17,7 +17,7 @@
 		<property name="jndiName" value="java:comp/env/jdbc/cmsDs" /> </bean> -->
 
 	<!-- 配置数据源，从上面配置文件读取 -->
-	<bean id="defaultDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<!-- 	<bean id="defaultDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${database.driverClassName}" />
 		<property name="jdbcUrl" value="${database.url}" />
 		<property name="user" value="${database.username}" />
@@ -27,6 +27,19 @@
 		<property name="maxPoolSize" value="${pool.maxPoolSize}" />
 		<property name="maxIdleTime" value="${pool.maxIdleTime}" />
 		<property name="acquireIncrement" value="${pool.acquireIncrement}" />
+	</bean> -->
+	
+	<bean id="defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    	<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="defaultAutoCommit" value="${database.defaultAutoCommit}" />
+    	<property name="maxActive" value="${database.maxActive}" />
+		<property name="maxIdle" value="${database.maxIdle}" />
+		<property name="maxWait" value="${database.maxWait}" />
+	<!-- 	<property name="validationQuery" value="${database.validationQuery}" />
+    	<property name="testOnBorrow" value="${database.testOnBorrow}" /> -->
 	</bean>
 
 </beans>

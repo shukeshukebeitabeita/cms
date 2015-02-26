@@ -3,8 +3,10 @@ package com.bsb.cms.mapper.content;
 import java.util.List;
 
 import com.bsb.cms.model.dto.content.ContContentAllDTO;
+import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
+import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 public interface ContContentMapper {
 //    int countByExample(ContContentExample example);
@@ -42,4 +44,11 @@ public interface ContContentMapper {
 	ContContentAllDTO findContentById(Long id);
 	
 	int updateByPrimaryKey(ContContent record);
+
+	/**
+	 * 前台栏目列表页面
+	 * @param conditions
+	 * @return
+	 */
+	List<ContContentDTO> findTypeListPage(TypeListSearchVO conditions);
 }

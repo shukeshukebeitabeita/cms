@@ -16,9 +16,11 @@ package com.bsb.cms.content.service.content;
 import java.util.List;
 
 import com.bsb.cms.model.dto.content.ContContentAllDTO;
+import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
+import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 /**
  * 内容服务
@@ -45,4 +47,11 @@ public interface ContContentService {
 	ContContentAllDTO findContentById(Long id);
 	
 	void updateById(ContContent content, ContContentBody body);
+	
+	/**
+	 * 前台栏目列表页面
+	 * @param id
+	 * @return
+	 */
+	List<ContContentDTO> findTypeListPage(TypeListSearchVO conditions);
 }
