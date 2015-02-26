@@ -56,8 +56,6 @@
     <result column="PUBLISH_TIME" property="publish_time" jdbcType="TIMESTAMP" />
     <result column="SOURCE" property="source" jdbcType="VARCHAR" />
     <result column="TITLE_STYLE" property="title_style" jdbcType="VARCHAR" />
-    <result column="CREATE_DATE" property="create_date" jdbcType="TIMESTAMP" />
-    <result column="UPDATE_DATE" property="updat_date" jdbcType="TIMESTAMP" />
     <result column="CREATE_USER" property="create_user" jdbcType="VARCHAR" />
   </resultMap>
   
@@ -107,8 +105,6 @@
 	      AUTHOR, 
 	      PUBLISH_TIME, 
           TITLE_STYLE, 
-          CREATE_DATE, 
-          UPDATE_DATE,
           CREATE_USER
   	 FROM CONT_CONTENT
   	 <where>
