@@ -110,28 +110,70 @@
             <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
           </div><!-- /.blog-post -->
 
+<#if (page?exists && page.totalPages>0)>
+<#assign startNum=1>
+<#assign endNum=1>
+
+ <#if (page.currentPage>8)>
+     <#assign startNum=page.currentPage-2>
+     <#assign endNum=1>
+ <#else>
+    <#if (page.totalPages>8)>
+    
+       <#assign startNum=page.currentPage-2>
+       <#if (page.currentPage+2 > page.totalPages)>
+          <#assign endNum=page.currentPage+2>
+       <#else>
+            <#assign endNum=page.totalPages>
+       </#if>
+      
+    <#else>
+       <#assign endNum=page.totalPages>
+    </#if>
+ </#if>
         <nav>
 		  <ul class="pagination">
-		    <li class="disabled">
-		      <a href="#" aria-label="Previous">
+		  <#if (page.totalPages>8)>
+		  <li>
+		  <a href="list.htm?page=1" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <li class="active"><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li>
-		      <a href="#" aria-label="Next">
+		  <#else>
+		    <li class="disabled">
+		    <a href="javaScript:void(0);" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		   </#if>
+		      
+		    <#list startNum..endNum as pageNum>
+		      <#if (pageNum== page.currentPage)>
+		      <li class="active"><a href="javaScript:void(0);">${pageNum}</a></li>
+		      <#else>
+		      <li><a href="list.htm?page=${pageNum}">${pageNum}</a></li>
+		      </#if>
+		    </#list>
+		    
+		    <#if (page.currentPage==page.totalPages)>
+		    <li class="disabled">
+		     <a href="javaScript:void(0);" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
+		    <#else>
+		    <li>
+		     <a href="list.htm?page=${page.totalPages}" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		    </#if>
+		     
 		    <li><a href="javascript:void(0)">&nbsp; &nbsp;</a></li>
 		    <li><a href="javascript:void(0)">共${page.totalPages?default(0)}页</a></li>
 		  </ul>
 	  </nav>
-
+</#if>
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
