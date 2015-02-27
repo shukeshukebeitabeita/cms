@@ -1,4 +1,4 @@
-package com.bsb.cms.type;
+package com.bsb.cms;
 
 import java.util.List;
 
@@ -15,32 +15,29 @@ import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 /**
- * 内容列表页面。即分页
- * 
+ * home page
  * @author liuhj
- * 
+ *
  */
 @Controller
-@RequestMapping("/t/")
-public class TypeListController {
+public class IndexController {
+	
 	@Resource(name="contContentService")
 	private ContContentService contContentService;
 	
 	/**
-	 * list
-	 * @param typeId
+	 * home page.
 	 * @param conditions
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/{typeId}/list.htm")
-	public String list(@PathVariable String typeId, TypeListSearchVO conditions, ModelMap modelMap) {
-		modelMap.put("typeId", typeId);
-		conditions.setType_id(Long.valueOf(typeId));
+	@RequestMapping("/list.htm")
+	//@RequestMapping("/index.htm")
+	public String index(TypeListSearchVO conditions, ModelMap modelMap) {
 		PageContext.initSort("UPDATE_DATE");
 		List<ContContentDTO> contents = contContentService.findTypeListPage(conditions);
 		modelMap.put("contents", contents);
 		
-		return "list";
+		return "index";
 	}
 }
