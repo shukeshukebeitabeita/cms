@@ -64,8 +64,8 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("c", content);
 		TmptTemplateDTO template = tmptTemplateCacheService.getById(content.getTemplate_id());
-		ContTypeDTO type = contTypeCacheService.getById(content.getType_id());
-		templateGenerator.createFile(PublishUtil.getTemplatePath(template), dataMap, PublishUtil.getPublishDir(type) + content.getContent_id() + ".html");
+		//ContTypeDTO type = contTypeCacheService.getById(content.getType_id());
+		templateGenerator.createFile(PublishUtil.getTemplatePath(template), dataMap, PublishUtil.getCtPublishPath(content.getUrl()));
 		
 		return null;
 	}

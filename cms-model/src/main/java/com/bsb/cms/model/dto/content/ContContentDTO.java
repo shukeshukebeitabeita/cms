@@ -92,6 +92,8 @@ public class ContContentDTO implements Serializable {
 	private String ext_attr;
 
     private String content_body;
+    
+    private String url;
 
 	/**
 	 * @return the content_id
@@ -105,6 +107,14 @@ public class ContContentDTO implements Serializable {
 	 */
 	public void setContent_id(Long content_id) {
 		this.content_id = content_id;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/**

@@ -75,6 +75,8 @@ public class ContContent extends Entity {
 
     private String titleStyle;
     
+    private String contentUrl;
+    
     //temp
     private String typeName;
     private String attributeName;
@@ -333,6 +335,14 @@ public class ContContent extends Entity {
 
 	public void setAttributeName(String attributeName) {
 		this.attributeName = attributeName;
+	}
+
+	public String getContentUrl() {
+		return contentUrl;
+	}
+
+	public void setContentUrl(String contentUrl) {
+		this.contentUrl = contentUrl;
 	}
 
 }

@@ -36,6 +36,7 @@
     <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
     <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="URL" property="contentUrl" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap type="contContentAllDTO" id="ContentResultMap" extends="BaseResultMap">
@@ -57,6 +58,7 @@
     <result column="SOURCE" property="source" jdbcType="VARCHAR" />
     <result column="TITLE_STYLE" property="title_style" jdbcType="VARCHAR" />
     <result column="CREATE_USER" property="create_user" jdbcType="VARCHAR" />
+     <result column="URL" property="contentUrl" jdbcType="VARCHAR" />
   </resultMap>
   
   <select id="findListPage" parameterType="com.bsb.cms.model.vo.content.ContentSearchVO" resultMap="BaseResultMap">
@@ -82,7 +84,8 @@
           CREATE_DATE, 
           UPDATE_DATE,
           CREATE_USER, 
-          UPDATE_USER
+          UPDATE_USER,
+          URL
   	 FROM CONT_CONTENT
   	 <where>
 			<if test="typeId != null">
@@ -105,7 +108,8 @@
 	      AUTHOR, 
 	      PUBLISH_TIME, 
           TITLE_STYLE, 
-          CREATE_USER
+          CREATE_USER,
+          URL
   	 FROM CONT_CONTENT
   	 <where>
 			<if test="type_id != null">
@@ -128,7 +132,7 @@
     c.AUTHOR, c.PUBLISH_TIME, c.HAS_HOT, c.HAS_LATEST, c.HAS_TOP, c.META_TITLE, c.META_KEYWORDS, c.META_DESCRIPTION, 
     c.C_TAG, c.KEYWORD, c.SORT, c.SOURCE, c.PRICE, c.SALE_PRICE, c.STOCK, c.DISCOUNT, c.BRAND, c.GOODS_URL, 
     STATUS, TITLE_STYLE, CREATE_DATE, UPDATE_DATE, CREATE_USER, UPDATE_USER,
-     b.BODY_ID, b.EXT_ATTR_BODY, b.CONTENT_BODY
+     b.BODY_ID, b.EXT_ATTR_BODY, b.CONTENT_BODY, c.URL
     FROM CONT_CONTENT c
     LEFT JOIN cont_content_body b on c.ID = b.CONTENT_ID
     WHERE c.ID = #{id,jdbcType=BIGINT}
@@ -184,7 +188,7 @@
       STOCK, DISCOUNT, BRAND, 
       GOODS_URL, STATUS, TITLE_STYLE, 
       CREATE_USER, 
-      UPDATE_USER)
+      UPDATE_USER, URL)
     VALUES (#{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
       #{defaultImg,jdbcType=VARCHAR}, #{vedio,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, 
       #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, 
@@ -196,10 +200,11 @@
       #{stock,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, #{brand,jdbcType=VARCHAR}, 
       #{goodsUrl,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{titleStyle,jdbcType=VARCHAR}, 
       #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR})
+      #{updateUser,jdbcType=VARCHAR}, #{contentUrl,jdbcType=VARCHAR})
   
   </insert>
   
+<!--   concat(#{contentUrl,jdbcType=VARCHAR}, #{id}, '.html') -->
 <!--     <insert id="insertSelective" parameterType="com.bsb.cms.model.po.content.ContContent" >
     INSERT INTO CONT_CONTENT
     <trim prefix="(" suffix=")" suffixOverrides="," >

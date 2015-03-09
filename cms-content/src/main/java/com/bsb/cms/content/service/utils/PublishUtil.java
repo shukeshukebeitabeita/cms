@@ -13,10 +13,12 @@
  */
 package com.bsb.cms.content.service.utils;
 
+
+import java.util.Calendar;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.bsb.cms.commons.utils.ConfigUtils;
-import com.bsb.cms.commons.utils.URLUtils;
 import com.bsb.cms.commons.web.SpringContextUtil;
 import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
@@ -66,6 +68,25 @@ public class PublishUtil {
 						ConfigUtils.class);
 		return config.getRootPath() + dir + "/";
 	}
+	
+	public static String getCtPublishPath(String contentPath) {
+		ConfigUtils config = (ConfigUtils) SpringContextUtil
+				.getApplicationContextInstance().getBean("configUtils",
+						ConfigUtils.class);
+		return config.getRootPath() + contentPath;
+	}
+	
+	public static String getCtURL(String contentId) {
+		Calendar date = Calendar.getInstance();
+		int month = date.get(Calendar.MONTH)+1;
+		
+		if(StringUtils.isNotBlank(contentId)) {
+			return "/" + date.get(Calendar.YEAR) + "/" + (month < 10 ? ("0" + month): month) + "/" + contentId + ".html";
+		} else {
+			return "/" + date.get(Calendar.YEAR) + "/" + (month < 10 ? ("0" + month): month) + "/";
+		}
+		
+	}
 
 	public static ContContentDTO translateContent(ContContent content,
 			ContContentBody contContentBody) {
@@ -100,6 +121,7 @@ public class PublishUtil {
 		c.setTitle(content.getTitle());
 		c.setTitle_style(content.getTitleStyle());
 		c.setType_id(content.getTypeId());
+		c.setUrl(content.getContentUrl());
 
 		return c;
 	}

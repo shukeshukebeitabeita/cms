@@ -22,6 +22,8 @@
 			<input type="hidden" name="typeId" value="${type.id}"/>
 			<input type="hidden" name="templateId" value="${template.id} "/>
 			<input type="hidden" name="attrId" value="${attribute.id} "/>
+			<input type="hidden" name="contentUrl" value="${content.contentUrl} "/>
+			
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
 				border="1" class="gridtable">
 				<tr>

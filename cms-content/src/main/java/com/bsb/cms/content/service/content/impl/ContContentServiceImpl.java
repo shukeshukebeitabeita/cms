@@ -55,7 +55,8 @@ public class ContContentServiceImpl implements ContContentService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public long create(ContContent content, ContContentBody body) {
-		long contentId = contContentMapper.insert(content);
+		contContentMapper.insert(content);
+		long contentId = content.getId();
 		if(body != null && contentId > 0) {
 			body.setContentId(content.getId());
 			contContentBodyMapper.insert(body);

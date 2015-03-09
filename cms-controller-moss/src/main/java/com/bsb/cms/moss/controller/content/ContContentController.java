@@ -161,8 +161,9 @@ public class ContContentController extends LogController {
 			}
 			try {
 				content.setStatus(ContentEnum.DEPLOY.getCode());
+				content.setContentUrl(PublishUtil.getCtURL(null));
 				Long id = contContentService.create(content, contContentBody);
-				
+				content.setContentUrl(content.getContentUrl() + id.toString() + ".html");//TODO
 				contContentPublisherService.publishContent(PublishUtil.translateContent(content, contContentBody));
 				
 				log(OperateTypeEnum.CONTENT_CREATE, "id:" + id, "新增内容");
@@ -190,7 +191,7 @@ public class ContContentController extends LogController {
 			try {
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				contContentService.updateById(content, contContentBody);
-				
+				content.setContentUrl(content.getContentUrl() + content.getId() + ".html");//TODO
 				contContentPublisherService.publishContent(PublishUtil.translateContent(content, contContentBody));
 				
 				log(OperateTypeEnum.CONTENT_UPDATE, "id:" + content.getId(), "编辑内容");
