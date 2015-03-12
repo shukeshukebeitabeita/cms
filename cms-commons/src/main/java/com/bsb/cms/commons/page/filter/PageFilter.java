@@ -85,7 +85,7 @@ public class PageFilter implements Filter {
 	    
 	    if("DESC".equalsIgnoreCase(order)) {
 	    	page.setSortDESC(true);
-	    } else if("DESC".equalsIgnoreCase(order)) {
+	    } else if("ASC".equalsIgnoreCase(order)) {
 	    	page.setSortDESC(false);
 	    }
 	    if ((sortField != null) && (!("".equals(sortField))))

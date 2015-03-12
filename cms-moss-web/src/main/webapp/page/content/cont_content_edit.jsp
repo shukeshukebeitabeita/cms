@@ -20,9 +20,9 @@
 			<input type="hidden" id="_contentId" name="id" value="${content.id}"/>
 			<input type="hidden" name="bodyId" value="${content.bodyId}"/>
 			<input type="hidden" name="typeId" value="${type.id}"/>
-			<input type="hidden" name="templateId" value="${template.id} "/>
-			<input type="hidden" name="attrId" value="${attribute.id} "/>
-			<input type="hidden" name="contentUrl" value="${content.contentUrl} "/>
+			<input type="hidden" name="templateId" value="${template.id}"/>
+			<input type="hidden" name="attrId" value="${attribute.id}"/>
+			<input type="hidden" name="contentUrl" value="${content.contentUrl}"/>
 			
 			<table width="100%" cellpadding="0" cellspacing="0" align="center"
 				border="1" class="gridtable">
@@ -42,7 +42,7 @@
 						</c:if>
 						<c:if test="${attribute.hasShowTime == 1}">
 						<span class="end-date">发布时间：</span><input type="text" name="publishTime"
-						class="easyui-datebox  jinputMinWidth"  value="${content.publishTime}"/>
+						class="easyui-datetimebox  jinputMinWidth"  value="${content.publishTime}"/>
 						</c:if>
 						<c:if test="${attribute.hasSource == 1}">
 						<span class="left-padding">来源：</span><input type="text" name="source"

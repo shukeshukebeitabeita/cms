@@ -65,8 +65,9 @@ public class PageContext extends Pagination {
 		if ((field == null) || ("".equals(field)))
 			return;
 
-		if (field.equals(context.sortField))
-			context.sortDESC = (!(context.sortDESC));
+		if (field.equals(context.sortField)){
+			//context.sortDESC = (!(context.sortDESC));
+		}
 		context.sortField = field;
 		
 		if(StringUtils.isNotBlank(context.sortField))

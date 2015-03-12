@@ -16,6 +16,8 @@ package com.bsb.cms.model.dto.content;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 面向前台模板里的内容变量.
  * @author hongjian.liu
@@ -108,6 +110,8 @@ public class ContContentDTO implements Serializable {
 	public void setContent_id(Long content_id) {
 		this.content_id = content_id;
 	}
+
+
 
 	public String getUrl() {
 		return url;
@@ -261,6 +265,9 @@ public class ContContentDTO implements Serializable {
 	 * @return the publish_time
 	 */
 	public String getPublish_time() {
+		if(StringUtils.isNotBlank(publish_time)){
+			publish_time = publish_time.substring(0, 16);
+		}
 		return publish_time;
 	}
 

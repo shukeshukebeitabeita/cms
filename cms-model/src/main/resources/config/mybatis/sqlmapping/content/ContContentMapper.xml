@@ -58,7 +58,7 @@
     <result column="SOURCE" property="source" jdbcType="VARCHAR" />
     <result column="TITLE_STYLE" property="title_style" jdbcType="VARCHAR" />
     <result column="CREATE_USER" property="create_user" jdbcType="VARCHAR" />
-     <result column="URL" property="contentUrl" jdbcType="VARCHAR" />
+     <result column="URL" property="url" jdbcType="VARCHAR" />
   </resultMap>
   
   <select id="findListPage" parameterType="com.bsb.cms.model.vo.content.ContentSearchVO" resultMap="BaseResultMap">
@@ -109,7 +109,8 @@
 	      PUBLISH_TIME, 
           TITLE_STYLE, 
           CREATE_USER,
-          URL
+          URL,
+          ABOUT
   	 FROM CONT_CONTENT
   	 <where>
 			<if test="type_id != null">

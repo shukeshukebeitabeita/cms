@@ -20,7 +20,7 @@
   
   <update id="updateByPrimaryKey" parameterType="contContentBody" >
     update cont_content_body
-    set EXT_ATTR_BODY = #{extAttrBody,jdbcType=VARCHAR}
+    set EXT_ATTR_BODY = #{extAttrBody,jdbcType=VARCHAR}, CONTENT_BODY = #{contentBody,jdbcType=LONGVARCHAR}
     where BODY_ID = #{bodyId,jdbcType=BIGINT}
       and CONTENT_ID = #{contentId,jdbcType=BIGINT}
   </update>

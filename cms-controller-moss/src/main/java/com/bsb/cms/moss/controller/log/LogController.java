@@ -11,7 +11,7 @@ import com.bsb.cms.model.po.log.SysLog;
 /**
  * 方法添加日志
  * 
- * @author 包文斌
+ * @author 
  * @version 1.0.0 2013-5-30
  * @since 1.0
  */
