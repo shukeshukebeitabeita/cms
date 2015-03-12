@@ -4,7 +4,9 @@
 <head>
 <title>内容管理</title>
 <%@ include file="../include/head.jsp"%>
-
+<script type="text/javascript">
+var staticPath = '${staticPath}';
+</script>
 
 <script type="text/javascript" src="${rc.contextPath}/js/content/content_list.js"></script>
 
@@ -27,8 +29,9 @@
 		<thead>
 			<tr>
 				<th data-options="field:'sort',hidden:true"></th>
+				<th data-options="field:'contentUrl',hidden:true"></th>
 				<th data-options="field:'id', width:40" sortable="true" >编号</th>
-				<th data-options="field:'title', width:200," sortable="true" >内容标题 </th>
+				<th data-options="field:'title', width:200,formatter:titleFormatter" sortable="true" >内容标题 </th>
 				<th data-options="field:'hasTop', width:30,align:'center',formatter:function(val, row, index){
 					return (val==0?'否':'是');
 				}"  >置顶 </th>

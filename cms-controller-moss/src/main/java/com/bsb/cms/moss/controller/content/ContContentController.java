@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +73,8 @@ public class ContContentController extends LogController {
 	private ContAttributeCacheService contAttributeCacheService;
 	@Resource(name="contContentPublisherService")
 	private ContContentPublisherService contContentPublisherService;
+	@Value("${common.static}")
+	private String staticPath;
 	
 	/**
 	 * 跳转到首页
@@ -81,6 +84,7 @@ public class ContContentController extends LogController {
 	@RequestMapping("index.htm")
 	public String index(String typeId, ModelMap modelMap) {
 		modelMap.put("typeId", typeId);
+		modelMap.put("staticPath", staticPath);
 		
 		return LIST;
 	}
