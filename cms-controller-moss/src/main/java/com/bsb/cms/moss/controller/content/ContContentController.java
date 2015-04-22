@@ -44,6 +44,7 @@ import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
 import com.bsb.cms.moss.controller.log.LogController;
+import com.bsb.cms.moss.controller.utils.ContentAndTypeUtils;
 import com.bsb.cms.moss.controller.utils.DataGridJsonData;
 import com.bsb.cms.moss.controller.utils.EasyUiUtils;
 
@@ -164,6 +165,7 @@ public class ContContentController extends LogController {
 				contContentBody = new ContContentBody(contentBody);
 			}
 			try {
+				ContentAndTypeUtils.setAllParentId(contTypeCacheService, content);//设置1到4级栏目id
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				content.setContentUrl(PublishUtil.getCtURL(null));
 				Long id = contContentService.create(content, contContentBody);

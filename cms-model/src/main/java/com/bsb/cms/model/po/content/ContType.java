@@ -2,7 +2,8 @@ package com.bsb.cms.model.po.content;
 
 import com.bsb.cms.model.po.Entity;
 /**
- * 栏目
+ * 栏目。
+ * 不建议栏目层级超过4级。本系统按最多4级做。
  * @author hongjian.liu
  * @version 1.0.0 2014-6-25
  * @since 1.0

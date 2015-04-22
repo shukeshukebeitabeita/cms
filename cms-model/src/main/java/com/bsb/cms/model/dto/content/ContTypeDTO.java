@@ -49,6 +49,16 @@ public class ContTypeDTO implements Serializable {
     private Long type_template_id;
 
     private Short status;
+    private Short depth;
+    
+
+	public Short getDepth() {
+		return depth;
+	}
+
+	public void setDepth(Short depth) {
+		this.depth = depth;
+	}
 
 	/**
 	 * @return the id

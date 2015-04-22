@@ -29,7 +29,13 @@ public class ContContent extends Entity {
 
     private String link;
 
-    private Long typeId;
+    private Long typeId;//最后一级栏目id
+    
+    //该记录1到4级栏目id。只保留到四级。不建议栏目层级超过4级。本系统按最多4级做。
+    private Long typeId1;
+    private Long typeId2;
+    private Long typeId3;
+    private Long typeId4;
 
     private Long attrId;
 
@@ -343,6 +349,38 @@ public class ContContent extends Entity {
 
 	public void setContentUrl(String contentUrl) {
 		this.contentUrl = contentUrl;
+	}
+
+	public Long getTypeId1() {
+		return typeId1;
+	}
+
+	public void setTypeId1(Long typeId1) {
+		this.typeId1 = typeId1;
+	}
+
+	public Long getTypeId2() {
+		return typeId2;
+	}
+
+	public void setTypeId2(Long typeId2) {
+		this.typeId2 = typeId2;
+	}
+
+	public Long getTypeId3() {
+		return typeId3;
+	}
+
+	public void setTypeId3(Long typeId3) {
+		this.typeId3 = typeId3;
+	}
+
+	public Long getTypeId4() {
+		return typeId4;
+	}
+
+	public void setTypeId4(Long typeId4) {
+		this.typeId4 = typeId4;
 	}
 
 }

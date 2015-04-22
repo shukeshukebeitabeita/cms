@@ -10,6 +10,10 @@
     <result column="AUDIO" property="audio" jdbcType="VARCHAR" />
     <result column="LINK" property="link" jdbcType="VARCHAR" />
     <result column="TYPE_ID" property="typeId" jdbcType="BIGINT" />
+     <result column="TYPE_ID1" property="typeId1" jdbcType="BIGINT" />
+      <result column="TYPE_ID2" property="typeId2" jdbcType="BIGINT" />
+       <result column="TYPE_ID3" property="typeId3" jdbcType="BIGINT" />
+        <result column="TYPE_ID4" property="typeId4" jdbcType="BIGINT" />
     <result column="ATTR_ID" property="attrId" jdbcType="BIGINT" />
     <result column="TEMPLATE_ID" property="templateId" jdbcType="BIGINT" />
     <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
@@ -68,6 +72,10 @@
 	  	  DEFAULT_IMG, 
 	  	  LINK, 
 	  	  TYPE_ID, 
+	  	  TYPE_ID1, 
+	  	  TYPE_ID2, 
+	  	  TYPE_ID3, 
+	  	  TYPE_ID4, 
 	  	  ATTR_ID, 
 	  	  TEMPLATE_ID, 
 	      AUTHOR, 
@@ -139,6 +147,7 @@
     WHERE c.ID = #{id,jdbcType=BIGINT}
   </select>
   
+  
   <update id="updateByPrimaryKey" parameterType="contContent" >
     update cont_content
     set TITLE = #{title,jdbcType=VARCHAR},
@@ -148,6 +157,7 @@
       AUDIO = #{audio,jdbcType=VARCHAR},
       LINK = #{link,jdbcType=VARCHAR},
       TYPE_ID = #{typeId,jdbcType=BIGINT},
+       
       ATTR_ID = #{attrId,jdbcType=BIGINT},
       TEMPLATE_ID = #{templateId,jdbcType=BIGINT},
       AUTHOR = #{author,jdbcType=VARCHAR},
@@ -180,7 +190,7 @@
   <insert id="insert" parameterType="contContent" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO CONT_CONTENT (TITLE, ABOUT, 
       DEFAULT_IMG, VEDIO, AUDIO, 
-      LINK, TYPE_ID, ATTR_ID, 
+      LINK, TYPE_ID,TYPE_ID1,TYPE_ID2,TYPE_ID3,TYPE_ID4, ATTR_ID, 
       TEMPLATE_ID, AUTHOR, PUBLISH_TIME, 
       HAS_HOT, HAS_LATEST, HAS_TOP, 
       META_TITLE, META_KEYWORDS, META_DESCRIPTION, 
@@ -192,7 +202,9 @@
       UPDATE_USER, URL)
     VALUES (#{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
       #{defaultImg,jdbcType=VARCHAR}, #{vedio,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, 
-      #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, 
+      #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT},#{typeId1,jdbcType=BIGINT},
+      #{typeId2,jdbcType=BIGINT},#{typeId3,jdbcType=BIGINT},#{typeId4,jdbcType=BIGINT},
+       #{attrId,jdbcType=BIGINT}, 
       #{templateId,jdbcType=BIGINT}, #{author,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
       #{hasHot,jdbcType=SMALLINT}, #{hasLatest,jdbcType=SMALLINT}, #{hasTop,jdbcType=SMALLINT}, 
       #{metaTitle,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, #{metaDescription,jdbcType=VARCHAR}, 
