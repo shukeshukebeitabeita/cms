@@ -34,12 +34,28 @@ public class TypeListController {
 	 * @return
 	 */
 	@RequestMapping("/{typeId}/list.htm")
-	public String list(@PathVariable String typeId, TypeListSearchVO conditions, ModelMap modelMap) {
+	public String list(@PathVariable String typeId, TypeListSearchVO conditions,
+			ModelMap modelMap) {
+		PageContext pc=PageContext.getContext();//调试或者收到修改/设置一些参数用
+		System.out.println(pc.getCurrentPage());
+		
 		modelMap.put("typeId", typeId);
 		conditions.setType_id(Long.valueOf(typeId));
 		PageContext.initSort("UPDATE_DATE");
 		List<ContContentDTO> contents = contContentService.findTypeListPage(conditions);
 		modelMap.put("contents", contents);
+		
+		//调试
+		System.out.println(pc.getTotalPages());
+		
+		
+		//如果是pc端页面的话。 可以在页面上用page属性取得PageContext对象，
+		//然后取出分页对象。（因为在PageFilter中设置了request.setAttribute("page", page);）
+		
+		//估计你是手机端用，那么你可以
+		//PageContext pc=PageContext.getContext();//调试或者收到修改/设置一些参数用
+		//然后取出一些需要的参数和其他数据包装成json返回即可。
+		System.out.println(pc.getCurrentPage());
 		
 		return "list";
 	}
