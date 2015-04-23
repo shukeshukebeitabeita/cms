@@ -52,7 +52,7 @@
 	<form id="searchForm" action="${rc.contextPath}/moss/attr/list.htm">
 			<input type="hidden" name="typeId" id="typeId" value=${typeId}/>
 			<div style="margin-bottom:5px">
-				<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容', contextPath + '/moss/attr/create.htm');">新 增</a>
+				<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增类型', contextPath + '/moss/attr/create.htm');">新 增</a>
 			    &nbsp;&nbsp; 名称:<input id="title" name="title" class="easyui-validatebox jinputMinWidth" type="text"  data-options="validType:['length[0,100]']"/>
 			    &nbsp;&nbsp;状态: 
 				<select class="easyui-combobox" panelHeight="auto" style="width:100px" id="status" name="status">

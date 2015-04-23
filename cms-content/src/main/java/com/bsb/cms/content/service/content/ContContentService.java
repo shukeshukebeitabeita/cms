@@ -20,6 +20,7 @@ import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.po.content.ContContent;
 import com.bsb.cms.model.po.content.ContContentBody;
 import com.bsb.cms.model.vo.content.ContentSearchVO;
+import com.bsb.cms.model.vo.content.TagContentVO;
 import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 /**
@@ -54,4 +55,11 @@ public interface ContContentService {
 	 * @return
 	 */
 	List<ContContentDTO> findTypeListPage(TypeListSearchVO conditions);
+	
+	/**
+	 * tag. content list.
+	 * @param conditions
+	 * @return
+	 */
+	List<ContContentDTO> findListOfTag(TagContentVO conditions);
 }

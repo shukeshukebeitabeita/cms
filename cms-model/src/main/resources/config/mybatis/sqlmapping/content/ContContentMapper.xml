@@ -131,6 +131,45 @@
 		<!-- order by HAS_TOP desc, SORT desc, CREATE_DATE desc -->
   </select>
   
+  <!-- 标签查询 -->
+      <select id="findListOfTag" parameterType="com.bsb.cms.model.vo.content.TagContentVO" resultMap="BaseFrontResultMap">
+	  	select * from(select a.*,rownum rn from(
+		  	SELECT
+			  	  ID, 
+			  	  TITLE, 
+			  	  DEFAULT_IMG, 
+			  	  LINK, 
+			  	  TYPE_ID, 
+			      AUTHOR, 
+			      PUBLISH_TIME, 
+		          TITLE_STYLE, 
+		          CREATE_USER,
+		          URL,
+		          ABOUT
+		  	 FROM CONT_CONTENT
+		  	 <where>
+					<if test="status != null">
+						AND STATUS = #{status}
+					</if>
+					<choose>
+						<when test="(level == 1) and (type_id != null)">
+								AND TYPE_ID1 = #{type_id}
+						</when>
+						<when test="level == 2 and type_id != null">
+								AND TYPE_ID2 = #{type_id}
+						</when>
+						<when test="level == 3 and type_id != null">
+								AND TYPE_ID3 = #{type_id}
+						</when>
+						<when test="level == 4 and type_id != null">
+								AND TYPE_ID4 = #{type_id}
+						</when>
+					</choose>
+			</where>
+			 order by  CREATE_DATE desc 
+		) a where rownum &lt;= #count#) where rn &gt;0
+  </select>
+  
   
   <sql id="Base_Column_List" >
     
