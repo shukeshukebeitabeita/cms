@@ -170,6 +170,18 @@
         <a href="#">回顶部</a>
       </p>
     </footer>
+    
+    
+    
+    
+     <@clist type_id="2" count=10 var="cts">
+      <#if (cts?exists && cts?size >0)>
+     <#list cts as c>
+     ${c.title}
+     </#list>
+     </#if>
+     </@clist>
+ 
 
 
     <!-- Bootstrap core JavaScript

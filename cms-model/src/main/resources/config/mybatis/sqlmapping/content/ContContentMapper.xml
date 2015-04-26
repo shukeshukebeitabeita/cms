@@ -133,7 +133,7 @@
   
   <!-- 标签查询 -->
       <select id="findListOfTag" parameterType="com.bsb.cms.model.vo.content.TagContentVO" resultMap="BaseFrontResultMap">
-	  	select * from(select a.*,rownum rn from(
+	  	
 		  	SELECT
 			  	  ID, 
 			  	  TITLE, 
@@ -151,6 +151,12 @@
 					<if test="status != null">
 						AND STATUS = #{status}
 					</if>
+					<if test="hasHot != null">
+						AND HAS_HOT = #{hasHot}
+					</if>
+					<if test="hasLatest != null">
+						AND HAS_LATEST = #{hasLatest}
+					</if>
 					<choose>
 						<when test="(level == 1) and (type_id != null)">
 								AND TYPE_ID1 = #{type_id}
@@ -167,7 +173,8 @@
 					</choose>
 			</where>
 			 order by  CREATE_DATE desc 
-		) a where rownum &lt;= #count#) where rn &gt;0
+			 
+			 limit  0, #{count}#
   </select>
   
   

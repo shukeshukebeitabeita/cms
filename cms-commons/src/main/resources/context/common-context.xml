@@ -85,8 +85,9 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	<!-- <bean class="com.uns.mall.commons.util.SpringContextUtil" /> 暴露enum给freeMarker 
-		start <bean id="previlegeModuleEnumFactory" class="com.uns.mall.commons.util.ExposeEnumUtil"> 
+	<!-- <bean class="com.uns.mall.commons.util.SpringContextUtil" /> -->
+	<!-- 暴露enum给freeMarker start-->
+	<!-- 	 <bean id="previlegeModuleEnumFactory" class="com.uns.mall.commons.util.ExposeEnumUtil"> 
 		<property name="packageName"> <value>com.uns.mall.commons.enums.PrevilegeModuleEnum</value> 
 		</property> </bean> <bean id="previlegeModuleEnum" factory-bean="previlegeModuleEnumFactory" 
 		factory-method="useModelPackage"> </bean> -->
