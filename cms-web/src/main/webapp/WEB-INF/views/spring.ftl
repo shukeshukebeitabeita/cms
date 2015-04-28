@@ -322,4 +322,27 @@
 <#macro contextPath>${rc.contextPath}</#macro>
 
 
+<#macro header>
+ <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="${rc.contextPath}/list.htm">首页</a>
+          <a class="blog-nav-item active" href="${rc.contextPath}/t/2/list.htm">架构</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/t/3/list.htm">SOA/Dubbo</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/t/7/list.htm">缓存</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/t/4/list.htm">消息</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/t/5/list.htm">大数据</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/t/11/list.htm">云计算</a>
+        </nav>
+      </div>
+</#macro>
+
+
+<#macro footer>
+ <p>Copyright © 2004-2015.</p>
+      <p>
+        <a href="#">回顶部</a>
+      </p>
+</#macro>
+
+
 

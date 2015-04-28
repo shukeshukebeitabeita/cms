@@ -28,16 +28,34 @@
 
   <body>
 
+   <!-- Header begin -->
+<div class="header"><div class="inner">
+    <!-- Logo begin -->
+	        <h1 class="logo"><a href="http://www.alibuybuy.com/" rel="home"><img src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="互联网的那点事" title="互联网的那点事"></a></h1>
+        <!-- Logo end -->
+    <!-- HeadRight begin -->
+    <div class="headr">
+    	<div class="op">
+        	<a href="http://www.alibuybuy.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
+        	<a href="javascript:void(0);" id="fav"><i class="iconfont icon-shoucang"></i>收藏</a> <span>/</span> 
+            <a href="http://www.alibuybuy.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
+        </div>
+        <!-- Search begin -->
+    	<form method="get" class="searchform" action="http://www.alibuybuy.com/">
+   <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
+   <input class="searchBtn radius" type="submit" title="搜索" value="搜 索"/>
+</form>        <!-- Search end -->
+    </div>
+    <!-- HeadRight end -->
+    <a id="mo-menu" href="javascript:void(0);"><i class="iconfont icon-caidan"></i></a>
+    <a id="mo-so" href="javascript:void(0);"><i class="iconfont icon-sousuo"></i></a>
+</div></div>
+<!-- Header end -->
+
+    
     <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-            <a class="blog-nav-item active" href="${contextPath}/list.htm">首页</a>
-          <a class="blog-nav-item active" href="${contextPath}/t/3/list.htm">刷机教程</a>
-          <a class="blog-nav-item" href="${contextPath}/t/4/list.htm">手机软件</a>
-          <a class="blog-nav-item" href="${contextPath}/t/5/list.htm">手机教程</a>
-         
-        </nav>
-      </div>
+   
+     <@cms.header />
     </div>
 
     <div class="container">
@@ -49,7 +67,7 @@
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-7 col-sm-offset-1 blog-main">
 
                <#if contents?exists>
           <#list contents as oneData>
@@ -128,7 +146,7 @@
 </#if>
         </div><!-- /.blog-main -->
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="col-sm-3  blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
@@ -165,10 +183,7 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Copyright © 2004-2015.</p>
-      <p>
-        <a href="#">回顶部</a>
-      </p>
+     <@cms.footer />
     </footer>
     
     
