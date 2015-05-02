@@ -68,6 +68,20 @@
       <div class="row">
 
         <div class="col-sm-7 col-sm-offset-1 blog-main">
+        
+        
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt=".">
+    </a>
+  </div>
+  <div class="media-body">
+    <h2 class="media-heading blog-post-title">Media heading</h2>
+    asdfsdf asdf   sdfsdf sdf sd f s fa sdf s f sdfsdf sf sdfasd fasddfsa fadsf asd fas fas f s fasdfasfasf as f a fa sf asdf
+  </div>
+</div>
+
 
                <#if contents?exists>
           <#list contents as oneData>
@@ -75,7 +89,7 @@
             <h2 class="blog-post-title">${oneData.title!''}</h2>
             <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
 
-          <div>${oneData.about!''}</div>
+            <div>${oneData.about!''}</div>
           </div>
           </#list>
          </#if>
