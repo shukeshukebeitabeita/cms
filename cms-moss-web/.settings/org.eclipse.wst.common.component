@@ -20,6 +20,9 @@
         <dependent-module archiveName="cms-content-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cms-content/cms-content">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="cms-controller-comm-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cms-controller-comm/cms-controller-comm">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="cms-moss-web"/>
         <property name="java-output-path" value="/cms-moss-web/target/classes"/>
     </wb-module>

@@ -59,5 +59,10 @@
 			<artifactId>cms-content</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.bsb</groupId>
+			<artifactId>cms-controller-comm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

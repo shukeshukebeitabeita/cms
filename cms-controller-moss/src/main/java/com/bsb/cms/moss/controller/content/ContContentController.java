@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,6 +37,7 @@ import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
 import com.bsb.cms.content.service.utils.PublishUtil;
+import com.bsb.cms.controller.upload.ImgRemot2Location;
 import com.bsb.cms.model.dto.content.ContContentAllDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.enums.ContentEnum;
@@ -76,6 +78,8 @@ public class ContContentController extends LogController {
 	private ContContentPublisherService contContentPublisherService;
 	@Value("${common.static}")
 	private String staticPath;
+	@Autowired
+	private ImgRemot2Location imgRemot2Location;
 	
 	/**
 	 * 跳转到首页
@@ -162,7 +166,8 @@ public class ContContentController extends LogController {
 		ContContentBody contContentBody = null;
 		try {
 			if(StringUtils.isNotBlank(contentBody)) {
-				contContentBody = new ContContentBody(contentBody);
+				String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
+				contContentBody = new ContContentBody(htmls[1]);
 			}
 			try {
 				ContentAndTypeUtils.setAllParentId(contTypeCacheService, content);//设置1到4级栏目id
@@ -195,6 +200,11 @@ public class ContContentController extends LogController {
 		JSONResultDTO result = new JSONResultDTO();
 		try {
 			try {
+				String contentBody = contContentBody.getContentBody();
+				if(StringUtils.isNotBlank(contentBody)) {
+					String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
+					contContentBody.setContentBody(htmls[1]);
+				}
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				contContentService.updateById(content, contContentBody);
 				content.setContentUrl(content.getContentUrl() + content.getId() + ".html");//TODO
