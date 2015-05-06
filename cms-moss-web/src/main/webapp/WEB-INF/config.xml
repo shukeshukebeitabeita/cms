@@ -17,7 +17,7 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir>D:/jialimall/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cms-static/upload/default/</baseDir>
+	<baseDir>e:/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cms-static/upload/default/</baseDir>
 	<baseURL>http://localhost:8080/cms-static/upload/default/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

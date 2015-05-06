@@ -1,8 +1,5 @@
 package com.bsb.cms.controller.upload;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,9 +13,11 @@ import com.bsb.cms.commons.utils.ParseHTML;
 public class ImgRemot2Location {
 	@Value("${media.upload.basePath}")
 	private String imgPath;
-	
 	@Value("${common.static}")
 	private String staticWeb;
+	@Value("${common.host}")
+	private String hostDomain;
+	
 	/**
 	 * keyword --> img.alt
 	 * @param html
@@ -26,6 +25,7 @@ public class ImgRemot2Location {
 	 */
 	public String[] transfer(String html, String keyword){
 		String localImg;
+		String defaultPath = null;
 		String[] returns = new String[2];
 		Document doc = ParseHTML.parseHtmlFromString(html);
 		Elements pngs = doc.select("img[src]");
@@ -33,12 +33,16 @@ public class ImgRemot2Location {
 	      for (Element element : pngs) {
 	        String imgUrl = element.attr("src");
 	        //if (imgUrl.trim().startsWith("/")) {
-	        if (!imgUrl.trim().startsWith("http://www.alijiagou.com")) {
+	        if (!imgUrl.trim().startsWith(hostDomain)) {
 	        	localImg = ImageUtil.returnImg(imgUrl, imgPath);
 	        	if(localImg!=null){
 	        		element.attr("src", staticWeb + "/upload/" + localImg);
 	        		if(StringUtils.isBlank(element.attr("alt"))){
 	        			element.attr("alt", keyword);
+	        		}
+	        		
+	        		if(defaultPath==null) {
+	        			defaultPath = ImageUtil.getDefaultImg(imgPath, localImg);//压缩一张默认图片
 	        		}
 	        	}
 	        	
@@ -47,7 +51,7 @@ public class ImgRemot2Location {
 	      
 	      returns[1] = doc.children().outerHtml();
 	     
-	      returns[0] = "";
+	      returns[0] = defaultPath;
 	      
 		return returns;
 	}

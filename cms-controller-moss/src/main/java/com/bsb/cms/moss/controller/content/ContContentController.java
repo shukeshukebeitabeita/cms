@@ -168,6 +168,9 @@ public class ContContentController extends LogController {
 			if(StringUtils.isNotBlank(contentBody)) {
 				String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
 				contContentBody = new ContContentBody(htmls[1]);
+				if(StringUtils.isNotBlank(htmls[0])){
+					content.setDefaultImg("/" + htmls[0]);
+				}
 			}
 			try {
 				ContentAndTypeUtils.setAllParentId(contTypeCacheService, content);//设置1到4级栏目id
@@ -204,6 +207,9 @@ public class ContContentController extends LogController {
 				if(StringUtils.isNotBlank(contentBody)) {
 					String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
 					contContentBody.setContentBody(htmls[1]);
+					if(StringUtils.isNotBlank(htmls[0])){
+						content.setDefaultImg("/" + htmls[0]);
+					}
 				}
 				content.setStatus(ContentEnum.DEPLOY.getCode());
 				contContentService.updateById(content, contContentBody);

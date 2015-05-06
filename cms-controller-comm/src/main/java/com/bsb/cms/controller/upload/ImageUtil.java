@@ -23,6 +23,20 @@ import javax.imageio.ImageIO;
  * @since 1.0
  */
 public class ImageUtil {
+
+	public static long createThumbnail(InputStream src, String dist,
+			float width, float height) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(src);
+			return createThumbnail(image, dist, width, height);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return 0l;
+		}
+
+	}
+
 	/**
 	 * 压缩图片并且获得图片的大小
 	 * 
@@ -34,13 +48,12 @@ public class ImageUtil {
 	 * @param height
 	 * @return
 	 */
-	public static long createThumbnail(InputStream src, String dist,
+	public static long createThumbnail(BufferedImage image, String dist,
 			float width, float height) {
 		try {
 
 			int newWidth = 0;
 			int newHeight = 0;
-			BufferedImage image = ImageIO.read(src);
 			// 获得缩放的比例
 			double ratio = 1.0;
 			// 判断如果高、宽都不大于设定值，则不处理
@@ -138,6 +151,7 @@ public class ImageUtil {
 	public static void compressImage(int width, int height, float quality,
 			String fullPath) {
 		BufferedImage image = null;
+		FileOutputStream os = null;
 		int newWidth = 0;
 		int newHeight = 0;
 		try {
@@ -160,7 +174,7 @@ public class ImageUtil {
 			bfImage.getGraphics().drawImage(
 					image.getScaledInstance(image.getWidth(),
 							image.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
-			FileOutputStream os = new FileOutputStream(fullPath);
+			 os = new FileOutputStream(fullPath);
 			com.sun.image.codec.jpeg.JPEGImageEncoder encoder = com.sun.image.codec.jpeg.JPEGCodec
 					.createJPEGEncoder(os);
 			com.sun.image.codec.jpeg.JPEGEncodeParam jpeg = encoder
@@ -174,6 +188,14 @@ public class ImageUtil {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally{
+			if(os!=null){
+				try {
+					os.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -183,10 +205,10 @@ public class ImageUtil {
 		OutputStream bos = null;
 		java.io.BufferedInputStream bis = null;
 		String dir = getNewDynamicPath();
-		String imgUri = dir + "/" +getNewName(imgurl);
+		String imgUri = dir + "/" + getNewName(imgurl);
 		String allPath = path + imgUri;
 		File f = new File(path + dir);
-		if(!f.exists()){
+		if (!f.exists()) {
 			f.mkdirs();
 		}
 		try {
@@ -220,43 +242,42 @@ public class ImageUtil {
 					bos.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+				return null;
 			}
 		}
-		//int[] a = new int[2];
-		if (b) {/*// 图片存在
-				// 得到文件
-			java.io.File file = new java.io.File(allPath);
-			BufferedImage bi = null;
-			boolean imgwrong = false;
-			try {
-				// 读取图片
-				bi = javax.imageio.ImageIO.read(file);
-				try {
-					// 判断文件图片是否能正常显示,有些图片编码不正确
-					int i = bi.getType();
-					imgwrong = true;
-				} catch (Exception e) {
-					imgwrong = false;
-				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-			if (imgwrong) {
-				a[0] = bi.getWidth(); // 获得 宽度
-				a[1] = bi.getHeight(); // 获得 高度
-			} else {
-				a = null;
-			}
-			// 删除文件
-			//file.delete();
-*/		} else {// 图片不存在
-			//a = null;
-	      imgUri=null;
-		}
-		
+
 		return imgUri;
 	}
-	
+
+	public static String getDefaultImg(String dir, String path) {
+		String allPath = dir + path;
+		String defaultPath = null;
+		// 得到文件
+		java.io.File file = new java.io.File(allPath);
+		BufferedImage bi = null;
+		try {
+			// 读取图片
+			bi = javax.imageio.ImageIO.read(file);
+			try {
+				// 判断文件图片是否能正常显示,有些图片编码不正确
+				 bi.getType();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		if (bi.getWidth() >= 60) {// 获得 宽度
+			defaultPath = "200x150" + path.substring(path.lastIndexOf("."));
+			String localFile = allPath + defaultPath;
+			createThumbnail(bi, localFile, 200, 150);
+		}
+
+		return defaultPath;
+
+	}
+
 	/**
 	 * 動態獲得文件的路徑
 	 * 
@@ -273,6 +294,5 @@ public class ImageUtil {
 		DateFormat df = new SimpleDateFormat("yyyy-MM");
 		return df.format(new Date());
 	}
-
 
 }
