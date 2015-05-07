@@ -323,19 +323,50 @@
 
 
 <#macro header>
+<header>
+   <!-- Header begin -->
+<div class="header"><div class="inner">
+    <!-- Logo begin -->
+	        <h1 class="logo"><a href="http://www.xjiagou.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="X架构   X战警" title="架构那点事"></a></h1>
+        <!-- Logo end -->
+    <!-- HeadRight begin -->
+    <div class="headr">
+    	<div class="op"><!-- 
+        	<a href="http://www.xjiagou.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
+        	<a href="javascript:void(0);" id="fav"><i class="iconfont icon-shoucang"></i>收藏</a> <span>/</span> 
+            <a href="http://www.xjiagou.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
+             -->
+        </div>
+        <!-- Search begin -->
+    	<form method="get" class="searchform" action="http://www.xjiagou.com/">
+   <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
+   <input class="searchBtn radius" type="submit" title="搜索" value="搜 索"/>
+</form>        <!-- Search end -->
+    </div>
+    <!-- HeadRight end -->
+    <a id="mo-menu" href="javascript:void(0);"><i class="iconfont icon-caidan"></i></a>
+    <a id="mo-so" href="javascript:void(0);"><i class="iconfont icon-sousuo"></i></a>
+</div></div>
+<!-- Header end -->
+
+<div class="blog-masthead">
  <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="${rc.contextPath}/list.htm">首页</a>
-           <a class="blog-nav-item active" href="${rc.contextPath}/t/12/list.htm">逗比</a>
-          <a class="blog-nav-item active" href="${rc.contextPath}/t/6/list.htm">架构</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/9/list.htm">SOA/Dubbo</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/7/list.htm">缓存</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/4/list.htm">消息</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/5/list.htm">大数据</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/11/list.htm">云计算</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/t/1/list.htm">业界</a>
+          <a class="blog-nav-item active" href="${rc.contextPath}/">首页</a>
+           <a class="blog-nav-item active" href="${rc.contextPath}/jock/">逗比</a>
+          <a class="blog-nav-item active" href="${rc.contextPath}/jiagou/">架构</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/soa/">SOA/Dubbo</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/cache/">缓存</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/mq/">消息</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/bigdata/">大数据</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/yun/">云计算</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/store/">数据库/NoSql</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/news/">业界</a>
         </nav>
       </div>
+       </div>
+       
+         </header>
 </#macro>
 
 

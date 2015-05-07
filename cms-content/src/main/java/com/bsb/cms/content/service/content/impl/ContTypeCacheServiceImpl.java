@@ -33,6 +33,8 @@ import com.bsb.cms.model.po.content.ContType;
 @Component("contTypeCacheService")
 public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 	private static Map<Long, ContTypeDTO> types = new HashMap<Long, ContTypeDTO>();
+	private static Map<String, Long> typeNames = new HashMap<String, Long>();
+	
 	@Resource(name="contTypeService")
 	private ContTypeService contTypeService;
 
@@ -81,6 +83,16 @@ public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 		types.put(contType.getId(), type);
 	}
 	
-	
+	@Override
+	public Long getIdByName(String englishName){
+		Long typeId = typeNames.get(englishName);
+		if(typeId == null) {
+			ContType contType =contTypeService.findIdByEnglishName(englishName);
+			typeId = contType.getId();
+			typeNames.put(englishName, contType.getId());
+		}
+		
+		return typeId;
+	}
 
 }

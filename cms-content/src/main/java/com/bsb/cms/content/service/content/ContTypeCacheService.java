@@ -18,6 +18,7 @@ import com.bsb.cms.model.po.content.ContType;
 
 /**
  * 栏目缓存
+ * 
  * @author hongjian.liu
  * @version 1.0.0 2014-7-1
  * @since 1.0
@@ -25,10 +26,13 @@ import com.bsb.cms.model.po.content.ContType;
 public interface ContTypeCacheService {
 
 	ContTypeDTO getById(Long typeId);
-	
+
 	/**
 	 * 放进缓存.已存在的话覆盖.
+	 * 
 	 * @param contType
 	 */
 	void set(ContType contType);
+
+	Long getIdByName(String englishName);
 }

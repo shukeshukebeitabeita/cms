@@ -54,12 +54,12 @@ public class PageFilter implements Filter {
 	      chain.doFilter(request, response);
 	      return;
 	    }
-	    if (!(uri.toLowerCase().endsWith("list.htm"))) {//TODO
+	  /*  if (!(uri.toLowerCase().endsWith("list.htm"))) {//TODO
 	    //if (!(uri.toLowerCase().contains("list"))) {//TODO
 	      PageContext.removeContext();
 	      chain.doFilter(request, response);
 	      return;
-	    }
+	    }*/
 	    if (!(uri.equals(PageContext.getLastUrl())))
 	      PageContext.removeContext();
 

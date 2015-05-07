@@ -31,7 +31,7 @@ public class IndexController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/list.htm")
+	@RequestMapping("/")
 	//@RequestMapping("/index.htm")
 	public String index(TypeListSearchVO conditions, ModelMap modelMap) {
 		PageContext.initSort("UPDATE_DATE");

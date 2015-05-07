@@ -51,4 +51,9 @@ public class ContTypeServiceImpl implements ContTypeService {
 		return contTypeMapper.selectByPrimaryKey(typeId);
 	}
 
+	@Override
+	public ContType findIdByEnglishName(String englishName) {
+		return contTypeMapper.selectByEnglishName(englishName);
+	}
+
 }

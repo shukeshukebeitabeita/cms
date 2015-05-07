@@ -46,6 +46,13 @@
     where ID = #{id,jdbcType=BIGINT}
   </select>
   
+   <select id="selectByEnglishName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_type
+    where FILE_NAME = #{fileName,jdbcType=VARCHAR}
+  </select>
+  
  <!--  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

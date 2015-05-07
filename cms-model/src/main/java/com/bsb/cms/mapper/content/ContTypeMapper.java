@@ -43,4 +43,6 @@ public interface ContTypeMapper {
 	 * @return
 	 */
 	ContType selectByPrimaryKey(Long id);
+	
+	ContType selectByEnglishName(String fileName);
 }

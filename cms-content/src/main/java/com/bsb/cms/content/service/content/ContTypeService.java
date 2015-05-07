@@ -36,4 +36,6 @@ public interface ContTypeService {
 	 * @return
 	 */
 	ContType findById(Long typeId);
+	
+	ContType findIdByEnglishName(String englishName);
 }
