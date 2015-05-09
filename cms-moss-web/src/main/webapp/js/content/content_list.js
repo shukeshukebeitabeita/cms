@@ -100,7 +100,7 @@ function operator(val, row){
 }
 function titleFormatter(val, row, index){
 	var url = row.contentUrl + row.id +'.html';
-	return ('<a target="_blank" href="'+ staticPath + url + '">' + val + '</a>');
+	return ('<a target="_blank" href="'+ webContext + url + '">' + val + '</a>');
 }
 
 //删除

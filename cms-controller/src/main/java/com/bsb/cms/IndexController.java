@@ -31,8 +31,8 @@ public class IndexController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/")
-	//@RequestMapping("/index.htm")
+	//@RequestMapping("/")
+	@RequestMapping("/index.htm")
 	public String index(TypeListSearchVO conditions, ModelMap modelMap) {
 		PageContext.initSort("UPDATE_DATE");
 		List<ContContentDTO> contents = contContentService.findTypeListPage(conditions);

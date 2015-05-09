@@ -6,6 +6,7 @@
 <%@ include file="../include/head.jsp"%>
 <script type="text/javascript">
 var staticPath = '${staticPath}';
+var webContext = '${webContext}';
 </script>
 
 <script type="text/javascript" src="${rc.contextPath}/js/content/content_list.js"></script>

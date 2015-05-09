@@ -352,16 +352,16 @@
 <div class="blog-masthead">
  <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="${rc.contextPath}/">首页</a>
-           <a class="blog-nav-item active" href="${rc.contextPath}/jock/">逗比</a>
-          <a class="blog-nav-item active" href="${rc.contextPath}/jiagou/">架构</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/soa/">SOA/Dubbo</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/cache/">缓存</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/mq/">消息</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/bigdata/">大数据</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/yun/">云计算</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/store/">数据库/NoSql</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/news/">业界</a>
+          <a class="blog-nav-item active" href="${rc.contextPath}">首页</a>
+           <a class="blog-nav-item active" href="${rc.contextPath}/jock">逗比</a>
+          <a class="blog-nav-item active" href="${rc.contextPath}/jiagou">架构</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/soa">SOA/Dubbo</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/cache">缓存</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/mq">消息</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/bigdata">大数据</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/yun">云计算</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/store">数据库/NoSql</a>
+          <a class="blog-nav-item" href="${rc.contextPath}/news">业界</a>
         </nav>
       </div>
        </div>
@@ -379,5 +379,61 @@
   </footer>
 </#macro>
 
+<#--字符串截取； str代表要截取的字符串， l代表截取的长度，s代表从第几个字符开始截取(默认为0)-->
+<#function substr str l s=0>
+<#if (s>str?length)>
+<#return "">
+<#else>
+
+	<#if (l>str?length)>
+	<#assign l2=(s+str?length)>
+	<#else>
+	<#assign l2=s + l>
+	</#if>
+	<#assign returnStr=str?substring(s, l2)>
+	
+	
+	<#return "${returnStr}">
+</#if>
+</#function>
+
+<#function substr2 str l s=0>
+<#if (s>str?length)>
+<#return "">
+<#else>
+
+	<#if (l>str?length)>
+	<#assign l2=(s+str?length)>
+	<#else>
+	<#assign l2=s + l>
+	</#if>
+	<#assign returnStr=str?substring(s, l2)>
+	
+	<#assign dian=''>
+	<#if s==0>
+	  <#if (str?length>l)>
+	  	<#assign dian='...'>
+	  </#if>
+	</#if>
+	
+	<#return "${returnStr}${dian}">
+</#if>
+</#function>
+
+<#macro tongji>
+<div style="display:none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa4bfece6ae72b2d30207bfb97bd2e879' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+</#macro>
 
 
+<#function curl content>
+<#return "${rc.contextPath}${content.url!''}${content.content_id}.html">
+</#function>
+
+<#function curl_a content>
+<#return "<a href=\"${rc.contextPath}${content.url!''}${content.content_id}.html\"  target=\"_blank\">${content.title!''}</a>">
+</#function>

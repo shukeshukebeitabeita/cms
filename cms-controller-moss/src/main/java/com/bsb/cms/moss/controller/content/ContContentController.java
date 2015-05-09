@@ -80,7 +80,8 @@ public class ContContentController extends LogController {
 	private String staticPath;
 	@Autowired
 	private ImgRemot2Location imgRemot2Location;
-	
+	@Value("${common.contextPath}")
+	private String webContext;
 	/**
 	 * 跳转到首页
 	 * 
@@ -90,6 +91,7 @@ public class ContContentController extends LogController {
 	public String index(String typeId, ModelMap modelMap) {
 		modelMap.put("typeId", typeId);
 		modelMap.put("staticPath", staticPath);
+		modelMap.put("webContext", webContext);
 		
 		return LIST;
 	}

@@ -269,9 +269,9 @@ public class ImageUtil {
 		}
 
 		if (bi.getWidth() >= 60) {// 获得 宽度
-			defaultPath = "200x150" + path.substring(path.lastIndexOf("."));
+			defaultPath = "100x75" + path.substring(path.lastIndexOf("."));
 			String localFile = allPath + defaultPath;
-			createThumbnail(bi, localFile, 200, 150);
+			createThumbnail(bi, localFile, 100, 75);
 		}
 
 		return defaultPath;

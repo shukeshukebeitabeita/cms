@@ -56,7 +56,7 @@
 </div>
 
 
-               <#if contents?exists>
+          <#if contents?exists>
           <#list contents as oneData>
           <div class="blog-post">
             <h2 class="blog-post-title">${oneData.title!''}</h2>
@@ -92,7 +92,7 @@
 		  <ul class="pagination">
 		  <#if (page.totalPages>8)>
 		  <li>
-		  <a href="list.htm?page=1" aria-label="Previous">
+		  <a href="?page=1" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
@@ -108,7 +108,7 @@
 		      <#if (pageNum== page.currentPage)>
 		      <li class="active"><a href="javaScript:void(0);">${pageNum}</a></li>
 		      <#else>
-		      <li><a href="list.htm?page=${pageNum}">${pageNum}</a></li>
+		      <li><a href="?page=${pageNum}">${pageNum}</a></li>
 		      </#if>
 		    </#list>
 		    
@@ -120,7 +120,7 @@
 		    </li>
 		    <#else>
 		    <li>
-		     <a href="list.htm?page=${page.totalPages}" aria-label="Next">
+		     <a href="?page=${page.totalPages}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>

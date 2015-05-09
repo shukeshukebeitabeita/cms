@@ -37,7 +37,7 @@ public class TypeIndexController {
 	 * @return
 	 */
 	//@RequestMapping("/{typeId}/list.htm")
-	@RequestMapping("/{englishName}/")
+	@RequestMapping("/{englishName}")
 	public String list(@PathVariable String englishName, TypeListSearchVO conditions,
 			ModelMap modelMap) {
 		Long typeId;
