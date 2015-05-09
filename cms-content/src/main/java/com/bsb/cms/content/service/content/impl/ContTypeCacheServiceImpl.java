@@ -33,7 +33,7 @@ import com.bsb.cms.model.po.content.ContType;
 @Component("contTypeCacheService")
 public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 	private static Map<Long, ContTypeDTO> types = new HashMap<Long, ContTypeDTO>();
-	private static Map<String, Long> typeNames = new HashMap<String, Long>();
+	private static Map<String, ContTypeDTO> typeNames = new HashMap<String, ContTypeDTO>();
 	
 	@Resource(name="contTypeService")
 	private ContTypeService contTypeService;
@@ -70,6 +70,9 @@ public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 			dist.setType_template_id(src.getTypeTemplate());
 			dist.setAttr_id(src.getAttrId());
 			dist.setDepth(src.getDepth());
+			dist.setMeta_description(src.getMetaDescription());
+			dist.setMeta_keywords(src.getMetaKeywords());
+			dist.setMeta_title(src.getMetaTitle());
 		}
 	}
 
@@ -84,15 +87,16 @@ public class ContTypeCacheServiceImpl implements ContTypeCacheService {
 	}
 	
 	@Override
-	public Long getIdByName(String englishName){
-		Long typeId = typeNames.get(englishName);
-		if(typeId == null) {
+	public ContTypeDTO getIdByName(String englishName){
+		ContTypeDTO type = typeNames.get(englishName);
+		if(type == null) {
+			type = new ContTypeDTO();
 			ContType contType =contTypeService.findIdByEnglishName(englishName);
-			typeId = contType.getId();
-			typeNames.put(englishName, contType.getId());
+			copy(contType, type);
+			typeNames.put(englishName, type);
 		}
 		
-		return typeId;
+		return type;
 	}
 
 }

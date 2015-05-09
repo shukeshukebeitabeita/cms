@@ -34,5 +34,5 @@ public interface ContTypeCacheService {
 	 */
 	void set(ContType contType);
 
-	Long getIdByName(String englishName);
+	ContTypeDTO getIdByName(String englishName);
 }

@@ -437,3 +437,18 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <#function curl_a content>
 <#return "<a href=\"${rc.contextPath}${content.url!''}${content.content_id}.html\"  target=\"_blank\">${content.title!''}</a>">
 </#function>
+
+<#macro tkeywords >
+<meta name="keywords" content="${type.meta_keywords}" />
+</#macro>
+<#macro tdescription>
+<meta name="description" content="${type.meta_description}" />
+</#macro>
+<#macro title>
+<title>${type.meta_title}</title>
+</#macro>
+<#macro tmeta>
+<@title />
+<@tkeywords />
+<@tdescription />
+</#macro>

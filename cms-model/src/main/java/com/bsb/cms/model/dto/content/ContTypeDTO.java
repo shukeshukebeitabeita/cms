@@ -51,6 +51,36 @@ public class ContTypeDTO implements Serializable {
     private Short status;
     private Short depth;
     
+    private String meta_title;
+
+    private String meta_keywords;
+
+    private String meta_description;
+    
+
+	public String getMeta_title() {
+		return meta_title;
+	}
+
+	public void setMeta_title(String meta_title) {
+		this.meta_title = meta_title;
+	}
+
+	public String getMeta_keywords() {
+		return meta_keywords;
+	}
+
+	public void setMeta_keywords(String meta_keywords) {
+		this.meta_keywords = meta_keywords;
+	}
+
+	public String getMeta_description() {
+		return meta_description;
+	}
+
+	public void setMeta_description(String meta_description) {
+		this.meta_description = meta_description;
+	}
 
 	public Short getDepth() {
 		return depth;

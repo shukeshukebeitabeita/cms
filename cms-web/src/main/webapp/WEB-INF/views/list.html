@@ -2,10 +2,9 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8">
+    <@cms.tmeta />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
    <!-- <link rel="icon" href="../../favicon.ico">-->
 
     <title>Blog Template for Bootstrap</title>
@@ -45,7 +44,7 @@
           <#list contents as oneData>
           <div style="border-bottom-color:#ddd;border-bottom-width:2px;border-bottom-style:solid;margin-bottom:10px;clear: both;line-height:20px;height:20px;"></div>
           <div class="media">
-			  <div class="media-left">
+			  <div class="media-left media-middle">
 			    <a href="${cms.curl(oneData)}" target="_blank">
 			      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
 			    </a>

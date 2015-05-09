@@ -13,6 +13,7 @@ import com.bsb.cms.commons.page.PageContext;
 import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.model.dto.content.ContContentDTO;
+import com.bsb.cms.model.dto.content.ContTypeDTO;
 import com.bsb.cms.model.vo.content.TypeListSearchVO;
 
 /**
@@ -44,7 +45,9 @@ public class TypeIndexController {
 		PageContext pc=PageContext.getContext();//调试或者收到修改/设置一些参数用
 		System.out.println(pc.getCurrentPage());
 		
-		typeId = contTypeCacheService.getIdByName(englishName);
+		ContTypeDTO type = contTypeCacheService.getIdByName(englishName);
+		modelMap.put("type", type);
+		typeId = type.getId();
 		
 		modelMap.put("typeId", typeId);
 		conditions.setType_id(typeId);
