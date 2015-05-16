@@ -73,7 +73,7 @@
 </head>
 <body id="mainLayout" class="easyui-layout" style="overflow-y: hidden">
 	<!-- 布局 -->
-	<div data-options="region:'north'"
+	<%-- <div data-options="region:'north',split:true"
 		style="width:100%; height:100px; background:url(${rc.contextPath}/images/banner_bg.jpg) repeat-x;">
 		 <span
 			style="width: 48%; height: 90px; text-align: center; float: left;"><img
@@ -84,6 +84,19 @@
 			<a style="line-height: 40px; font-size: 20px; display: inline-block;"
 			href="#" onclick="$('#dlg').dialog('open')">修改密码</a><a
 			style="line-height: 40px; margin-left: 40px; font-size: 20px; display: inline-block;"
+			href="${rc.contextPath }/loginout.htm">退出</a></span>
+	</div> --%>
+	<div data-options="region:'north',title:'后台管理',split:true,collapsed:true"
+		style="width:100%; height:105px; background:url(${rc.contextPath}/images/banner_bg.jpg) repeat-x;">
+		 <span
+			style="width: 48%; height: 70px; text-align: center; float: left;"><img
+			src="${rc.contextPath}/images/banner_logo.jpg" height="70px"
+			width="400px" /></span> <span
+			style="width: 48%; height: 70px; text-align: right; float: left;"><b
+			style="line-height: 30px; font-size: 20px; display: inline-block;">${user_name}</b><br />
+			<a style="line-height: 30px; font-size: 20px; display: inline-block;"
+			href="#" onclick="$('#dlg').dialog('open')">修改密码</a><a
+			style="line-height: 30px; margin-left: 40px; font-size: 20px; display: inline-block;"
 			href="${rc.contextPath }/loginout.htm">退出</a></span>
 	</div>
 
@@ -145,6 +158,8 @@
 			</div>
 			
 			<!-- 模板 -->
+			<!-- template start -->
+				<j:ifAuth code="003004">
 			<div title="模板管理" style="padding: 10px" data-options="tools:[{
 						iconCls:'icon-reload',
 						 handler:function(){
@@ -219,6 +234,9 @@
 					}
 				</script>
 			</div>
+			</j:ifAuth>
+			    <!-- template end -->
+		
 		</div>
 	</div>
 
