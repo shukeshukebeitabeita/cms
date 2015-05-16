@@ -37,7 +37,7 @@ function formatMyDate(value, row, index) {
 //get system time ;yyyy-MM-dd hh:mm:ss
 function getTime(){
 	var now=new Date();
-	var year=now.getYear();
+	var year=now.getFullYear();
 	var month=now.getMonth();
 	var day=now.getDate();
 	var hours=now.getHours();

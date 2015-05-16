@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>编辑操作员</title>
+<title>编辑内容</title>
 <%@ include file="../include/head.jsp"%>
 
 <script type="text/javascript" src="${rc.contextPath}/ckeditor/ckeditor.js"></script>
@@ -46,7 +46,7 @@
 						
 						<script>
 						var publishTime = $("input[name='publishTime']");
-						if(publishTime.val() && publishTime.val() != ""){
+						if(publishTime.val()==null || publishTime.val() == ""){
 							publishTime.val(getTime());
 						}
 						</script>
