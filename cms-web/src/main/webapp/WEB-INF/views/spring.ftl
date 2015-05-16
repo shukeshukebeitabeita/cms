@@ -352,7 +352,7 @@
 <div class="blog-masthead">
  <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="${rc.contextPath}">首页</a>
+          <a class="blog-nav-item active" href="${rc.contextPath!'/'}">首页</a>
            <a class="blog-nav-item active" href="${rc.contextPath}/jock">逗比</a>
           <a class="blog-nav-item active" href="${rc.contextPath}/jiagou">架构</a>
           <a class="blog-nav-item" href="${rc.contextPath}/soa">SOA/Dubbo</a>
