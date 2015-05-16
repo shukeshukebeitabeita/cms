@@ -439,13 +439,13 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 </#function>
 
 <#macro tkeywords >
-<meta name="keywords" content="${type.meta_keywords}" />
+<meta name="keywords" content="${type.meta_keywords!''}" />
 </#macro>
 <#macro tdescription>
-<meta name="description" content="${type.meta_description}" />
+<meta name="description" content="${type.meta_description!''}" />
 </#macro>
 <#macro title>
-<title>${type.meta_title}</title>
+<title>${type.meta_title!''}</title>
 </#macro>
 <#macro tmeta>
 <@title />

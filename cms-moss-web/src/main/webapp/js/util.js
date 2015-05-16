@@ -34,6 +34,20 @@ function formatMyDate(value, row, index) {
 	return fomatDate(value);
 }
 
+//get system time ;yyyy-MM-dd hh:mm:ss
+function getTime(){
+	var now=new Date();
+	var year=now.getYear();
+	var month=now.getMonth();
+	var day=now.getDate();
+	var hours=now.getHours();
+	var minutes=now.getMinutes();
+	var seconds=now.getSeconds();
+	return  ""+year+"-"+month+"-"+day+"- "+hours+":"+minutes+":"+seconds;
+	////一秒刷新一次显示时间
+	//var timeID=setTimeout(showTime,1000);
+}
+
 /**
  * 去id为formName的元素内的input框类型为text的空格。 当焦点失去的时候生效。
  * 

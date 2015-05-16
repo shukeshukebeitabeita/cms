@@ -43,6 +43,13 @@
 						<c:if test="${attribute.hasShowTime == 1}">
 						<span class="end-date">发布时间：</span><input type="text" name="publishTime"
 						class="easyui-datetimebox  jinputMinWidth"  value="${content.publishTime}"/>
+						
+						<script>
+						var publishTime = $("input[name='publishTime']");
+						if(publishTime.val() && publishTime.val() != ""){
+							publishTime.val(getTime());
+						}
+						</script>
 						</c:if>
 						<c:if test="${attribute.hasSource == 1}">
 						<span class="left-padding">来源：</span><input type="text" name="source"
