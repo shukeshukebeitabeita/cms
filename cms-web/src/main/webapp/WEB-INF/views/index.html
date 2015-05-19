@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-   <!-- <link rel="icon" href="../../favicon.ico">-->
+    <link rel="icon" href="${staticRoot}/favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
-    <!-- Custom styles for this template -->
-
-  <link href="${staticRoot}/css/common_context.css" rel="stylesheet">
+    <title>架构那点事</title>
   	
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 可选的Bootstrap主题文件（一般不用引入） -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  
+    <!-- Custom styles for this template -->
+    <link href="${staticRoot}/css/common_context.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,151 +38,184 @@
 
       <div class="row">
 
-        <div class="col-sm-7 col-sm-offset-1 blog-main">
+        <div class="col-sm-8 blog-main">
         
         
-<div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt=".">
-    </a>
-  </div>
-  <div class="media-body">
-    <h2 class="media-heading blog-post-title">Media heading</h2>
-    asdfsdf asdf   sdfsdf sdf sd f s fa sdf s f sdfsdf sf sdfasd fasddfsa fadsf asd fas fas f s fasdfasfasf as f a fa sf asdf
-  </div>
-</div>
+			  <h2 class="type-title" style="margin-top: 0px;"><span>业界资讯</span></h2>
+			    <@clist type_id="1" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				     	<div class="media">
+						  <div class="media-left media-middle">
+						    <a href="${cms.curl(oneData)}" target="_blank">
+						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
+						    </a>
+						  </div>
+						  <div class="media-body">
+						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
+						    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+						    <div>${cms.substr(oneData.about!'', 105)}</div>
+						  </div>
+					   </div>
+				     </#list>
+			     	</#if>
+			     </@clist>
 
+			<h2 class="type-title"><span>架构</span></h2>
+			   <@clist type_id="2" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				     	<div class="media">
+						  <div class="media-left media-middle">
+						    <a href="${cms.curl(oneData)}" target="_blank">
+						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
+						    </a>
+						  </div>
+						  <div class="media-body">
+						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
+						    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+						    <div>${cms.substr(oneData.about!'', 105)}</div>
+						  </div>
+					   </div>
+				     </#list>
+			     	</#if>
+			     </@clist>
 
-          <#if contents?exists>
-          <#list contents as oneData>
-          <div class="blog-post">
-            <h2 class="blog-post-title">${oneData.title!''}</h2>
-            <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+		<div style="clear: both;"></div>
 
-            <div>${oneData.about!''}</div>
-          </div>
-          </#list>
-         </#if>
+		<div style="float:left;width: 49%;">
+		<h2 class="type-title"><span>大数据</span></h2>
+		<ul class="list-group">
+		  <@clist type_id="5" count=5 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				      <li class="list-group-item">
+					    <span class="badge">2015-05-08</span>
+					    	${cms.curl_a(oneData)}
+					  </li>
+			          </#list>
+		     	</#if>
+		     </@clist>
+		</ul>
+		</div>
+		<div style="float:right;width: 49%;">
+		<h2 class="type-title"><span>云计算</span></h2>
+		<ul class="list-group">
+		    <@clist type_id="11" count=5 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				      <li class="list-group-item">
+					    <span class="badge">2015-05-08</span>
+					    ${cms.curl_a(oneData)}
+					  </li>
+			          </#list>
+		     	</#if>
+		     </@clist>
+		</ul>
+		</div>
+		
+		<div style="clear: both;"></div>
 
-<#if (page?exists && page.totalPages>0)>
-<#assign startNum=1>
-<#assign endNum=1>
+		<h2 class="type-title"><span>数据库/NOSQL</span></h2>
+		<@clist type_id="13" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				     	<div class="media">
+						  <div class="media-left media-middle">
+						    <a href="${cms.curl(oneData)}" target="_blank">
+						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
+						    </a>
+						  </div>
+						  <div class="media-body">
+						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
+						    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+						    <div>${cms.substr(oneData.about!'', 105)}</div>
+						  </div>
+					   </div>
+				     </#list>
+			     	</#if>
+			     </@clist>
+			     
+		
+		<h2 class="type-title"><span>SOA</span></h2>
+		<@clist type_id="3" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				     	<div class="media">
+						  <div class="media-left media-middle">
+						    <a href="${cms.curl(oneData)}" target="_blank">
+						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
+						    </a>
+						  </div>
+						  <div class="media-body">
+						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
+						    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+						    <div>${cms.substr(oneData.about!'', 105)}</div>
+						  </div>
+					   </div>
+				     </#list>
+			     	</#if>
+			     </@clist>
 
- <#if (page.currentPage>8)>
-     <#assign startNum=page.currentPage-2>
-     <#assign endNum=1>
- <#else>
-    <#if (page.totalPages>8)>
-    
-       <#assign startNum=page.currentPage-2>
-       <#if (page.currentPage+2 > page.totalPages)>
-          <#assign endNum=page.currentPage+2>
-       <#else>
-            <#assign endNum=page.totalPages>
-       </#if>
-      
-    <#else>
-       <#assign endNum=page.totalPages>
-    </#if>
- </#if>
-        <nav>
-		  <ul class="pagination">
-		  <#if (page.totalPages>8)>
-		  <li>
-		  <a href="?page=1" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		  <#else>
-		    <li class="disabled">
-		    <a href="javaScript:void(0);" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		   </#if>
-		      
-		    <#list startNum..endNum as pageNum>
-		      <#if (pageNum== page.currentPage)>
-		      <li class="active"><a href="javaScript:void(0);">${pageNum}</a></li>
-		      <#else>
-		      <li><a href="?page=${pageNum}">${pageNum}</a></li>
-		      </#if>
-		    </#list>
-		    
-		    <#if (page.currentPage==page.totalPages)>
-		    <li class="disabled">
-		     <a href="javaScript:void(0);" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		    <#else>
-		    <li>
-		     <a href="?page=${page.totalPages}" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		    </#if>
-		     
-		    <li><a href="javascript:void(0)">&nbsp; &nbsp;</a></li>
-		    <li><a href="javascript:void(0)">共${page.totalPages?default(0)}页</a></li>
-		  </ul>
-	  </nav>
-</#if>
-        </div><!-- /.blog-main -->
+        </div><!-- /main -->
 
-        <div class="col-sm-3  blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>Archives</h4>
+<!--col-sm-offset-1-->
+        <div class="col-sm-4">
+
+		  <h3 class="right-type-title" style="margin-top: 0px;"><span>逗比</span></h3>
+		  		<@clist type_id="12" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+				     <div class="media">
+					  <div class="media-left media-middle">
+					    <a href="${cms.curl(oneData)}" target="_blank">
+					      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="100px" height="75px">
+					    </a>
+					  </div>
+					  <div class="media-body">
+					    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
+					    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
+					  </div>
+					</div>
+		    		 </#list>
+			     	</#if>
+			     </@clist>
+			     
+			<div class="sidebar-module">
+            <h3 class="right-type-title"><span>缓存</span></h3>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
+              <@clist type_id="7" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+              		<li>${cms.curl_a(oneData)}</li>
+               		</#list>
+			     	</#if>
+			     </@clist>
             </ol>
           </div>
+          
           <div class="sidebar-module">
-            <h4>Elsewhere</h4>
+            <h3 class="right-type-title"><span>消息</span></h3>
             <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
+              <@clist type_id="4" count=4 var="cts">
+			       <#if (cts?exists && cts?size >0)>
+				     <#list cts as oneData>
+              		<li>${cms.curl_a(oneData)}</li>
+               		</#list>
+			     	</#if>
+			     </@clist>
             </ol>
           </div>
-        </div><!-- /.blog-sidebar -->
+		  
+
+        </div><!-- /sidebar -->
 
       </div><!-- /.row -->
 
     </div><!-- /.container -->
 
-   
      <@cms.footer />
   
-    
-    
-    
-    
-     <@clist type_id="2" count=10 var="cts">
-      <#if (cts?exists && cts?size >0)>
-     <#list cts as c>
-     ${c.title}
-     </#list>
-     </#if>
-     </@clist>
- 
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
