@@ -44,11 +44,12 @@
     insert into tmpt_template (PARENT_ID, TEMPLATE_NAME, 
       FILE_DIR, DESCRIPTION, 
       CREATE_USER, 
-      UPDATE_USER, TEMPLATE_TYPE, HAS_LEAF)
+      UPDATE_USER, TEMPLATE_TYPE, HAS_LEAF
+      ,UPDATE_DATE,CREATE_DATE)
     values (#{parentId,jdbcType=BIGINT}, #{templateName,jdbcType=VARCHAR}, 
       #{fileDir,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
-      #{templateType,jdbcType=SMALLINT}, #{hasLeaf,jdbcType=SMALLINT})
+      #{templateType,jdbcType=SMALLINT}, #{hasLeaf,jdbcType=SMALLINT},NOW(),NOW())
   </insert>
   
    <update id="updateByPrimaryKey" parameterType="tmptTemplate" >

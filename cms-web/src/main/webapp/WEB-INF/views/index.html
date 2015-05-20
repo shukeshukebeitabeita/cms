@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="${staticRoot}/favicon.ico">
+    <link rel="shortcut icon" href="${staticRoot}/favicon.ico">
 
     <title>架构那点事</title>
   	
@@ -47,9 +47,7 @@
 				     <#list cts as oneData>
 				     	<div class="media">
 						  <div class="media-left media-middle">
-						    <a href="${cms.curl(oneData)}" target="_blank">
-						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
-						    </a>
+						    <@cms.img oneData/>
 						  </div>
 						  <div class="media-body">
 						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
@@ -67,9 +65,7 @@
 				     <#list cts as oneData>
 				     	<div class="media">
 						  <div class="media-left media-middle">
-						    <a href="${cms.curl(oneData)}" target="_blank">
-						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
-						    </a>
+						    <@cms.img oneData/>
 						  </div>
 						  <div class="media-body">
 						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
@@ -89,8 +85,8 @@
 		  <@clist type_id="5" count=5 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
-				      <li class="list-group-item">
-					    <span class="badge">2015-05-08</span>
+				      <li class="list-group-item" title="${oneData.title}" style="padding-right:100px; height:38px; overflow:hidden;">
+                      <span class="badge" style="position: absolute; right:5px; top:9px;">${cms.substr(oneData.publish_time,10)}</span>
 					    	${cms.curl_a(oneData)}
 					  </li>
 			          </#list>
@@ -104,8 +100,8 @@
 		    <@clist type_id="11" count=5 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
-				      <li class="list-group-item">
-					    <span class="badge">2015-05-08</span>
+				     <li class="list-group-item" title="${oneData.title}" style="padding-right:100px; height:38px; overflow:hidden;">
+    				<span class="badge" style="position: absolute; right:5px; top:9px;">${cms.substr(oneData.publish_time,10)}</span>
 					    ${cms.curl_a(oneData)}
 					  </li>
 			          </#list>
@@ -122,9 +118,7 @@
 				     <#list cts as oneData>
 				     	<div class="media">
 						  <div class="media-left media-middle">
-						    <a href="${cms.curl(oneData)}" target="_blank">
-						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
-						    </a>
+						    <@cms.img oneData/>
 						  </div>
 						  <div class="media-body">
 						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
@@ -143,9 +137,7 @@
 				     <#list cts as oneData>
 				     	<div class="media">
 						  <div class="media-left media-middle">
-						    <a href="${cms.curl(oneData)}" target="_blank">
-						      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="150px" height="100px">
-						    </a>
+						   <@cms.img oneData/>
 						  </div>
 						  <div class="media-body">
 						    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
@@ -168,9 +160,7 @@
 				     <#list cts as oneData>
 				     <div class="media">
 					  <div class="media-left media-middle">
-					    <a href="${cms.curl(oneData)}" target="_blank">
-					      <img class="media-object" src="http://www.alibuybuy.com/wp-content/themes/TechResponsive/images/logo.gif" alt="${cms.substr(oneData.title, 6)}" width="100px" height="75px">
-					    </a>
+					   <@cms.img oneData/>
 					  </div>
 					  <div class="media-body">
 					    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>

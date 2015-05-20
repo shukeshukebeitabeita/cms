@@ -51,6 +51,7 @@
       HAS_SEO, HAS_TAG, HAS_ORDER_OPT, 
       NAME, REMARK, 
       CREATE_USER,  UPDATE_USER
+      ,CREATE_DATE,UPDATE_DATE
       )
     values (#{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
       #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
@@ -59,6 +60,7 @@
        #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
       #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}
+      ,NOW(),NOW()
       )
   </insert>
   

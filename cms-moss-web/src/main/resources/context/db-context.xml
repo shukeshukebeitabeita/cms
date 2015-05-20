@@ -13,8 +13,9 @@
   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd  
   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
-	<!-- <bean id="defaultDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
-		<property name="jndiName" value="java:comp/env/jdbc/cmsDs" /> </bean> -->
+	<bean id="defaultDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="java:comp/env/jdbc/cmsDs" />
+	 </bean>
 
 	<!-- 配置数据源，从上面配置文件读取 -->
 <!-- 	<bean id="defaultDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -29,7 +30,7 @@
 		<property name="acquireIncrement" value="${pool.acquireIncrement}" />
 	</bean> -->
 	
-	 <bean id="defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<!-- 	 <bean id="defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     	<property name="driverClassName" value="${database.driverClassName}" />
 		<property name="url" value="${database.url}" />
 		<property name="username" value="${database.username}" />
@@ -38,8 +39,8 @@
     	<property name="maxActive" value="${database.maxActive}" />
 		<property name="maxIdle" value="${database.maxIdle}" />
 		<property name="maxWait" value="${database.maxWait}" />
-	<!-- 	<property name="validationQuery" value="${database.validationQuery}" />
-    	<property name="testOnBorrow" value="${database.testOnBorrow}" /> -->
-	</bean>
+		<property name="validationQuery" value="${database.validationQuery}" />
+    	<property name="testOnBorrow" value="${database.testOnBorrow}" />
+	</bean> -->
 
 </beans>

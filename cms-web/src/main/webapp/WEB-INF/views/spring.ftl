@@ -338,7 +338,7 @@
              -->
         </div>
         <!-- Search begin -->
-    	<form method="get" class="searchform" action="http://www.xjiagou.com/">
+    	<form method="get" class="searchform" action="http://www.jiagou4.com/">
    <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
    <input class="searchBtn radius" type="submit" title="搜索" value="搜 索"/>
 </form>        <!-- Search end -->
@@ -435,7 +435,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 </#function>
 
 <#function curl_a content>
-<#return "<a href=\"${rc.contextPath}${content.url!''}${content.content_id}.html\"  target=\"_blank\">${content.title!''}</a>">
+<#return "<a href=\"${rc.contextPath}${content.url!''}${content.content_id}.html\" title=\"${content.title!''}\" target=\"_blank\">${content.title!''}</a>">
 </#function>
 
 <#macro tkeywords >
@@ -451,4 +451,13 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <@title />
 <@tkeywords />
 <@tdescription />
+</#macro>
+
+
+<#macro img c >
+<#if c.default_img?exists>
+	 <a href="${cms.curl(c)}" target="_blank">
+      <img class="media-object" src="${staticRoot}/${c.default_img}" alt="${cms.substr(c.title, 15)}" width="150px" height="100px">
+    </a>
+ </#if>
 </#macro>

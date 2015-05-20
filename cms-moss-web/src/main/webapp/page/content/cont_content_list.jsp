@@ -59,7 +59,7 @@ var webContext = '${webContext}';
 	</table>
 	
 	<div id="tb" style="padding:5px;height:auto">
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">&nbsp;&nbsp;新增&nbsp;&nbsp;</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增内容-${type.title }', contextPath + '/moss/cont/create.htm?typeId=${typeId}');">&nbsp;&nbsp;新增&nbsp;&nbsp;</a>
 		<!-- <a id="deleteContent"  href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a> -->
  		<a href="javascript:;" class="easyui-linkbutton" data-options="">回收站</a>
  

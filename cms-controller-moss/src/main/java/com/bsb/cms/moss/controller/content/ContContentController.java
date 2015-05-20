@@ -90,6 +90,8 @@ public class ContContentController extends LogController {
 	@RequestMapping("index.htm")
 	public String index(String typeId, ModelMap modelMap) {
 		modelMap.put("typeId", typeId);
+		ContTypeDTO type = contTypeCacheService.getById(Long.valueOf(typeId));
+		modelMap.put("type", type);
 		modelMap.put("staticPath", staticPath);
 		modelMap.put("webContext", webContext);
 		
