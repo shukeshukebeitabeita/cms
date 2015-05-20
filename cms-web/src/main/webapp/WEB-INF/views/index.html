@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <!-- <meta name="author" content=""> -->
     <link rel="shortcut icon" href="${staticRoot}/favicon.ico">
 
     <title>架构那点事</title>
@@ -160,7 +160,7 @@
 				     <#list cts as oneData>
 				     <div class="media">
 					  <div class="media-left media-middle">
-					   <@cms.img oneData/>
+					   <@cms.img c=oneData w=100 h=75/>
 					  </div>
 					  <div class="media-body">
 					    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>

@@ -327,14 +327,14 @@
    <!-- Header begin -->
 <div class="header"><div class="inner">
     <!-- Logo begin -->
-	        <h1 class="logo"><a href="http://www.xjiagou.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="X架构   X战警" title="架构那点事"></a></h1>
+	        <h1 class="logo"><a href="http://www.jiagou4.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="架构那点事" title="架构那点事"></a></h1>
         <!-- Logo end -->
     <!-- HeadRight begin -->
     <div class="headr">
     	<div class="op"><!-- 
-        	<a href="http://www.xjiagou.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
+        	<a href="http://www.jiagou4.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
         	<a href="javascript:void(0);" id="fav"><i class="iconfont icon-shoucang"></i>收藏</a> <span>/</span> 
-            <a href="http://www.xjiagou.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
+            <a href="http://www.jiagou4.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
              -->
         </div>
         <!-- Search begin -->
@@ -454,10 +454,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 </#macro>
 
 
-<#macro img c >
+<#macro img c w=150 h=100>
 <#if c.default_img?exists>
 	 <a href="${cms.curl(c)}" target="_blank">
-      <img class="media-object" src="${staticRoot}/${c.default_img}" alt="${cms.substr(c.title, 15)}" width="150px" height="100px">
+      <img class="media-object" src="${staticRoot}/${c.default_img}" alt="${cms.substr(c.title, 15)}" width="${w}px" height="${h}px">
     </a>
  </#if>
 </#macro>

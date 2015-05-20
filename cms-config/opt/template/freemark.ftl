@@ -33,18 +33,18 @@
    <!-- Header begin -->
 <div class="header"><div class="inner">
     <!-- Logo begin -->
-	        <h1 class="logo"><a href="http://www.xjiagou.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="X架构   X战警" title="架构那点事"></a></h1>
+	        <h1 class="logo"><a href="http://www.jiagou4.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="架构那点事" title="架构那点事"></a></h1>
         <!-- Logo end -->
     <!-- HeadRight begin -->
     <div class="headr">
     	<div class="op"><!-- 
-        	<a href="http://www.xjiagou.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
+        	<a href="http://www.jiagou4.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
         	<a href="javascript:void(0);" id="fav"><i class="iconfont icon-shoucang"></i>收藏</a> <span>/</span> 
-            <a href="http://www.xjiagou.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
+            <a href="http://www.jiagou4.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
              -->
         </div>
         <!-- Search begin -->
-    	<form method="get" class="searchform" action="http://www.xjiagou.com/">
+    	<form method="get" class="searchform" action="http://www.jiagou4.com/">
    <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
    <input class="searchBtn radius" type="submit" title="搜索" value="搜 索"/>
 </form>        <!-- Search end -->
