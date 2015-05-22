@@ -29,7 +29,10 @@ public class ImgRemot2Location {
 		String[] returns = new String[2];
 		Document doc = ParseHTML.parseHtmlFromString(html);
 		Elements pngs = doc.select("img[src]");
-		
+		if(keyword == null){
+			keyword = "";
+		}
+		if(pngs != null){
 	      for (Element element : pngs) {
 	        String imgUrl = element.attr("src");
 	        //if (imgUrl.trim().startsWith("/")) {
@@ -42,13 +45,13 @@ public class ImgRemot2Location {
 	        		}
 	        		
 	        		if(defaultPath==null) {
-	        			defaultPath = ImageUtil.getDefaultImg(imgPath, localImg);//压缩一张默认图片
+	        			defaultPath = "/upload/" + localImg+ ImageUtil.getDefaultImg(imgPath, localImg);//压缩一张默认图片
 	        		}
 	        	}
 	        	
 	        }
 	      }
-	      
+	    }
 	      returns[1] = doc.children().outerHtml();
 	     
 	      returns[0] = defaultPath;

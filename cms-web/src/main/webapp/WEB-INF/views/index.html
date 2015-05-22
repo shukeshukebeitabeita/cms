@@ -41,7 +41,7 @@
         <div class="col-sm-8 blog-main">
         
         
-			  <h2 class="type-title" style="margin-top: 0px;"><span>业界资讯</span></h2>
+			  <h2 class="type-title" style="margin-top: 0px;"><span><a class="type-a" href="${rc.contextPath}/news">业界资讯</a></span></h2>
 			    <@clist type_id="1" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
@@ -59,7 +59,7 @@
 			     	</#if>
 			     </@clist>
 
-			<h2 class="type-title"><span>架构</span></h2>
+			<h2 class="type-title"><span><a class="type-a active" href="${rc.contextPath}/jiagou">架构</a></span></h2>
 			   <@clist type_id="2" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
@@ -80,7 +80,7 @@
 		<div style="clear: both;"></div>
 
 		<div style="float:left;width: 49%;">
-		<h2 class="type-title"><span>大数据</span></h2>
+		<h2 class="type-title"><span><a class="type-a" href="${rc.contextPath}/bigdata">大数据</a></span></h2>
 		<ul class="list-group">
 		  <@clist type_id="5" count=5 var="cts">
 			       <#if (cts?exists && cts?size >0)>
@@ -95,7 +95,7 @@
 		</ul>
 		</div>
 		<div style="float:right;width: 49%;">
-		<h2 class="type-title"><span>云计算</span></h2>
+		<h2 class="type-title"><span><a class="type-a" href="${rc.contextPath}/yun">云计算</a></span></h2>
 		<ul class="list-group">
 		    <@clist type_id="11" count=5 var="cts">
 			       <#if (cts?exists && cts?size >0)>
@@ -112,7 +112,7 @@
 		
 		<div style="clear: both;"></div>
 
-		<h2 class="type-title"><span>数据库/NOSQL</span></h2>
+		<h2 class="type-title"><span><a class="type-a" href="${rc.contextPath}/store">数据库/NoSql</a></span></h2>
 		<@clist type_id="13" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
@@ -131,7 +131,7 @@
 			     </@clist>
 			     
 		
-		<h2 class="type-title"><span>SOA</span></h2>
+		<h2 class="type-title"><span><a class="type-a" href="${rc.contextPath}/soa">SOA/Dubbo</a></span></h2>
 		<@clist type_id="3" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
@@ -154,7 +154,7 @@
 <!--col-sm-offset-1-->
         <div class="col-sm-4">
 
-		  <h3 class="right-type-title" style="margin-top: 0px;"><span>逗比</span></h3>
+		  <h3 class="right-type-title" style="margin-top: 0px;"><span><a class="type-a active" href="${rc.contextPath}/jock">逗比</a></span></h3>
 		  		<@clist type_id="12" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
@@ -172,7 +172,7 @@
 			     </@clist>
 			     
 			<div class="sidebar-module">
-            <h3 class="right-type-title"><span>缓存</span></h3>
+            <h3 class="right-type-title"><span><a class="type-a" href="${rc.contextPath}/cache">缓存</a></span></h3>
             <ol class="list-unstyled">
               <@clist type_id="7" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>
@@ -185,7 +185,7 @@
           </div>
           
           <div class="sidebar-module">
-            <h3 class="right-type-title"><span>消息</span></h3>
+            <h3 class="right-type-title"><span><a class="type-a" href="${rc.contextPath}/mq">消息</a></span></h3>
             <ol class="list-unstyled">
               <@clist type_id="4" count=4 var="cts">
 			       <#if (cts?exists && cts?size >0)>

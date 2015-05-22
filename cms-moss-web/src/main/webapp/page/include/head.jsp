@@ -1,5 +1,6 @@
 <!-- 后台的js无需再底部添加 -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/manager.css"/>
 <link rel="stylesheet" type="text/css" href="${rc.contextPath}/js/easyui/themes/default/easyui.css"/>
 <link rel="stylesheet" type="text/css" href="${rc.contextPath}/js/easyui/themes/icon.css"/>

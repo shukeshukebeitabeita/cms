@@ -170,10 +170,10 @@ public class ContContentController extends LogController {
 		ContContentBody contContentBody = null;
 		try {
 			if(StringUtils.isNotBlank(contentBody)) {
-				String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
+				String[] htmls = imgRemot2Location.transfer(contentBody, content.getKeyword());
 				contContentBody = new ContContentBody(htmls[1]);
 				if(StringUtils.isNotBlank(htmls[0])){
-					content.setDefaultImg("/" + htmls[0]);
+					content.setDefaultImg(htmls[0]);
 				}
 			}
 			try {
@@ -209,10 +209,10 @@ public class ContContentController extends LogController {
 			try {
 				String contentBody = contContentBody.getContentBody();
 				if(StringUtils.isNotBlank(contentBody)) {
-					String[] htmls = imgRemot2Location.transfer(contentBody, content.getcTag());
+					String[] htmls = imgRemot2Location.transfer(contentBody, content.getKeyword());
 					contContentBody.setContentBody(htmls[1]);
 					if(StringUtils.isNotBlank(htmls[0])){
-						content.setDefaultImg("/" + htmls[0]);
+						content.setDefaultImg(htmls[0]);
 					}
 				}
 				content.setStatus(ContentEnum.DEPLOY.getCode());

@@ -245,7 +245,7 @@
       STOCK, DISCOUNT, BRAND, 
       GOODS_URL, STATUS, TITLE_STYLE, 
       CREATE_USER, 
-      UPDATE_USER, URL)
+      UPDATE_USER, URL, CREATE_DATE, UPDATE_DATE)
     VALUES (#{title,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, 
       #{defaultImg,jdbcType=VARCHAR}, #{vedio,jdbcType=VARCHAR}, #{audio,jdbcType=VARCHAR}, 
       #{link,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT},#{typeId1,jdbcType=BIGINT},
@@ -259,7 +259,7 @@
       #{stock,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, #{brand,jdbcType=VARCHAR}, 
       #{goodsUrl,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{titleStyle,jdbcType=VARCHAR}, 
       #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{contentUrl,jdbcType=VARCHAR})
+      #{updateUser,jdbcType=VARCHAR}, #{contentUrl,jdbcType=VARCHAR}, NOW(),NOW())
   
   </insert>
   

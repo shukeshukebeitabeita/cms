@@ -23,11 +23,11 @@
 				<table>
 					<tr>
 						<td align="right">用户名：</td>
-						<td align="left"><input class="easyui-validatebox" type="text" name="name" data-options="required:true" maxlength="20" value="admin"/> </td>
+						<td align="left"><input class="easyui-validatebox" type="text" name="name" data-options="required:true" maxlength="20" value=""/> </td>
 					</tr>
 					<tr>
 						<td align="right">密码：</td>
-						<td align="left"><input class="easyui-validatebox" type="password" name="password" data-options="required:true" maxlength="20" value="admin"/> </td>
+						<td align="left"><input class="easyui-validatebox" type="password" name="password" data-options="required:true" maxlength="20" value=""/> </td>
 					</tr>
 				<tr>
 				<td colspan="2">&nbsp;</td>
