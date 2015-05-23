@@ -54,7 +54,7 @@ public class PublishUtil {
 	 */
 	public static String getCreateTemplateDir(Long parentId, String fileDir) {
 		String rootDir = CustomPropertyConfigurer.getProperty("cms.template.path");
-		return rootDir + parentId + "\\";
+		return rootDir + "\\" + parentId + "\\";
 		//return URLUtils.getTemplatePath() + parentId + "/";
 	}
 

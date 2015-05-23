@@ -21,8 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
-import com.bsb.cms.moss.controller.tmpt.TmptTemplateController;
-
 /**
  * @author hongjian.liu
  * @version 1.0.0 2014-7-7
