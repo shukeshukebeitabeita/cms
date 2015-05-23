@@ -19,6 +19,7 @@ import java.util.Calendar;
 import org.apache.commons.lang.StringUtils;
 
 import com.bsb.cms.commons.utils.ConfigUtils;
+import com.bsb.cms.commons.utils.CustomPropertyConfigurer;
 import com.bsb.cms.commons.web.SpringContextUtil;
 import com.bsb.cms.model.dto.content.ContContentDTO;
 import com.bsb.cms.model.dto.content.ContTypeDTO;
@@ -52,7 +53,8 @@ public class PublishUtil {
 	 * @param template
 	 */
 	public static String getCreateTemplateDir(Long parentId, String fileDir) {
-		return "E:/opt/template/" + parentId + "/";//TODO
+		String rootDir = CustomPropertyConfigurer.getProperty("cms.template.path");
+		return rootDir + parentId + "\\";
 		//return URLUtils.getTemplatePath() + parentId + "/";
 	}
 
