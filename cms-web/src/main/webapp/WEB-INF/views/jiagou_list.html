@@ -120,28 +120,21 @@
 		
         </div><!-- /.main -->
 
-       <div class="col-sm-4 blog-sidebar">
-          
-		     <h3 class="right-type-title" style="margin-top: 0px;"><span>热门推荐</span></h3>
-		  		<@clist type_id=typeId count=5 var="cts" hasHot="1">
+       <div class="col-sm-4  blog-sidebar">
+
+		<div class="sidebar-module">
+            <h3 class="right-type-title"><span><a class="type-a" href="${rc.contextPath}/soa_xiazai">下载</a></span></h3>
+            <ol class="list-unstyled">
+              <@clist type_id="8" count=10 var="cts">
 			       <#if (cts?exists && cts?size >0)>
 				     <#list cts as oneData>
-				     <div class="media">
-					  <div class="media-left media-middle">
-					   <@cms.img c=oneData w=100 h=75/>
-					  </div>
-					  <div class="media-body">
-					    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
-					    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
-					  </div>
-					</div>
-		    		 </#list>
+              		<li>${cms.curl_a(oneData)}</li>
+               		</#list>
 			     	</#if>
 			     </@clist>
-
-
+            </ol>
+          </div>
           
-
         </div><!-- /.sidebar -->
 
       </div><!-- /.row -->
@@ -161,6 +154,5 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
   </body>
 </html>

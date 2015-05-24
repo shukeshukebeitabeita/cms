@@ -29,6 +29,11 @@
 
 
 <#macro header>
+<script>
+var contextPath="${contextPath}";
+var htmlPath = "${contextPath}";
+var staticRoot = "${staticRoot}";
+</script>
 <header>
    <!-- Header begin -->
 <div class="header"><div class="inner">

@@ -16,6 +16,7 @@ package com.bsb.cms.model.dto.content;
 import java.io.Serializable;
 
 /**
+ * 前端栏目操作对象。
  * @author hongjian.liu
  * @version 1.0.0 2014-7-1
  * @since 1.0
@@ -47,6 +48,7 @@ public class ContTypeDTO implements Serializable {
     private Long content_template_id;
 
     private Long type_template_id;
+    private String type_template;//TODO 类型模板路径， 以后实现
 
     private Short status;
     private Short depth;
@@ -57,6 +59,24 @@ public class ContTypeDTO implements Serializable {
 
     private String meta_description;
     
+
+	public String getType_template() {
+		//TODO
+		type_template = "list";
+		if("jock".equals(file_name)){
+			type_template = "jock_list";
+		} else if("soa".equals(file_name)){
+			type_template = "soa_list";
+		} else if("jiagou".equals(file_name)){
+			type_template = "jiagou_list";
+		}
+		
+		return type_template;
+	}
+
+	public void setType_template(String type_template) {
+		this.type_template = type_template;
+	}
 
 	public String getMeta_title() {
 		return meta_title;

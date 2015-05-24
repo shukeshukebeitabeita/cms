@@ -120,28 +120,36 @@
 		
         </div><!-- /.main -->
 
-       <div class="col-sm-4 blog-sidebar">
-          
-		     <h3 class="right-type-title" style="margin-top: 0px;"><span>热门推荐</span></h3>
-		  		<@clist type_id=typeId count=5 var="cts" hasHot="1">
-			       <#if (cts?exists && cts?size >0)>
-				     <#list cts as oneData>
-				     <div class="media">
-					  <div class="media-left media-middle">
-					   <@cms.img c=oneData w=100 h=75/>
-					  </div>
-					  <div class="media-body">
-					    <h2 class="media-heading blog-post-title">${cms.curl_a(oneData)}</h2>
-					    <p class="blog-post-meta">${oneData.publish_time!''}<!--<a href="#">Chris</a>  --> </p>
-					  </div>
-					</div>
-		    		 </#list>
-			     	</#if>
-			     </@clist>
-
-
-          
-
+       <div class="col-sm-4  blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
         </div><!-- /.sidebar -->
 
       </div><!-- /.row -->
@@ -161,6 +169,5 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
   </body>
 </html>

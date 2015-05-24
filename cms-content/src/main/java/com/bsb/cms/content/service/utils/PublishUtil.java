@@ -128,4 +128,8 @@ public class PublishUtil {
 		return c;
 	}
 
+/*	
+	public static String getTypeListTemplateView(ContTypeDTO type){
+		
+	}*/
 }
