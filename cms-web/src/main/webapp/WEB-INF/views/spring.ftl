@@ -332,7 +332,7 @@
     <!-- HeadRight begin -->
     <div class="headr">
     	<div class="op"><!-- 
-        	<a href="http://www.jiagou4.com/wp-login.php?action=register">注册</a>        	<a href="http://www.alibuybuy.com/wp-login.php">登录</a> <span>/</span> 
+        	<a href="http://www.jiagou4.com/wp-login.php?action=register">注册</a>        	<a href="http://www.jiagou4.com/wp-login.php">登录</a> <span>/</span> 
         	<a href="javascript:void(0);" id="fav"><i class="iconfont icon-shoucang"></i>收藏</a> <span>/</span> 
             <a href="http://www.jiagou4.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
              -->
