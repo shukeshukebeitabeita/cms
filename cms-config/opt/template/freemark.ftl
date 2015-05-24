@@ -16,9 +16,9 @@
 </#macro>
 <#macro ctitle>
 <#if c.meta_title?exists>
-<title>${c.meta_title!''}</title>
+<title>${c.meta_title!''}-架构那点事</title>
 <#else>
-<title>${c.title!''}</title>
+<title>${c.title!''}-架构那点事</title>
 </#if>
 </#macro>
 <#macro cmeta>

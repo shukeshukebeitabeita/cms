@@ -445,7 +445,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <meta name="description" content="${type.meta_description!''}" />
 </#macro>
 <#macro title>
-<title>${type.meta_title!''}</title>
+<title>${type.meta_title!''}-架构那点事</title>
 </#macro>
 <#macro tmeta>
 <@title />
@@ -455,7 +455,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 
 <#macro img c w=150 h=100>
-<#if c.default_img?exists>
+<#if (c.default_img?exists && c.default_img !='')>
 	 <a href="${cms.curl(c)}" target="_blank">
       <img class="media-object" src="${staticRoot}/${c.default_img}" alt="${cms.substr(c.title, 15)}" width="${w}px" height="${h}px">
     </a>

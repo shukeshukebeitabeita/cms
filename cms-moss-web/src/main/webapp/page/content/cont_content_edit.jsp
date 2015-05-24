@@ -14,6 +14,12 @@
 <script type="text/javascript" src="${rc.contextPath}/js/jquery/jquery.form.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/js/content/content_edit.js"></script>
 </head>
+<style>
+.grid-tab-l{
+width: 10%;
+min-width:100px;
+}
+</style>
 <body>
 	<div class="wrap_box">
 		<form id="ff" action="create.htm" method="post">
@@ -53,7 +59,7 @@
 						</c:if>
 						<c:if test="${attribute.hasSource == 1}">
 						<span class="left-padding">来源：</span><input type="text" name="source"
-						class="input-style short" value="${content.source}"/>
+						class="input-style jinputMinWidth" value="${content.source}"/>
 						</c:if>
 						</td>
 				</tr>
@@ -127,7 +133,7 @@
 				<tr>
 					<td class="grid-tab-l">简介：</td>
 					<td class="grid-tab-r">
-					<textarea name="about" class="area-style">${content.about}</textarea>
+					<textarea name="about" class="area-style" style="height:60px; ">${content.about}</textarea>
 					</td>
 				</tr>
 				</c:if>
@@ -137,7 +143,7 @@
 					<td class="grid-tab-l">详细内容：</td>
 					<td class="grid-tab-r">
 	
-						<textarea id="_offerDesc" name="offerDesc" rows="10" cols="50">
+						<textarea id="_offerDesc" name="offerDesc" rows="30" cols="50">
 						${content.contentBody}
 						</textarea> <ckf:setupCKEditor basePath="../../ckfinder/"
 							editor="_offerDesc" /> <ck:replace

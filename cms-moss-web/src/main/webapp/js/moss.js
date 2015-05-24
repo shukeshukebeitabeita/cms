@@ -120,17 +120,30 @@ moss.getContextPath= function () {
  * 刷新tab.
  */
 moss.updateTab=function(subtitle,url) {
-	if (self.parent.$('#maintabs').tabs('exists', subtitle)) {
-		var currTab = self.parent.$('#maintabs').tabs('getTab', subtitle);
-		if(url==undefined)
-		   url = $(currTab.panel('options').content).attr('src');
-		self.parent.$('#maintabs').tabs('update', {
-			tab:currTab,
-			options:{
-				content : '<iframe src="' + url + '" frameborder="0" style="border:0;width:100%;height:99.4%;"></iframe>'
-			}
-		});
+    var maintabs = "#maintabs";
+	if(subtitle==undefined && url==undefined){
+		var currTab =  self.parent.$(maintabs).tabs('getSelected'); 
+		 url = $(currTab.panel('options').content).attr('src');
+			self.parent.$(maintabs).tabs('update', {
+				tab:currTab,
+				options:{
+					content : '<iframe src="' + url + '" frameborder="0" style="border:0;width:100%;height:99.4%;"></iframe>'
+				}
+			});
+	} else {
+		if (self.parent.$(maintabs).tabs('exists', subtitle)) {
+			var currTab = self.parent.$(maintabs).tabs('getTab', subtitle);
+			if(url==undefined)
+			   url = $(currTab.panel('options').content).attr('src');
+			self.parent.$(maintabs).tabs('update', {
+				tab:currTab,
+				options:{
+					content : '<iframe src="' + url + '" frameborder="0" style="border:0;width:100%;height:99.4%;"></iframe>'
+				}
+			});
+		}
 	}
+	
 };
 /**
  * 显示消息。

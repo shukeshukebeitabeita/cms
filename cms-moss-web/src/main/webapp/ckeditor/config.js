@@ -5,14 +5,14 @@
  */
 
 CKEDITOR.editorConfig = function(config) {
-	config.toolbar = [ [ 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates' ],
+/*	config.toolbar = [ [ 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates' ],
 			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt' ],
 			[ 'Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat' ], '/',
 			[ 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript' ],
 			[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote' ],
 			[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ], [ 'Link', 'Unlink', 'Anchor' ],
 			[ 'Image', 'Smiley', 'SpecialChar' ], [ 'Styles', 'Format', 'Font', 'FontSize' ],
-			[ 'TextColor', 'BGColor' ] ];
+			[ 'TextColor', 'BGColor' ] ];*/
 
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.

@@ -1,8 +1,17 @@
 $(function() {
-	
+	CKEDITOR.config.height = "350";
+	//CKEDITOR.config.width = "850";
 	if(isNotNull($('#_contentId').val())){
 		$('#ff').attr("action", "update.htm");
 	}
+	
+	$("#_title").blur(function(){//当标题框失去焦点时，把标题自动赋值到 搜索引擎优化：内容标题 里。
+		var metaTitle = $("input[name='metaTitle']");
+		if(metaTitle && metaTitle.size()>0){// && isNull(metaTitle[0].val())
+			$("input[name='metaTitle']").val($("#_title").val());
+		}
+	});
+	
 
 	try {
 		var options = {
@@ -16,7 +25,6 @@ $(function() {
 		        // has been received
 		        success:   function(d) {
 					if (d.result == "Y") {
-						j.show('信息', '内容编辑成功');
 						resetForm();
 					} else {
 						j.error('信息', d.message);
@@ -65,7 +73,9 @@ function validate(){
 
 function resetForm(){
 	if(isNull($('#_contentId').val())){
-		$('#ff').resetForm();
+		//$('#ff').resetForm();
+		j.updateTab();
 	}
+	j.show('信息', '内容编辑成功');
 }
 
