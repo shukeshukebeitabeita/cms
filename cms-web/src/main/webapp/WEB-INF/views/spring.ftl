@@ -327,6 +327,7 @@
 var contextPath="${rc.contextPath}";
 var htmlPath = "${rc.contextPath}";
 var staticRoot = "${staticRoot}";
+
 </script>
 <header>
    <!-- Header begin -->

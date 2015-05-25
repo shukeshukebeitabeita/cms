@@ -44,6 +44,10 @@ var recommend_template_data = '<li><a href="{contentUrl}" title="{title}" target
 function hotContent(htmlId, type_id, count){
 	var recommend_template = '<h3 class="right-type-title"><span>热门推荐</span></h3><ol class="list-unstyled" id="'+ htmlId + '_li"></ol>';
 	var delUrl = contextPath + "/c/get.htm";
+	if(contextPath == "/"){
+	   delUrl = "/c/get.htm";
+	} 
+	
 	var data = {
 			"type_id" : type_id,
 			"count" : 5,
@@ -90,6 +94,9 @@ var new_template_data = '<div class="media">'
 
 function newContent(htmlId, type_id, count){
 	var delUrl = contextPath + "/c/get.htm";
+	if(contextPath == "/"){
+	   delUrl = "/c/get.htm";
+	} 
 	var data = {
 			"type_id" : type_id,
 			"count" : 5,
