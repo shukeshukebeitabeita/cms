@@ -24,6 +24,7 @@ $(function() {
 		        // success identifies the function to invoke when the server response
 		        // has been received
 		        success:   function(d) {
+		        	 $("#postFormButton").removeAttr("disabled");//将按钮可用
 					if (d.result == "Y") {
 						resetForm();
 					} else {
@@ -60,6 +61,7 @@ $(function() {
 });
 
 function submitForm(){
+	$('#postFormButton').attr({"disabled":"disabled"});//控制按钮为禁用
 	$('#ff').submit();
 }
 

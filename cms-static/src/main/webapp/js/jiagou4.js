@@ -2,6 +2,7 @@ $(function() {
 
 
 });
+
 /**
 * format方法。 eg: 两种调用方式 var template1="我是{0}，今年{1}了"; var
 * template2="我是{name}，今年{age}了"; var result1=template1.format("loogn",22); var
@@ -36,26 +37,12 @@ String.prototype.format = function(args) {
 };
 
 
-//最新
-function newContent(){
-	
-}
 
-var recommend_template = '<h3 class="right-type-title" style="margin-top: 0px;"><span>热门推荐</span></h3>';
-var recommend_template_data = '<div class="media">'
-	  +'<div class="media-left media-middle">'
-	  +'<a href="{contentUrl}" target="_blank">'
-	  +'<img class="media-object" src="{default_img}" alt="{title}" width="100px" height="75px">'
-	  +'</a>'
-	  +'</div>'
-	  +'<div class="media-body">'
-	  +'<h2 class="media-heading blog-post-title"><a href="{contentUrl}" title="{title}" target="_blank">{title}</a></h2>'
-	  +'<p class="blog-post-meta">{publish_time}<!--<a href="#">Chris</a>  --> </p>'
-	  +'</div>'
-	  +'</div>';
 
+var recommend_template_data = '<li><a href="{contentUrl}" title="{title}" target="_blank">{title}</a></li>';
 //推荐/热门
 function hotContent(htmlId, type_id, count){
+	var recommend_template = '<h3 class="right-type-title"><span>热门推荐</span></h3><ol class="list-unstyled" id="'+ htmlId + '_li"></ol>';
 	var delUrl = contextPath + "/c/get.htm";
 	var data = {
 			"type_id" : type_id,
@@ -67,10 +54,56 @@ function hotContent(htmlId, type_id, count){
 	$.post(delUrl, data, function(d) {
 		if (d.result == "Y") {
 			$.each(d.data, function(index, oneData) {
-				var title = oneData.title.substring(3+index);
-				var contentUrl = htmlPath + oneData.content.url + oneData.content_id+".html";
+				//var title_tip = oneData.title.substring(3+index);
+				var contentUrl = htmlPath + oneData.url + oneData.content_id+".html";
 				var tempLi = recommend_template_data.format({
-					title : title,
+					title : oneData.title,
+					publish_time : oneData.publish_time,
+					contentUrl :contentUrl,
+					default_img : staticRoot + oneData.default_img,
+					contextPath:contextPath
+				});
+				// alert(tempLi);
+				$("#" + htmlId + "_li").append(tempLi);
+			});
+		} else {
+			//console('信息', d.message);
+		}
+	}, "json");
+}
+
+
+//最新
+var  new_template= '<h3 class="right-type-title" style="margin-top: 0px;"><span>最新</span></h3>';
+var new_template_data = '<div class="media">'
+	  +'<div class="media-left media-middle">'
+	  +'<a href="{contentUrl}" target="_blank">'
+	  +'<img class="media-object" src="{default_img}" alt="{title}" width="100px" height="75px">'
+	  +'</a>'
+	  +'</div>'
+	  +'<div class="media-body">'
+	  +'<h2 class="media-heading blog-post-title"><a href="{contentUrl}" title="{title}" target="_blank">{title}</a></h2>'
+	  +'<p class="blog-post-meta">{publish_time}<!--<a href="#">Chris</a>  --> </p>'
+	  +'</div>'
+	  +'</div>';
+
+
+function newContent(htmlId, type_id, count){
+	var delUrl = contextPath + "/c/get.htm";
+	var data = {
+			"type_id" : type_id,
+			"count" : 5,
+			"hasHot" : 1,
+		};
+	
+	$("#" + htmlId).append(new_template);
+	$.post(delUrl, data, function(d) {
+		if (d.result == "Y") {
+			$.each(d.data, function(index, oneData) {
+				//var title_tip = oneData.title.substring(3+index);
+				var contentUrl = htmlPath + oneData.url + oneData.content_id+".html";
+				var tempLi = new_template_data.format({
+					title : oneData.title,
 					publish_time : oneData.publish_time,
 					contentUrl :contentUrl,
 					default_img : staticRoot + oneData.default_img,

@@ -52,7 +52,7 @@ public class ImgRemot2Location {
 	        }
 	      }
 	    }
-	      returns[1] = doc.children().outerHtml();
+	      returns[1] = doc.body().children().outerHtml();
 	     
 	      returns[0] = defaultPath;
 	      

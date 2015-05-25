@@ -324,8 +324,8 @@
 
 <#macro header>
 <script>
-var contextPath="${contextPath}";
-var htmlPath = "${contextPath}";
+var contextPath="${rc.contextPath}";
+var htmlPath = "${rc.contextPath}";
 var staticRoot = "${staticRoot}";
 </script>
 <header>

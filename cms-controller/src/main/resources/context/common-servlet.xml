@@ -13,7 +13,7 @@
   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd  
   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	
-	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven /> -->
 	
 	<mvc:view-controller path="/" view-name="forward:/index" />
 	<!-- <mvc:interceptors>
@@ -28,11 +28,11 @@
 	<mvc:resources mapping="/img/**" location="/img/" />
 	
 	
-	<bean
+<!-- 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<util:list id="beanList">
-				<!--
+				
 					<bean id="stringHttpMessageConverter"
 					class="org.springframework.http.converter.StringHttpMessageConverter"
 					/> <bean id="formHttpMessageConverter"
@@ -42,13 +42,31 @@
 					/> <bean id="bufferedImageHttpMessageConverter"
 					class="org.springframework.http.converter.BufferedImageHttpMessageConverter"
 					/>
-				-->
+				
 				<bean id="jacksonMessageConverter"
 					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 			</util:list>
 		</property>
 
-	</bean>
+	</bean> -->
+	
+	   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" /> 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+			<!-- 支持@ResponseBody注解,直接从controller方法中返回各种类型的数据到HTTP Response中,例如String ,图片等 -->
+			<property name="messageConverters">
+				<list>
+					<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	                    <property name="supportedMediaTypes">
+	                        <list>
+	                            <value>text/html; charset=UTF-8</value>
+	                            <value>application/json;charset=UTF-8</value>
+	                        </list>
+	                    </property>
+	                </bean>
+				</list>
+			</property>
+			
+		</bean>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">

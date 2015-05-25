@@ -34,7 +34,7 @@ public class AjaxContentController {
 	@ResponseBody
 	public JSONResultDTO get(TagContentVO conditions) {
 		JSONResultDTO result = new JSONResultDTO();
-		Long typeId = null;
+		Long typeId = conditions.getType_id();
 		ContTypeDTO contTypeDTO;
 		List<ContContentDTO> contentList;
 		try {
