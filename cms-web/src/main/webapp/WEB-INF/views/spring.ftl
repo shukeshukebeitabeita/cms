@@ -329,6 +329,13 @@ var htmlPath = "${rc.contextPath}";
 var staticRoot = "${staticRoot}";
 
 </script>
+
+<#assign contextPath=(rc.contextPath!'/')>
+<#if contextPath==''|| contextPath=='/'>
+<#assign contextPath='/'>
+<#else>
+<#assign contextPath=contextPath + '/'>
+</#if>
 <header>
    <!-- Header begin -->
 <div class="header"><div class="inner">
@@ -358,16 +365,16 @@ var staticRoot = "${staticRoot}";
 <div class="blog-masthead">
  <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="${rc.contextPath!'/'}">首页</a>
-          <a class="blog-nav-item active" href="${rc.contextPath}/jock">逗比</a>
-          <a class="blog-nav-item active" href="${rc.contextPath}/jiagou">架构</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/soa">SOA/Dubbo</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/cache">缓存</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/mq">消息</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/bigdata">大数据</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/yun">云计算</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/store">数据库/NoSql</a>
-          <a class="blog-nav-item" href="${rc.contextPath}/news">业界</a>
+          <a class="blog-nav-item active" href="${contextPath}">首页</a>
+          <a class="blog-nav-item active" href="${contextPath}jock">逗比</a>
+          <a class="blog-nav-item active" href="${contextPath}jiagou">架构</a>
+          <a class="blog-nav-item" href="${contextPath}soa">SOA/Dubbo</a>
+          <a class="blog-nav-item" href="${contextPath}cache">缓存</a>
+          <a class="blog-nav-item" href="${contextPath}mq">消息</a>
+          <a class="blog-nav-item" href="${contextPath}bigdata">大数据</a>
+          <a class="blog-nav-item" href="${contextPath}yun">云计算</a>
+          <a class="blog-nav-item" href="${contextPath}store">数据库/NoSql</a>
+          <a class="blog-nav-item" href="${contextPath}news">业界</a>
         </nav>
       </div>
        </div>

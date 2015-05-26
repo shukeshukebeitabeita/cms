@@ -51,7 +51,7 @@ function hotContent(htmlId, type_id, count){
 	var data = {
 			"type_id" : type_id,
 			"count" : 5,
-			"hasLatest" : 1,
+			"hasHot" : 1,
 		};
 	
 	$("#" + htmlId).append(recommend_template);
@@ -100,7 +100,7 @@ function newContent(htmlId, type_id, count){
 	var data = {
 			"type_id" : type_id,
 			"count" : 5,
-			"hasHot" : 1,
+			"hasLatest" : 1,
 		};
 	
 	$("#" + htmlId).append(new_template);
