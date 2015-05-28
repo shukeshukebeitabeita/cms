@@ -469,8 +469,12 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <#macro img c w=150 h=100>
 <#if (c.default_img?exists && c.default_img !='')>
+	<#assign defaultImg=c.default_img>
+	<#if (w==150 && (defaultImg?index_of("/upload/2015-04")==-1))>
+	<#assign defaultImg=c.default_img?replace('100x75.', '150x100.')>
+	 </#if>
 	 <a href="${cms.curl(c)}" target="_blank">
-      <img class="media-object" src="${staticRoot}/${c.default_img}" alt="${cms.substr(c.title, 15)}" width="${w}px" height="${h}px">
+      <img class="media-object" src="${staticRoot}/${defaultImg}" alt="${cms.substr(c.title, 15)}" width="${w}px" height="${h}px">
     </a>
  </#if>
 </#macro>

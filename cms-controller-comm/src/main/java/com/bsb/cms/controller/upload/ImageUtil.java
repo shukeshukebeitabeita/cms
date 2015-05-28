@@ -272,6 +272,10 @@ public class ImageUtil {
 			defaultPath = "100x75" + path.substring(path.lastIndexOf("."));
 			String localFile = allPath + defaultPath;
 			createThumbnail(bi, localFile, 100, 75);
+			
+			defaultPath = "150x100" + path.substring(path.lastIndexOf("."));
+			String localFile2 = allPath + defaultPath;
+			createThumbnail(bi, localFile2, 150, 100);
 		}
 
 		return defaultPath;

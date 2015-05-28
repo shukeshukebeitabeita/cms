@@ -57,23 +57,28 @@
 		<#assign endNum=1>
 		
 		 <#if (page.currentPage>8)>
-		     <#assign startNum=page.currentPage-2>
-		     <#assign endNum=1>
+		     <#assign startNum=page.currentPage-5>
+		     <#if (page.currentPage+5 > page.totalPages)>
+		         <#assign endNum=page.totalPages>
+		       <#else>
+		           <#assign endNum=page.currentPage+5>
+		       </#if>
 		 <#else>
 		    <#if (page.totalPages>8)>
-		    
-		       <#assign startNum=page.currentPage-2>
-		       <#if (page.currentPage+2 > page.totalPages)>
-		          <#assign endNum=page.currentPage+2>
-		       <#else>
+		       <#if (page.currentPage-5 > 0)>
+		       <#assign startNum=page.currentPage-5>
+		       </#if>
+		       <#if (page.currentPage+5 > page.totalPages)>
 		            <#assign endNum=page.totalPages>
+		       <#else>
+		            <#assign endNum=page.currentPage+5>
 		       </#if>
 		      
 		    <#else>
 		       <#assign endNum=page.totalPages>
 		    </#if>
 		 </#if>
-		        <nav>
+		        <nav style="text-align: center;">
 				  <ul class="pagination">
 				  <#if (page.totalPages>8)>
 				  <li>
@@ -88,7 +93,7 @@
 				      </a>
 				    </li>
 				   </#if>
-				      
+				     
 				    <#list startNum..endNum as pageNum>
 				      <#if (pageNum== page.currentPage)>
 				      <li class="active"><a href="javaScript:void(0);">${pageNum}</a></li>

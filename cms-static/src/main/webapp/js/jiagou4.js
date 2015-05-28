@@ -47,6 +47,9 @@ function hotContent(htmlId, type_id, count){
 	if(contextPath == "/"){
 	   delUrl = "/c/get.htm";
 	} 
+	if(htmlPath == "/"){
+		htmlPath = "";
+	} 
 	
 	var data = {
 			"type_id" : type_id,
@@ -96,6 +99,9 @@ function newContent(htmlId, type_id, count){
 	var delUrl = contextPath + "/c/get.htm";
 	if(contextPath == "/"){
 	   delUrl = "/c/get.htm";
+	} 
+	if(htmlPath == "/"){
+		htmlPath = "";
 	} 
 	var data = {
 			"type_id" : type_id,
