@@ -343,6 +343,7 @@ var staticRoot = "${staticRoot}";
 	        <h1 class="logo"><a href="http://www.jiagou4.com/" rel="home"><img src="${staticRoot}/images/logo.png" alt="架构那点事" title="架构那点事"></a></h1>
         <!-- Logo end -->
     <!-- HeadRight begin -->
+    
     <div class="headr">
     	<div class="op"><!-- 
         	<a href="http://www.jiagou4.com/wp-login.php?action=register">注册</a>        	<a href="http://www.jiagou4.com/wp-login.php">登录</a> <span>/</span> 
@@ -350,6 +351,7 @@ var staticRoot = "${staticRoot}";
             <a href="http://www.jiagou4.com/add-post"><i class="iconfont icon-dingyue"></i>订阅</a>
              -->
         </div>
+        
         <!-- Search begin -->
     	<form method="get" class="searchform" action="http://www.jiagou4.com/">
    <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
@@ -434,14 +436,15 @@ var staticRoot = "${staticRoot}";
 </#function>
 
 <#macro tongji>
-<div style="display:none;">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa4bfece6ae72b2d30207bfb97bd2e879' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</div>
+
 </#macro>
 
+<#macro share>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+</#macro>
+<#macro shareJs>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</#macro>
 
 <#function curl content>
 <#return "${rc.contextPath}${content.url!''}${content.content_id}.html">
@@ -470,7 +473,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <#macro img c w=150 h=100>
 <#if (c.default_img?exists && c.default_img !='')>
 	<#assign defaultImg=c.default_img>
-	<#if (w==150 && (defaultImg?index_of("/upload/2015-04")==-1))>
+	<#if (w==150 && (defaultImg?index_of("/upload/2015-05")==-1))>
 	<#assign defaultImg=c.default_img?replace('100x75.', '150x100.')>
 	 </#if>
 	 <a href="${cms.curl(c)}" target="_blank">
