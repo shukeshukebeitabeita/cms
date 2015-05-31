@@ -111,3 +111,13 @@ var staticRoot = "${staticRoot}";
        
          </header>
 </#macro>
+
+<#macro footer>
+ <footer class="blog-footer">
+ <p>Copyright © 2004-2015.&nbsp;&nbsp;&nbsp;&nbsp;沪ICP备15022626号-1</p>
+ <p>本站有内容收集于互联网，如有侵犯您的权利，请联系我们。邮箱：26969881@qq.com</p>
+      <p>
+        <a href="#">回顶部</a>
+      </p>
+  </footer>
+</#macro>
