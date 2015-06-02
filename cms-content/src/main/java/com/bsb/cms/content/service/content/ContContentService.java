@@ -62,4 +62,6 @@ public interface ContContentService {
 	 * @return
 	 */
 	List<ContContentDTO> findListOfTag(TagContentVO conditions);
+	
+	List<ContContentDTO> findByTypeId(Long typeId);
 }

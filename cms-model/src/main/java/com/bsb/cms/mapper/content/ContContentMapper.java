@@ -58,4 +58,11 @@ public interface ContContentMapper {
 	 * @return
 	 */
 	List<ContContentDTO> findListOfTag(TagContentVO conditions);
+	
+	/**
+	 * 
+	 * @param typeId
+	 * @return
+	 */
+	List<ContContentDTO> findByTypeId(Long typeId);
 }

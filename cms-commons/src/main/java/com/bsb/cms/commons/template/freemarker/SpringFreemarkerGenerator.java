@@ -90,6 +90,7 @@ public class SpringFreemarkerGenerator implements TemplateGenerator {
 							configuration.getTemplate(ftlTemplateFile), dataMap);
 
 			filePath = filePath.replace("\\", "/");
+			filePath = filePath.replace("//", "/");
 			String savePath = StringUtils.substringBeforeLast(filePath, "/");
 			File file = new File(savePath);
 			if (!file.exists()) {

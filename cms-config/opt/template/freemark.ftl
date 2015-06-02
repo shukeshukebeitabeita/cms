@@ -95,7 +95,7 @@ var staticRoot = "${staticRoot}";
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
 			   <li><a class="active" href="${contextPath}">首页</a></li>
-	          <li><a href="${contextPath}jock">逗比</a></li>
+	          <li><a href="${contextPath}jock" style="color:#FFCC00;">逗比</a></li>
 	          <li><a href="${contextPath}jiagou">架构</a></li>
 	          <li><a href="${contextPath}soa">SOA/Dubbo</a></li>
 	          <li><a href="${contextPath}cache">缓存</a></li>
@@ -103,7 +103,7 @@ var staticRoot = "${staticRoot}";
 	          <li><a href="${contextPath}bigdata">大数据</a></li>
 	          <li><a href="${contextPath}yun">云计算</a></li>
 	          <li><a href="${contextPath}store">数据库/NoSql</a></li>
-	          <li><a href="${contextPath}news">业界</a></li>
+	          <li><a href="${contextPath}news" style="color:#FFCC00;">业界</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->

@@ -100,6 +100,11 @@ public class ContContentServiceImpl implements ContContentService {
 		return contContentMapper.findListOfTag(conditions);
 	}
 
+	@Override
+	public List<ContContentDTO> findByTypeId(Long typeId) {
+		return contContentMapper.findByTypeId(typeId);
+	}
+
 
 
 }

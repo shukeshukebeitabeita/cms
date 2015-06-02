@@ -63,12 +63,15 @@ public class PaginationInterceptor implements Interceptor {
 		// 当前环境 MappedStatement，BoundSql，及sql取得
 		MappedStatement mappedStatement = (MappedStatement) invocation
 				.getArgs()[0];
-		Object parameter = invocation.getArgs()[1];
-		BoundSql boundSql = mappedStatement.getBoundSql(parameter);
-		String originalSql = boundSql.getSql().trim();
-		Object parameterObject = boundSql.getParameterObject();
+
 
 		if (mappedStatement.getId().matches(pageSqlId)) { // 拦截需要分页的SQL
+			
+			Object parameter = invocation.getArgs()[1];
+			BoundSql boundSql = mappedStatement.getBoundSql(parameter);
+			String originalSql = boundSql.getSql().trim();
+			Object parameterObject = boundSql.getParameterObject();
+			
 			/*
 			 * if (parameterObject != null) { page =
 			 * (Page)ReflectHelper.isPage(parameterObject, "page"); }

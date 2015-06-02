@@ -19,11 +19,15 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.bsb.cms.commons.template.TemplateGenerator;
 import com.bsb.cms.content.service.content.ContContentPublisherService;
+import com.bsb.cms.content.service.content.ContContentService;
 import com.bsb.cms.content.service.content.ContTypeCacheService;
 import com.bsb.cms.content.service.content.TmptTemplateCacheService;
 import com.bsb.cms.content.service.utils.PublishUtil;
@@ -39,12 +43,16 @@ import com.bsb.cms.model.vo.PublishResult;
  */
 @Service("contContentPublisherService")
 public class ContContentPublisherServiceImpl implements ContContentPublisherService {
+	// log
+	private static final Log log = LogFactory.getLog(ContContentPublisherServiceImpl.class);
 	@Resource(name="springFreemarkerGenerator")
 	private TemplateGenerator templateGenerator;
 	@Resource(name = "tmptTemplateCacheService")
 	private TmptTemplateCacheService tmptTemplateCacheService;
 	@Resource(name = "contTypeCacheService")
 	private ContTypeCacheService contTypeCacheService;
+	@Resource(name = "contContentService")
+	private ContContentService contContentService;
 
 	/* (non-Javadoc)
 	 * @see com.bsb.cms.content.service.content.ContContentPublisherService#publishAll()
@@ -60,6 +68,7 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 	 */
 	@Override
 	public PublishResult publishContent(ContContentDTO content) {
+		log.debug("publish content id:" + content.getContent_id());
 		Assert.notNull(content, "content is null");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("c", content);
@@ -89,8 +98,19 @@ public class ContContentPublisherServiceImpl implements ContContentPublisherServ
 		//TODO 先一次查询出来,以后数据量大,分批查询生成. 另外列表页面不实现分页静态化,采用动态化
 		Assert.notNull(type, "type is null");
 		//生成栏目页
-		publishTypeIndex(type);
+		//publishTypeIndex(type);
 		//生存内容页
+		List<ContContentDTO> cList = contContentService.findByTypeId(type.getId());
+		if(CollectionUtils.isNotEmpty(cList)){
+			for(ContContentDTO c : cList) {
+				try {
+					c.setUrl(c.getUrl() + c.getContent_id().toString() + ".html");
+					publishContent(c);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		return null;
 	}

@@ -152,8 +152,27 @@
 					}
 					
 					function publicType(publicType){
+						var node = $('#leftContentType').tree('getSelected');
+						if(publicType=='2'){
+						 j.confirm('确认重新生成所有内容吗？', publish, node.id); 
+					    }
+					}
+					
+					function publish(typeId){
+						var data={"typeId":typeId};
+						
+						$.post(contextPath+'/moss/pub/pub_type.htm', data, function(d) {
+							if (d.result == "Y") {
+								j.show('信息', "成功"); 
+							} else {
+								//console('信息', d.message);
+							}
+						}, "json");
 						
 					}
+					
+					
+					
 				</script>
 			</div>
 			
