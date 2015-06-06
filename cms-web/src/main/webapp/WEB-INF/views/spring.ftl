@@ -488,7 +488,7 @@ var _hmt = _hmt || [];
 <meta name="description" content="${type.meta_description!''}" />
 </#macro>
 <#macro title>
-<title>${type.meta_title!''}-架构那点事</title>
+<title>${type.meta_title!''}_架构那点事</title>
 </#macro>
 <#macro tmeta>
 <@title />
