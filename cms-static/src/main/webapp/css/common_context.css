@@ -40,6 +40,12 @@ em,i{font-style:normal;}
   }
 }
 
+@media (max-width: 450px) {
+  .header {
+   display: none;
+  }
+}
+
 
 /*
  * Blog name and description
