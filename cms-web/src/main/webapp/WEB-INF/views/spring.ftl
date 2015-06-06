@@ -353,10 +353,15 @@ var staticRoot = "${staticRoot}";
 	        </div>
 	        
 	        <!-- Search begin -->
+	        <!--
 	    	<form method="get" class="searchform" action="http://www.jiagou4.com/">
 			   <input class="searchInput" type="text" placeholder="搜索关键字" name="s" id="ls"/>
 			   <input class="searchBtn radius" type="submit" title="搜索" value="搜 索"/>
-			</form>       
+			</form>    -->
+			
+			<div class="searchform">
+			<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11098449816907034128' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>   
+			 </div>
 			 <!-- Search end -->
 	    </div>
 	    <!-- HeadRight end -->
@@ -399,8 +404,8 @@ var staticRoot = "${staticRoot}";
 
 <#macro footer>
  <footer class="blog-footer">
- <p>Copyright © 2004-2015.&nbsp;&nbsp;&nbsp;&nbsp;沪ICP备15022626号-1</p>
- <p>本站有内容收集于互联网，如有侵犯您的权利，请联系我们。邮箱：26969881@qq.com</p>
+ <p>Copyright © 2004-2015.&nbsp;&nbsp;&nbsp;&nbsp;沪ICP备15022626号</p>
+ <p>请联系我们,邮箱：26969881@qq.com</p>
       <p>
         <a href="#">回顶部</a>
       </p>
@@ -449,14 +454,23 @@ var staticRoot = "${staticRoot}";
 </#function>
 
 <#macro tongji>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3166ca1111f69e64bfcec2e40d19ad21";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 </#macro>
 
 <#macro share>
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a><a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a><a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a><a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a></div>
 </#macro>
 <#macro shareJs>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","weixin"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 </#macro>
 
 <#function curl content>
