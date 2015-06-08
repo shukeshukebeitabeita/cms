@@ -205,13 +205,15 @@ public class ImageUtil {
 		OutputStream bos = null;
 		java.io.BufferedInputStream bis = null;
 		String dir = getNewDynamicPath();
-		String imgUri = dir + "/" + getNewName(imgurl);
-		String allPath = path + imgUri;
-		File f = new File(path + dir);
-		if (!f.exists()) {
-			f.mkdirs();
-		}
+		String imgUri = null;
 		try {
+			imgUri = dir + "/" + getNewName(imgurl);
+			String allPath = path + imgUri;
+			File f = new File(path + dir);
+			if (!f.exists()) {
+				f.mkdirs();
+			}
+			
 			// 实例化url
 			URL url = new URL(imgurl);
 			// 载入图片到输入流
@@ -231,7 +233,9 @@ public class ImageUtil {
 			b = true;
 		} catch (Exception e) {
 			// 如果图片未找到
+			imgUri = null;
 			b = false;
+			e.printStackTrace();
 		} finally {
 			try {
 				if (bis != null)
@@ -258,6 +262,16 @@ public class ImageUtil {
 		try {
 			// 读取图片
 			bi = javax.imageio.ImageIO.read(file);
+			if (bi.getWidth() >= 60) {// 获得 宽度
+				defaultPath = "100x75" + path.substring(path.lastIndexOf("."));
+				String localFile = allPath + defaultPath;
+				createThumbnail(bi, localFile, 100, 75);
+				
+				defaultPath = "150x100" + path.substring(path.lastIndexOf("."));
+				String localFile2 = allPath + defaultPath;
+				createThumbnail(bi, localFile2, 150, 100);
+			}
+
 			try {
 				// 判断文件图片是否能正常显示,有些图片编码不正确
 				 bi.getType();
@@ -266,16 +280,6 @@ public class ImageUtil {
 			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		}
-
-		if (bi.getWidth() >= 60) {// 获得 宽度
-			defaultPath = "100x75" + path.substring(path.lastIndexOf("."));
-			String localFile = allPath + defaultPath;
-			createThumbnail(bi, localFile, 100, 75);
-			
-			defaultPath = "150x100" + path.substring(path.lastIndexOf("."));
-			String localFile2 = allPath + defaultPath;
-			createThumbnail(bi, localFile2, 150, 100);
 		}
 
 		return defaultPath;
