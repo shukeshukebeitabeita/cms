@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-04-04 11:30:15
+Date: 2016-04-04 12:19:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -455,6 +455,10 @@ CREATE TABLE `spider_config` (
   `content_title_img_rule` varchar(100) DEFAULT NULL COMMENT '内容标题图片正则（jgroup）',
   `content_abort_rule` varchar(100) DEFAULT NULL COMMENT '内容简介正则（jgroup）',
   `content_rule` varchar(100) DEFAULT NULL COMMENT '内容正则（jgroup）',
+  `CREATE_DATE` timestamp NULL DEFAULT NULL,
+  `CREATE_USER` varchar(60) DEFAULT NULL,
+  `UPDATE_DATE` timestamp NULL DEFAULT NULL,
+  `UPDATE_USER` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

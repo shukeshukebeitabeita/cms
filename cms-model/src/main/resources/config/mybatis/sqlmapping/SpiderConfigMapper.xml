@@ -1,102 +1,96 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bsb.cms.mapper.SpiderConfigMapper" >
-  <resultMap id="BaseResultMap" type="contAttribute" >
-    <id column="ID" property="id" jdbcType="BIGINT" />
-    <result column="HAS_IMG" property="hasImg" jdbcType="SMALLINT" />
-    <result column="HAS_OUT_LINK" property="hasOutLink" jdbcType="SMALLINT" />
-    <result column="HAS_VEDIO" property="hasVedio" jdbcType="SMALLINT" />
-    <result column="HAS_DETAIL" property="hasDetail" jdbcType="SMALLINT" />
-    <result column="HAS_ABOUT" property="hasAbout" jdbcType="SMALLINT" />
-    <result column="HAS_EXT_ATTRIBUTE" property="hasExtAttribute" jdbcType="SMALLINT" />
-    <result column="HAS_KEYWORD" property="hasKeyword" jdbcType="SMALLINT" />
-    <result column="HAS_SOURCE" property="hasSource" jdbcType="SMALLINT" />
-    <result column="HAS_SHOW_TIME" property="hasShowTime" jdbcType="SMALLINT" />
-    <result column="HAS_SEO" property="hasSEO" jdbcType="SMALLINT" />
-    <result column="HAS_TAG" property="hasTag" jdbcType="SMALLINT" />
-    <result column="HAS_ORDER_OPT" property="hasOrderOpt" jdbcType="SMALLINT" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
-    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
-    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
-    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
-    <result column="HAS_AUTHOR" property="hasAuthor" jdbcType="SMALLINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bsb.cms.mapper.SpiderConfigMapper">
+  <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.spider.SpiderConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="node_perant_id" jdbcType="BIGINT" property="nodePerantId" />
+    <result column="list_url" jdbcType="VARCHAR" property="listUrl" />
+    <result column="content_base_url" jdbcType="VARCHAR" property="contentBaseUrl" />
+    <result column="img_base_url" jdbcType="VARCHAR" property="imgBaseUrl" />
+    <result column="type_ids" jdbcType="VARCHAR" property="typeIds" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="has_save_img_to_local" jdbcType="BIT" property="hasSaveImgToLocal" />
+    <result column="content_source" jdbcType="VARCHAR" property="contentSource" />
+    <result column="job_time" jdbcType="VARCHAR" property="jobTime" />
+    <result column="filter_source" jdbcType="VARCHAR" property="filterSource" />
+    <result column="filter_targer" jdbcType="VARCHAR" property="filterTarger" />
+    <result column="ad_filter" jdbcType="VARCHAR" property="adFilter" />
+    <result column="conter_abort" jdbcType="VARCHAR" property="conterAbort" />
+    <result column="list_links_area_rule" jdbcType="VARCHAR" property="listLinksAreaRule" />
+    <result column="list_link_rule" jdbcType="VARCHAR" property="listLinkRule" />
+    <result column="title_img_rule" jdbcType="VARCHAR" property="titleImgRule" />
+    <result column="title_rule" jdbcType="VARCHAR" property="titleRule" />
+    <result column="content_title_img_rule" jdbcType="VARCHAR" property="contentTitleImgRule" />
+    <result column="content_abort_rule" jdbcType="VARCHAR" property="contentAbortRule" />
+    <result column="content_rule" jdbcType="VARCHAR" property="contentRule" />
   </resultMap>
   
-   <sql id="Base_Column_List" >
-    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORD, 
-    HAS_SOURCE, HAS_SHOW_TIME, HAS_SEO, 
-    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER,HAS_AUTHOR
+  <sql id="Base_Column_List">
+    id, node_name, node_perant_id, list_url, content_base_url, img_base_url, type_ids, 
+    remark, has_save_img_to_local, content_source, job_time, filter_source, filter_targer, 
+    ad_filter, conter_abort, list_links_area_rule, list_link_rule, title_img_rule, title_rule, 
+    content_title_img_rule, content_abort_rule, content_rule
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+
+   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cont_attribute
-    where ID = #{id,jdbcType=BIGINT}
+    from spider_config
+    where id = #{id,jdbcType=BIGINT}
   </select>
   
   <select id="findListPage" parameterType="contAttribute" resultMap="BaseResultMap">
   	 select 
     <include refid="Base_Column_List" />
-    from cont_attribute
+    from spider_config
     
   </select>
   
-   <insert id="insert" parameterType="contAttribute" useGeneratedKeys="true" keyProperty="id">
-    insert into cont_attribute (HAS_IMG, HAS_OUT_LINK, 
-      HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, 
-      HAS_EXT_ATTRIBUTE, HAS_KEYWORD, HAS_SOURCE, 
-      HAS_SHOW_TIME, 
-      HAS_SEO, HAS_TAG, HAS_ORDER_OPT, 
-      NAME, REMARK, 
-      CREATE_USER,  UPDATE_USER
-      ,CREATE_DATE,UPDATE_DATE
-      )
-    values (#{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
-      #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
-      #{hasExtAttribute,jdbcType=SMALLINT}, #{hasKeyword,jdbcType=SMALLINT}, #{hasSource,jdbcType=SMALLINT}, 
-      #{hasShowTime,jdbcType=SMALLINT}, #{hasSEO,jdbcType=SMALLINT},
-       #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
-      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}
-      ,NOW(),NOW()
-      )
+ <insert id="insert" parameterType="com.bsb.cms.model.po.spider.SpiderConfig">
+    insert into spider_config (id, node_name, node_perant_id, 
+      list_url, content_base_url, img_base_url, 
+      type_ids, remark, has_save_img_to_local, 
+      content_source, job_time, filter_source, 
+      filter_targer, ad_filter, conter_abort, 
+      list_links_area_rule, list_link_rule, title_img_rule, 
+      title_rule, content_title_img_rule, content_abort_rule, 
+      content_rule)
+    values (#{id,jdbcType=BIGINT}, #{nodeName,jdbcType=VARCHAR}, #{nodePerantId,jdbcType=BIGINT}, 
+      #{listUrl,jdbcType=VARCHAR}, #{contentBaseUrl,jdbcType=VARCHAR}, #{imgBaseUrl,jdbcType=VARCHAR}, 
+      #{typeIds,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{hasSaveImgToLocal,jdbcType=BIT}, 
+      #{contentSource,jdbcType=VARCHAR}, #{jobTime,jdbcType=VARCHAR}, #{filterSource,jdbcType=VARCHAR}, 
+      #{filterTarger,jdbcType=VARCHAR}, #{adFilter,jdbcType=VARCHAR}, #{conterAbort,jdbcType=VARCHAR}, 
+      #{listLinksAreaRule,jdbcType=VARCHAR}, #{listLinkRule,jdbcType=VARCHAR}, #{titleImgRule,jdbcType=VARCHAR}, 
+      #{titleRule,jdbcType=VARCHAR}, #{contentTitleImgRule,jdbcType=VARCHAR}, #{contentAbortRule,jdbcType=VARCHAR}, 
+      #{contentRule,jdbcType=VARCHAR})
   </insert>
   
-  <update id="updateByPrimaryKey" parameterType="contAttribute" >
-    update cont_attribute
-    set HAS_IMG = #{hasImg,jdbcType=SMALLINT},
-      HAS_OUT_LINK = #{hasOutLink,jdbcType=SMALLINT},
-      HAS_VEDIO = #{hasVedio,jdbcType=SMALLINT},
-      HAS_DETAIL = #{hasDetail,jdbcType=SMALLINT},
-      HAS_ABOUT = #{hasAbout,jdbcType=SMALLINT},
-      HAS_EXT_ATTRIBUTE = #{hasExtAttribute,jdbcType=SMALLINT},
-      HAS_KEYWORD = #{hasKeyword,jdbcType=SMALLINT},
-      HAS_SOURCE = #{hasSource,jdbcType=SMALLINT},
-      HAS_SHOW_TIME = #{hasShowTime,jdbcType=SMALLINT},
-      HAS_SEO = #{hasSEO,jdbcType=SMALLINT},
-      HAS_TAG = #{hasTag,jdbcType=SMALLINT},
-      HAS_ORDER_OPT = #{hasOrderOpt,jdbcType=SMALLINT},
-      NAME = #{name,jdbcType=VARCHAR},
-      REMARK = #{remark,jdbcType=VARCHAR},
-      UPDATE_DATE = NOW(),
-      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
-  </update> 
+<update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.spider.SpiderConfig">
+    update spider_config
+    set node_name = #{nodeName,jdbcType=VARCHAR},
+      node_perant_id = #{nodePerantId,jdbcType=BIGINT},
+      list_url = #{listUrl,jdbcType=VARCHAR},
+      content_base_url = #{contentBaseUrl,jdbcType=VARCHAR},
+      img_base_url = #{imgBaseUrl,jdbcType=VARCHAR},
+      type_ids = #{typeIds,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      has_save_img_to_local = #{hasSaveImgToLocal,jdbcType=BIT},
+      content_source = #{contentSource,jdbcType=VARCHAR},
+      job_time = #{jobTime,jdbcType=VARCHAR},
+      filter_source = #{filterSource,jdbcType=VARCHAR},
+      filter_targer = #{filterTarger,jdbcType=VARCHAR},
+      ad_filter = #{adFilter,jdbcType=VARCHAR},
+      conter_abort = #{conterAbort,jdbcType=VARCHAR},
+      list_links_area_rule = #{listLinksAreaRule,jdbcType=VARCHAR},
+      list_link_rule = #{listLinkRule,jdbcType=VARCHAR},
+      title_img_rule = #{titleImgRule,jdbcType=VARCHAR},
+      title_rule = #{titleRule,jdbcType=VARCHAR},
+      content_title_img_rule = #{contentTitleImgRule,jdbcType=VARCHAR},
+      content_abort_rule = #{contentAbortRule,jdbcType=VARCHAR},
+      content_rule = #{contentRule,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   
-  
-<!-- 
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from cont_attribute
-    where ID = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContAttributeExample" >
-    delete from cont_attribute
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
--->
+ 
 </mapper>

@@ -56,7 +56,7 @@
 		<table tableName="cont_type" domainObjectName="ContType" />
 		<table tableName="tmpt_template_body" domainObjectName="TmptTemplateBody" />
 		<table tableName="tmpt_template" domainObjectName="TmptTemplate" />
-		<table tableName="tmpt_template_group" domainObjectName="TmptTemplateGroup" /> -->
-		<table tableName="spider_config" domainObjectName="SpiderConfig" /> 
+		<table tableName="tmpt_template_group" domainObjectName="TmptTemplateGroup" /> 
+		<table tableName="spider_config" domainObjectName="SpiderConfig" /> -->
 	</context>
 </generatorConfiguration>  

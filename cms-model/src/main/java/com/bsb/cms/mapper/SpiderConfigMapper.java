@@ -8,7 +8,7 @@ import com.bsb.cms.model.po.spider.SpiderConfig;
 
 @Repository
 public interface SpiderConfigMapper {
-	
+
 	SpiderConfig selectByPrimaryKey(Long id);
 	
 	/**

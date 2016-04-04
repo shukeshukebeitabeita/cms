@@ -1,8 +1,8 @@
 package com.bsb.cms.model.po.spider;
 
-import java.io.Serializable;
+import com.bsb.cms.model.po.Entity;
 
-public class SpiderConfig implements Serializable {
+public class SpiderConfig extends Entity {
 
 	/**
 	 * 
