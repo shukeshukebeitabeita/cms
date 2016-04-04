@@ -8,7 +8,7 @@
 <%@ include file="../include/head.jsp"%>
 
 <script type="text/javascript" src="${rc.contextPath}/js/jquery/jquery.form.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/js/attribute/attr_edit.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/spider/spider_edit.js"></script>
 </head>
 <body>
 	<div class="wrap_box" align="center">

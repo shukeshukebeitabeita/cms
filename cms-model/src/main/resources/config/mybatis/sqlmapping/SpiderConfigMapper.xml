@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsb.cms.mapper.SpiderConfigMapper" >
+  <resultMap id="BaseResultMap" type="contAttribute" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="HAS_IMG" property="hasImg" jdbcType="SMALLINT" />
+    <result column="HAS_OUT_LINK" property="hasOutLink" jdbcType="SMALLINT" />
+    <result column="HAS_VEDIO" property="hasVedio" jdbcType="SMALLINT" />
+    <result column="HAS_DETAIL" property="hasDetail" jdbcType="SMALLINT" />
+    <result column="HAS_ABOUT" property="hasAbout" jdbcType="SMALLINT" />
+    <result column="HAS_EXT_ATTRIBUTE" property="hasExtAttribute" jdbcType="SMALLINT" />
+    <result column="HAS_KEYWORD" property="hasKeyword" jdbcType="SMALLINT" />
+    <result column="HAS_SOURCE" property="hasSource" jdbcType="SMALLINT" />
+    <result column="HAS_SHOW_TIME" property="hasShowTime" jdbcType="SMALLINT" />
+    <result column="HAS_SEO" property="hasSEO" jdbcType="SMALLINT" />
+    <result column="HAS_TAG" property="hasTag" jdbcType="SMALLINT" />
+    <result column="HAS_ORDER_OPT" property="hasOrderOpt" jdbcType="SMALLINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="HAS_AUTHOR" property="hasAuthor" jdbcType="SMALLINT" />
+  </resultMap>
+  
+   <sql id="Base_Column_List" >
+    ID, HAS_IMG, HAS_OUT_LINK, HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, HAS_EXT_ATTRIBUTE, HAS_KEYWORD, 
+    HAS_SOURCE, HAS_SHOW_TIME, HAS_SEO, 
+    HAS_TAG, HAS_ORDER_OPT, NAME, REMARK, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER,HAS_AUTHOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cont_attribute
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="findListPage" parameterType="contAttribute" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from cont_attribute
+    
+  </select>
+  
+   <insert id="insert" parameterType="contAttribute" useGeneratedKeys="true" keyProperty="id">
+    insert into cont_attribute (HAS_IMG, HAS_OUT_LINK, 
+      HAS_VEDIO, HAS_DETAIL, HAS_ABOUT, 
+      HAS_EXT_ATTRIBUTE, HAS_KEYWORD, HAS_SOURCE, 
+      HAS_SHOW_TIME, 
+      HAS_SEO, HAS_TAG, HAS_ORDER_OPT, 
+      NAME, REMARK, 
+      CREATE_USER,  UPDATE_USER
+      ,CREATE_DATE,UPDATE_DATE
+      )
+    values (#{hasImg,jdbcType=SMALLINT}, #{hasOutLink,jdbcType=SMALLINT}, 
+      #{hasVedio,jdbcType=SMALLINT}, #{hasDetail,jdbcType=SMALLINT}, #{hasAbout,jdbcType=SMALLINT}, 
+      #{hasExtAttribute,jdbcType=SMALLINT}, #{hasKeyword,jdbcType=SMALLINT}, #{hasSource,jdbcType=SMALLINT}, 
+      #{hasShowTime,jdbcType=SMALLINT}, #{hasSEO,jdbcType=SMALLINT},
+       #{hasTag,jdbcType=SMALLINT}, #{hasOrderOpt,jdbcType=SMALLINT}, 
+      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}
+      ,NOW(),NOW()
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="contAttribute" >
+    update cont_attribute
+    set HAS_IMG = #{hasImg,jdbcType=SMALLINT},
+      HAS_OUT_LINK = #{hasOutLink,jdbcType=SMALLINT},
+      HAS_VEDIO = #{hasVedio,jdbcType=SMALLINT},
+      HAS_DETAIL = #{hasDetail,jdbcType=SMALLINT},
+      HAS_ABOUT = #{hasAbout,jdbcType=SMALLINT},
+      HAS_EXT_ATTRIBUTE = #{hasExtAttribute,jdbcType=SMALLINT},
+      HAS_KEYWORD = #{hasKeyword,jdbcType=SMALLINT},
+      HAS_SOURCE = #{hasSource,jdbcType=SMALLINT},
+      HAS_SHOW_TIME = #{hasShowTime,jdbcType=SMALLINT},
+      HAS_SEO = #{hasSEO,jdbcType=SMALLINT},
+      HAS_TAG = #{hasTag,jdbcType=SMALLINT},
+      HAS_ORDER_OPT = #{hasOrderOpt,jdbcType=SMALLINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      UPDATE_DATE = NOW(),
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update> 
+  
+  
+<!-- 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cont_attribute
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bsb.cms.model.po.content.ContAttributeExample" >
+    delete from cont_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+-->
+</mapper>

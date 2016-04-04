@@ -6,7 +6,7 @@
 <%@ include file="../include/head.jsp"%>
 
 
-<script type="text/javascript" src="${rc.contextPath}/js/attribute/attr_list.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/spider/spider_list.js"></script>
 
 </head>
 <body>
@@ -22,7 +22,7 @@
 				striped:true,
 				pageList:[10,15,20,30,40,50],
 				pageSize:15,
-				url:'${rc.contextPath}/moss/attr/list.htm',
+				url:'${rc.contextPath}/moss/spider/list.htm',
 				toolbar:'#tb'" sortName="UPDATE_DATE" sortOrder="desc">
 		<thead>
 			<tr>
@@ -49,7 +49,7 @@
 	</table>
 	
 	<div id="tb" style="padding:5px;height:auto">
-	<form id="searchForm" action="${rc.contextPath}/moss/attr/list.htm">
+	<form id="searchForm" action="${rc.contextPath}/moss/spider/list.htm">
 			<input type="hidden" name="typeId" id="typeId" value=${typeId}/>
 			<div style="margin-bottom:5px">
 				<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',iconAlign:'top'" onclick="window.parent.j.addTab(' 新增类型', contextPath + '/moss/attr/create.htm');">新 增</a>

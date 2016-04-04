@@ -16,7 +16,7 @@
 
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost/crm" userId="root" password="root">
+			connectionURL="jdbc:mysql://localhost/cms" userId="root" password="root">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -57,6 +57,6 @@
 		<table tableName="tmpt_template_body" domainObjectName="TmptTemplateBody" />
 		<table tableName="tmpt_template" domainObjectName="TmptTemplate" />
 		<table tableName="tmpt_template_group" domainObjectName="TmptTemplateGroup" /> -->
-		
+		<table tableName="spider_config" domainObjectName="SpiderConfig" /> 
 	</context>
 </generatorConfiguration>  
