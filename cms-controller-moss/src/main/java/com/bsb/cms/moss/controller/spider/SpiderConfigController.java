@@ -22,7 +22,7 @@ import com.bsb.cms.moss.controller.utils.EasyUiUtils;
 /**
  * 爬虫配置。 配置要爬的网站
  * <br>
- * 采用jgroup与否。 暂时不支持正则表达式。
+ * 采用jsoup与否。 暂时不支持正则表达式。
  * 咱不支持内容页还有分页的文章。
  * @author liuhj
  * 
@@ -102,7 +102,7 @@ public class SpiderConfigController extends LogController {
 		try {
 			try {
 				Long id = spiderConfigService.create(spiderConfig);
-				log(OperateTypeEnum.ATTRIBUTE_CREATE, "id:" + id, "新增类型");
+				log(OperateTypeEnum.SPIDER_CREATE, "id:" + id, "新增采集节点");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");
 				result.setResult(JSONResultDTO.ERROR);
@@ -132,8 +132,8 @@ public class SpiderConfigController extends LogController {
 		try {
 			try {
 				spiderConfigService.updateById(spiderConfig);
-				log(OperateTypeEnum.ATTRIBUTE_UPDATE,
-						"id:" + spiderConfig.getId(), "编辑类型");
+				log(OperateTypeEnum.SPIDER_UPDATE,
+						"id:" + spiderConfig.getId(), "编辑采集节点");
 			} catch (RenameRuntimeException e) {
 				result.setMessage("标题名已经存在");
 				result.setResult(JSONResultDTO.ERROR);

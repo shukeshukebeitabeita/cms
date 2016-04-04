@@ -7,10 +7,11 @@ $(function() {
 	try {
 		var options = {
 			dataType : 'json',
-			timeout : 3000, // 限制请求的时间，当请求大于3秒后，跳出请求
+			timeout : 5000, // 限制请求的时间，当请求大于3秒后，跳出请求
 			beforeSubmit : validate,
 			success : function(d) {
 				if (d.result == "Y") {
+					alert('编辑成功');
 					j.show('信息', '编辑成功');
 					resetForm();
 				} else {
@@ -25,6 +26,7 @@ $(function() {
 		});
 
 	} catch (e) {
+		//alert(e);
 	}
 
 	$('#postFormButton').click(function() {

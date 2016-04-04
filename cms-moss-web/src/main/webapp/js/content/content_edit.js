@@ -17,7 +17,7 @@ $(function() {
 		var options = {
 		        // dataType identifies the expected content type of the server response
 		        dataType:  'json',
-		        timeout: 3000,               //限制请求的时间，当请求大于3秒后，跳出请求
+		        timeout: 5000,               //限制请求的时间，当请求大于3秒后，跳出请求
 		        beforeSubmit: validate,
 		      //clearForm: true,
 		        //resetForm: true,

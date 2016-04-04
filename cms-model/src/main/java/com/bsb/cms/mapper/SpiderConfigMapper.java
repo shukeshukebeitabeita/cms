@@ -21,4 +21,6 @@ public interface SpiderConfigMapper {
 	int updateByPrimaryKey(SpiderConfig record);
 	
 	int insert(SpiderConfig record);
+	
+	List<SpiderConfig> findAllList(SpiderConfig conditions);
 }

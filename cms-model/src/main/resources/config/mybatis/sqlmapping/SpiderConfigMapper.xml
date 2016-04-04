@@ -3,7 +3,7 @@
 <mapper namespace="com.bsb.cms.mapper.SpiderConfigMapper">
   <resultMap id="BaseResultMap" type="com.bsb.cms.model.po.spider.SpiderConfig">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="node_name" jdbcType="VARCHAR" property="name" />
     <result column="node_perant_id" jdbcType="BIGINT" property="nodePerantId" />
     <result column="list_url" jdbcType="VARCHAR" property="listUrl" />
     <result column="content_base_url" jdbcType="VARCHAR" property="contentBaseUrl" />
@@ -47,8 +47,16 @@
     
   </select>
   
- <insert id="insert" parameterType="com.bsb.cms.model.po.spider.SpiderConfig">
-    insert into spider_config (id, node_name, node_perant_id, 
+   <select id="findAllList" parameterType="contAttribute" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from spider_config
+   <![CDATA[ where job_time <> '0' ]]>
+    
+  </select>
+  
+ <insert id="insert" parameterType="com.bsb.cms.model.po.spider.SpiderConfig" useGeneratedKeys="true" keyProperty="id">
+    insert into spider_config (node_name, node_perant_id, 
       list_url, content_base_url, img_base_url, 
       type_ids, remark, has_save_img_to_local, 
       content_source, job_time, filter_source, 
@@ -56,7 +64,7 @@
       list_links_area_rule, list_link_rule, title_img_rule, 
       title_rule, content_title_img_rule, content_abort_rule, 
       content_rule)
-    values (#{id,jdbcType=BIGINT}, #{nodeName,jdbcType=VARCHAR}, #{nodePerantId,jdbcType=BIGINT}, 
+    values ( #{name,jdbcType=VARCHAR}, #{nodePerantId,jdbcType=BIGINT}, 
       #{listUrl,jdbcType=VARCHAR}, #{contentBaseUrl,jdbcType=VARCHAR}, #{imgBaseUrl,jdbcType=VARCHAR}, 
       #{typeIds,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{hasSaveImgToLocal,jdbcType=BIT}, 
       #{contentSource,jdbcType=VARCHAR}, #{jobTime,jdbcType=VARCHAR}, #{filterSource,jdbcType=VARCHAR}, 
@@ -68,7 +76,7 @@
   
 <update id="updateByPrimaryKey" parameterType="com.bsb.cms.model.po.spider.SpiderConfig">
     update spider_config
-    set node_name = #{nodeName,jdbcType=VARCHAR},
+    set node_name = #{name,jdbcType=VARCHAR},
       node_perant_id = #{nodePerantId,jdbcType=BIGINT},
       list_url = #{listUrl,jdbcType=VARCHAR},
       content_base_url = #{contentBaseUrl,jdbcType=VARCHAR},

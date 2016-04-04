@@ -1,15 +1,11 @@
 package com.bsb.cms.commons.utils;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
-import org.jsoup.select.Elements;
 
 public class ParseHTML {
 
@@ -22,21 +18,13 @@ public class ParseHTML {
 
 	public static Document parseHtmlFromString(String html) {
 
-		/*String html = "<html><head><title>标题</title></head>"
-
-		+ "<body><p>段落</p></body></html>";*/
 
 		Document doc = Jsoup.parse(html);
 
 		return doc;
 
 	}
-	
-	public static void main(String[] args) {
-		Element doc = parseHtmlFragmentFromStringNotSafe("<div><p>Lorem ipsum.</p>");
-		System.out.println(doc.children().outerHtml());
-		//System.out.println(doc.toString().substring(7, doc.toString().length()-8));
-	}
+
 
 	/**
 	 * 
@@ -137,7 +125,7 @@ public class ParseHTML {
 		return body;
 
 	}
-
+	
 	/**
 	 * 
 	 * 从URL加载
@@ -145,58 +133,97 @@ public class ParseHTML {
 	 * @return Document
 	 */
 
-	public static Document parseDocumentFromUrl() {
+	public static Document parseDocumentFromUrl(String url) {
 
 		Document doc = null;
 
 		try {
-
-			doc = Jsoup.connect("http://www.google.com/").get();
-
-			// 获取标题
-
-			String title = doc.title();
-
-			System.out.println(title);// 输出：Google
-
-			// data(key,value)是该URL要求的参数
-
-			// userAgent制定用户使用的代理类型
-
-			// cookie带上cookie，如cookie("JSESSIONID","FDE234242342342423432432")
-
-			// 连接超时时间
-
-			// post或者get方法
-
-			doc = Jsoup.connect("http://www.xxxxx.com/")
-
-			.data("query", "Java")
-
+			doc = Jsoup.connect(url)
 			.userAgent("Mozilla")
-
-			.cookie("auth", "token")
-
-			.timeout(3000)
-
-			.post();
+			.timeout(5000)
+			.get();
 
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
 		}
 
 		return doc;
+	}
+	
+	
+	
+	public static void main(String[] args) {
 
+		/*String html = "<html><head><title>标题</title></head>"
+
+		+ "<body><p>段落</p></body></html>";*/
+		//Element doc = parseHtmlFragmentFromStringNotSafe("<div><p>Lorem ipsum.</p>");
+		//System.out.println(doc.children().outerHtml());
+		//System.out.println(doc.toString().substring(7, doc.toString().length()-8));
+	
+		Element doc = parseDocumentFromUrl("http://www.yidianzixun.com/home?page=channel&keyword=%E4%BA%92%E8%81%94%E7%BD%91");
+		System.out.println(doc.html());
 	}
 
-	/**
+//	/**
+//	 * 
+//	 * 从URL加载
+//	 * 
+//	 * @return Document
+//	 */
+//
+//	public static Document parseDocumentFromUrl(String url) {
+//
+//		Document doc = null;
+//
+//		try {
+//
+//			doc = Jsoup.connect(url).get();
+//
+//			// 获取标题
+//
+//			String title = doc.title();
+//
+//			System.out.println(title);// 输出：Google
+//
+//			// data(key,value)是该URL要求的参数
+//
+//			// userAgent制定用户使用的代理类型
+//
+//			// cookie带上cookie，如cookie("JSESSIONID","FDE234242342342423432432")
+//
+//			// 连接超时时间
+//
+//			// post或者get方法
+//
+//			doc = Jsoup.connect(url)
+//
+//			.data("query", "Java")
+//
+//			.userAgent("Mozilla")
+//
+//			.cookie("auth", "token")
+//
+//			.timeout(3000)
+//
+//			.post();
+//
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//
+//		}
+//
+//		return doc;
+//
+//	}
+
+/*	*//**
 	 * 
 	 * 从文件加载
 	 * 
 	 * @return Document
-	 */
+	 *//*
 
 	public static Document parseDocumentFromFile() {
 
@@ -221,7 +248,7 @@ public class ParseHTML {
 		return doc;
 
 	}
-
+*/
 	
 	/*修改数据
 

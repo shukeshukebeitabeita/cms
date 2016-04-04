@@ -18,4 +18,6 @@ public interface SpiderConfigService {
 	Long create(SpiderConfig record);
 	
 	void updateById(SpiderConfig record);
+	
+	List<SpiderConfig> findAllList(SpiderConfig conditions);
 }

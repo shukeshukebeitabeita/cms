@@ -41,6 +41,9 @@ public enum OperateTypeEnum {
 	DELETE_ROLE(16, "删除角色"),
 
 	CREATE_ROLE(18, "创建角色"),
+	
+	SPIDER_CREATE(19, "创建采集节点"),
+	SPIDER_UPDATE(20, "修改采集节点"),
 
 	;
 

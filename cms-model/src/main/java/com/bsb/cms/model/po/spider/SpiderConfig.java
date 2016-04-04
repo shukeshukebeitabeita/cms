@@ -12,14 +12,14 @@ public class SpiderConfig extends Entity {
 	//基本信息
 	/**id*/
 	private Long id;
-	/**采集节点名*/
-	private String nodeName;
+	/**采集节点名. nodeName时jquery报错*/
+	private String name;
 	/**采集节点父节点。采集节点也是数状。可以和栏目对应 暂时不支持。预留字段。*/
 	private Long nodePerantId;
 	/**采集列表页地址*/
 	private String listUrl;
 	/**内容根地址*/
-	private String conternBaseUrl;
+	private String contentBaseUrl;
 	/**图片地址前缀*/
 	private String imgBaseUrl;
 	/**入库栏目;逗号分割*/
@@ -44,21 +44,21 @@ public class SpiderConfig extends Entity {
 	private String conterAbort;
 	
 	//列表页采集
-	/**列表页内容链接区正则（jgroup）*/
+	/**列表页内容链接区正则（jsoup）*/
 	private String listLinksAreaRule;
-	/**列表页内容链接正则（jgroup）*/
+	/**列表页内容链接正则（jsoup）*/
 	private String listLinkRule;
-	/**标题图片正则（jgroup）。如果标题图片在内容页，则不填。*/
+	/**标题图片正则（jsoup）。如果标题图片在内容页，则不填。*/
 	private String titleImgRule;
 	
 	//内容页采集设置
-	/**内容标题正则（jgroup）*/
+	/**内容标题正则（jsoup）*/
 	private String titleRule;
-	/**内容标题图片正则（jgroup）*/
+	/**内容标题图片正则（jsoup）*/
 	private String contentTitleImgRule;
-	/**内容简介正则（jgroup）*/
+	/**内容简介正则（jsoup）*/
 	private String contentAbortRule;
-	/**内容正则（jgroup）*/
+	/**内容正则（jsoup）*/
 	private String contentRule;
 	
 	
@@ -71,12 +71,14 @@ public class SpiderConfig extends Entity {
 		this.id = id;
 	}
 
-	public String getNodeName() {
-		return nodeName;
+	
+
+	public String getName() {
+		return name;
 	}
 
-	public void setNodeName(String nodeName) {
-		this.nodeName = nodeName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getNodePerantId() {
@@ -95,12 +97,14 @@ public class SpiderConfig extends Entity {
 		this.listUrl = listUrl;
 	}
 
-	public String getConternBaseUrl() {
-		return conternBaseUrl;
+
+
+	public String getContentBaseUrl() {
+		return contentBaseUrl;
 	}
 
-	public void setConternBaseUrl(String conternBaseUrl) {
-		this.conternBaseUrl = conternBaseUrl;
+	public void setContentBaseUrl(String contentBaseUrl) {
+		this.contentBaseUrl = contentBaseUrl;
 	}
 
 	public String getImgBaseUrl() {

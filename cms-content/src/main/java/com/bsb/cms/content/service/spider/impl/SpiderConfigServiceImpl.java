@@ -53,4 +53,9 @@ public class SpiderConfigServiceImpl implements SpiderConfigService {
 		int count = spiderConfigMapper.updateByPrimaryKey(record);
 		if(count <= 0) throw new NotFoundDaoException("成功条数为0");
 	}
+
+	@Override
+	public List<SpiderConfig> findAllList(SpiderConfig conditions) {
+		return spiderConfigMapper.findAllList(conditions);
+	}
 }

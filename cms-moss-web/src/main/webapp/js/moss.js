@@ -151,7 +151,7 @@ moss.updateTab=function(subtitle,url) {
  * @param title
  * @param msg
  */
-moss.show=function(title, msg) { 
+moss.show=function(title, msg) {
     window.top.$.messager.show({    
     		title: title,  
             msg: msg,    
