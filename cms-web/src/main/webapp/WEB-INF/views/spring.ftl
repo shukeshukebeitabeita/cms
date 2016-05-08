@@ -503,6 +503,8 @@ var _hmt = _hmt || [];
 	<#if (w==150 && (defaultImg?index_of("/upload/2015-05")==-1))>
 	<#assign defaultImg=c.default_img?replace('100x75.', '150x100.')>
 	 </#if>
+	 
+	 <#assign defaultImg=defaultImg?replace('pngnull', 'png')>
 	 <a href="${cms.curl(c)}" target="_blank">
       <img class="media-object" src="${staticRoot}/${defaultImg}" alt="${cms.substr(c.title, 15)}" width="${w}px" height="${h}px">
     </a>
